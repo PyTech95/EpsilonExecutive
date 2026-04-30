@@ -142,56 +142,60 @@ export const testimonials = [
   }
 ];
 
-export const faculty = [
+export const leadFaculty = [
   {
     slug: 'kent-oliver-bhupathi',
     name: 'Kent Oliver Bhupathi',
-    role: 'Faculty Lead — Applied AI',
-    bio: 'Twenty years across research and applied AI. Advises public-market boards on AI capability and risk.',
-    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80',
-    tags: ['Applied AI', 'Board Advisory']
-  },
-  {
-    slug: 'anaya-iyer',
-    name: 'Dr. Anaya Iyer',
-    role: 'Faculty — Decision Science',
-    bio: 'Decision scientist and former central-bank researcher. Teaches disciplined reasoning under ambiguity.',
-    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80',
-    tags: ['Decision Science', 'Research']
-  },
-  {
-    slug: 'rohan-mathur',
-    name: 'Rohan Mathur',
-    role: 'Faculty — Applied LLM Workflows',
-    bio: 'Builds LLM-native products in production. Teaches workflow design that survives real users.',
-    image: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=800&q=80',
-    tags: ['LLMs', 'Product']
-  },
-  {
-    slug: 'priya-krishnan',
-    name: 'Priya Krishnan',
-    role: 'Faculty — Executive Communication',
-    bio: 'Ex-consulting partner. Teaches the craft of the one-page memo and the boardroom recommendation.',
-    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80',
-    tags: ['Communication', 'Strategy']
-  },
-  {
-    slug: 'vikram-rao',
-    name: 'Vikram Rao',
-    role: 'Faculty — Digital Transformation',
-    bio: 'Led transformation programmes across banking and retail. Allergic to slideware without outcomes.',
-    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80',
-    tags: ['Transformation', 'Delivery']
-  },
-  {
-    slug: 'sneha-iyer',
-    name: 'Sneha Iyer',
-    role: 'Faculty — Finance',
-    bio: 'Ex-banker and finance lecturer. Makes statements speak the language of the business.',
-    image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=800&q=80',
-    tags: ['Finance', 'Commercial']
+    role: 'Founder and Instructor, Epsilon Executive Education',
+    affiliations: [
+      'Co-Founder and Chief Economist, Market Theory AI',
+      'ex-Interpublic Group, ex-Publicis Group, ex-Horizon Media',
+      'Former Adjunct Faculty, NYU, Columbia University and ISPP'
+    ],
+    image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=900&q=80',
+    bio: 'Kent Bhupathi is an economist, data science leader and educator with more than 15 years of experience leading applied research and analytics work across marketing sciences, healthcare analytics, supply chain, business intelligence, litigation and professional services. He has worked at the intersection of economics, statistics, machine learning and decision support, helping organisations turn complex analysis into practical business action and return on investment (ROI).',
+    bio2: 'He holds a dual degree in Economics and Architecture from the University of Texas at Austin and a Master\u2019s in Applied Econometrics from New York University. Across his teaching career, he has led curriculum design and lectured on applied statistics, data science, machine learning, quantitative business methods, data visualisation and technical communication. His prior teaching appointments include New York University (NYU), Columbia University and the Indian School of Public Policy (ISPP).',
+    tags: ['Economics', 'Data Science', 'Machine Learning', 'Decision Support']
   }
 ];
+
+export const guestLecturers = [
+  {
+    slug: 'jayprakash-mistry',
+    name: 'Jayprakash Mistry',
+    role: 'Founder, Remarkables Capital and UnnichedHQ',
+    image: 'https://images.unsplash.com/photo-1568602471122-7832951cc4c5?auto=format&fit=crop&w=900&q=80',
+    bio: 'Jayprakash Mistry is an investor, advisor and strategist working across venture capital, private equity, credit and growth strategy. Through Remarkables Capital and UnnichedHQ, he works at the intersection of capital, technology and global systems, with a focus on AI, deeptech, life sciences, fintech and defense-adjacent sectors. His experience includes investing, portfolio management, go-to-market strategy and cross-border advisory work across the US, UK and India. He has also held roles at M&G Investments, Credit Suisse, BNY Mellon and Santander. His academic background spans finance, law and technology, including studies at the University of Oxford.',
+    tags: ['Venture Capital', 'AI', 'Deeptech', 'Cross-Border Strategy']
+  },
+  {
+    slug: 'philip-wiseman',
+    name: 'Philip Wiseman, J.D.',
+    role: 'Vice President of Legal Affairs & Assistant General Counsel, JPMorganChase',
+    image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=900&q=80',
+    bio: 'Philip Wiseman is a business attorney with experience across banking, private equity, fund formation, securities regulation and cross-border transactions. At JPMorganChase, he advises on securities, corporate and regulatory legal matters tied to investment activity across the Americas, Europe and Asia. Earlier in his career, he worked at Winston & Strawn, Simpson Thacher and Bracewell, where he advised clients on fundraising, compliance, M&A and international investment structures. He earned his J.D. from the University of California, Berkeley School of Law and his B.A. from the University of Texas at Austin.',
+    tags: ['Securities Law', 'M&A', 'Compliance', 'Banking']
+  },
+  {
+    slug: 'alena-savera',
+    name: 'Alena Savera',
+    role: 'Vice President of Development, The NRP Group',
+    image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=900&q=80',
+    bio: 'Alena Savera is a real estate development leader based in Dallas-Fort Worth. At The NRP Group, she leads multifamily land acquisition and development across market-rate and PFC projects in the DFW region. Since joining the firm in 2020, she has helped originate multiple projects totaling more than 2,350 units and has led work through entitlement and zoning processes. Before NRP, she worked at Perkins&Will and StreetLights Residential, where she supported planning and feasibility work across large multifamily projects. She holds a Bachelor of Architecture from the University of Texas at Austin.',
+    tags: ['Real Estate', 'Development', 'Acquisition', 'Planning']
+  },
+  {
+    slug: 'mardoqueo-arteaga',
+    name: 'Mardoqueo Arteaga, Ph.D.',
+    role: 'Marketing Science Strategist, LinkedIn',
+    image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=900&q=80',
+    bio: 'Mardoqueo Arteaga is an economist working at the intersection of marketing science, technology and applied research. At LinkedIn Marketing Solutions, he builds frameworks to measure B2B advertising effectiveness and develops research on the broader B2B economy. Before LinkedIn, he worked at KPMG on economic consulting and at the Central Bank of Chile on macro-financial forecasting and monetary policy research. He holds a Ph.D. in Economics from Fordham University, with specialisation in information economics, monetary economics and econometrics. His work brings a strong perspective on causal inference, measurement and business decision-making.',
+    tags: ['Marketing Science', 'Econometrics', 'Causal Inference', 'B2B Research']
+  }
+];
+
+// Combined for backwards-compat (e.g. dropdown menus etc.)
+export const faculty = [...leadFaculty, ...guestLecturers];
 
 export const insights = [
   {
