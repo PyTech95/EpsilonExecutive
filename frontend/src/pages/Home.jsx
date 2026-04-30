@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import {
   Sparkles, ArrowRight, LogIn, FileText, Download, ArrowUpRight, BookOpen, Quote
 } from 'lucide-react';
-import { programs, testimonials, LOGO_URL } from '../mock';
+import { programs, testimonials, leadFaculty, guestLecturers, LOGO_URL } from '../mock';
 
 function HeroStat({ value, label }) {
   return (
@@ -184,6 +184,62 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FACULTY */}
+      <section className="bg-cream py-24 md:py-32">
+        <div className="container-x">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 mb-12">
+            <div>
+              <p className="eyebrow mb-4">Faculty</p>
+              <span className="gold-rule-lg" />
+              <h2 className="font-display text-navy text-[2rem] md:text-[3rem] leading-[1.05] mt-6 max-w-3xl">
+                Practitioner-educators who <span className="italic font-editorial text-gold">do the work.</span>
+              </h2>
+            </div>
+            <Link to="/faculty" className="link-gold w-fit">View all faculty <ArrowUpRight size={13} /></Link>
+          </div>
+
+          {/* Lead Faculty card */}
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-10 items-stretch mb-10">
+            {leadFaculty.map((f) => (
+              <React.Fragment key={f.slug}>
+                <div className="aspect-[4/5] overflow-hidden bg-bone">
+                  <img src={f.image} alt={f.name} className="w-full h-full object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-500" />
+                </div>
+                <div className="bg-navy-deep text-cream p-8 md:p-12 flex flex-col justify-center relative overflow-hidden">
+                  <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full opacity-25 pointer-events-none"
+                       style={{ background: 'radial-gradient(circle, rgba(194,152,76,0.45) 0%, transparent 70%)' }} />
+                  <p className="eyebrow mb-3 relative">Lead Faculty</p>
+                  <h3 className="font-display text-cream text-[1.8rem] md:text-[2.4rem] leading-tight relative">{f.name}</h3>
+                  <p className="font-editorial italic text-gold mt-2 text-[1.1rem] relative">{f.role}</p>
+                  <p className="font-sans text-cream/80 text-[0.95rem] leading-relaxed mt-6 relative line-clamp-5">
+                    {f.bio}
+                  </p>
+                  <Link to="/faculty" className="link-gold mt-7 inline-flex w-fit relative">
+                    Read full bio <ArrowUpRight size={13} />
+                  </Link>
+                </div>
+              </React.Fragment>
+            ))}
+          </div>
+
+          {/* Guest Lecturers strip */}
+          <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-6">Guest Lecturers</p>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
+            {guestLecturers.map((g) => (
+              <Link to="/faculty" key={g.slug} className="group bg-white border border-navy/10 hover:border-gold/50 transition-colors">
+                <div className="aspect-[4/5] overflow-hidden">
+                  <img src={g.image} alt={g.name} className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-500" />
+                </div>
+                <div className="p-5">
+                  <h4 className="font-display text-navy text-[1.1rem] leading-tight group-hover:text-gold transition-colors">{g.name}</h4>
+                  <p className="font-editorial italic text-navy/70 text-sm mt-2 leading-snug line-clamp-2">{g.role}</p>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
