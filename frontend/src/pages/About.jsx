@@ -25,26 +25,26 @@ export default function About() {
           </div>
           <div className="space-y-6">
             <p className="font-editorial text-navy/85 text-[1.25rem] leading-relaxed">
-              Knowing about AI is not the same as deciding with it. Reading a model report is not the same as defending a recommendation to a board. Our programmes are built around that gap — the difference between knowing and deciding.
+              Knowing about AI is not the same as deciding with it. Reading a model report is not the same as defending a recommendation to a board. Our programmes are built around that gap &mdash; the difference between knowing and deciding.
             </p>
             <p className="font-editorial text-navy/85 text-[1.25rem] leading-relaxed">
-              We pair practitioner-educators with senior cohorts, hold them to a high bar of evidence, and end every programme with a portfolio-grade capstone — an artefact that proves capability, not attendance.
+              We pair practitioner-educators with senior cohorts, hold them to a high bar of evidence, and end every programme with a portfolio-grade capstone &mdash; an artefact that proves capability, not attendance.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Beliefs */}
+      {/* Beliefs — white cards */}
       <section className="bg-bone py-24">
         <div className="container-x">
           <p className="eyebrow mb-4">What we believe</p>
           <span className="gold-rule-lg" />
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-0">
-            {beliefs.map((b, i) => (
-              <div key={b.n} className={`p-8 border-t border-navy/15 ${i !== 0 ? 'md:border-l' : ''}`}>
-                <p className="font-display text-gold text-[3rem] leading-none">{b.n}</p>
-                <h3 className="font-display text-navy text-[1.5rem] leading-tight mt-4">{b.title}</h3>
-                <p className="font-editorial text-navy/75 text-lg leading-relaxed mt-4">{b.body}</p>
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+            {beliefs.map((b) => (
+              <div key={b.n} className="bg-white p-10 hover:shadow-lg transition-shadow">
+                <p className="font-display text-gold text-[2.5rem] leading-none">{b.n}</p>
+                <h3 className="font-display text-navy text-[1.5rem] leading-tight mt-6">{b.title}</h3>
+                <p className="font-editorial text-navy/75 text-lg leading-relaxed mt-5">{b.body}</p>
               </div>
             ))}
           </div>
@@ -57,8 +57,8 @@ export default function About() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full glow-gold" />
         <div className="relative container-x text-center">
           <img src={LOGO_URL} alt="Epsilon" className="mx-auto mb-8 h-[100px] w-auto object-contain" />
-          <h2 className="font-display text-[2rem] md:text-[3rem] leading-[1.05] max-w-3xl mx-auto">
-            Build the judgement your <span className="italic font-editorial text-gold">next decade</span> demands.
+          <h2 className="font-display uppercase text-[2rem] md:text-[3rem] leading-[1.05] max-w-3xl mx-auto">
+            Build the judgement your <span className="italic font-editorial text-gold normal-case">next decade</span> demands.
           </h2>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link to="/programs" className="btn-gold">Explore Programmes <ArrowRight size={16} /></Link>

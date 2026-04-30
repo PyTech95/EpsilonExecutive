@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Calendar } from 'lucide-react';
+import { ArrowRight, Calendar, Receipt } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import { cohorts, programs } from '../mock';
 
@@ -57,10 +57,42 @@ export default function Admissions() {
         </div>
       </section>
 
-      {/* Programmes snapshot */}
+      {/* Fees & Investment */}
       <section className="bg-cream py-24">
         <div className="container-x">
-          <p className="eyebrow mb-4">Programmes · Fees</p>
+          <div className="flex items-center gap-3 mb-4">
+            <Receipt size={18} className="text-gold" />
+            <p className="eyebrow">Fees & Investment</p>
+          </div>
+          <span className="gold-rule-lg" />
+          <h2 className="font-display text-navy text-[2rem] md:text-[3rem] leading-[1.05] mt-6 max-w-3xl">
+            A clear, transparent investment.
+          </h2>
+
+          <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white p-9 hover:shadow-lg transition-shadow">
+              <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em]">Programme Fee</p>
+              <p className="font-display text-navy text-[2.4rem] mt-4">₹1,25,000</p>
+              <p className="font-editorial text-navy/75 mt-4 leading-relaxed">All-inclusive of materials, sessions, and certificate</p>
+            </div>
+            <div className="bg-white p-9 hover:shadow-lg transition-shadow">
+              <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em]">Early Bird (4 weeks before start)</p>
+              <p className="font-display text-navy text-[2.4rem] mt-4">₹1,10,000</p>
+              <p className="font-editorial text-navy/75 mt-4 leading-relaxed">Subject to seat availability</p>
+            </div>
+            <div className="bg-white p-9 hover:shadow-lg transition-shadow">
+              <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em]">Group Discount (3+)</p>
+              <p className="font-display text-navy text-[2.4rem] mt-4">15% off</p>
+              <p className="font-editorial text-navy/75 mt-4 leading-relaxed">For corporate cohorts of three or more</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Programmes snapshot */}
+      <section className="bg-bone py-24">
+        <div className="container-x">
+          <p className="eyebrow mb-4">Programmes</p>
           <span className="gold-rule-lg" />
           <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
             {programs.map(p => (
@@ -81,8 +113,8 @@ export default function Admissions() {
       <section className="bg-navy-deep text-cream py-24 relative overflow-hidden">
         <div className="absolute inset-0 starfield opacity-40" />
         <div className="container-x relative text-center">
-          <h2 className="font-display text-[2rem] md:text-[3rem] leading-[1.05] max-w-3xl mx-auto">
-            Start your <span className="italic font-editorial text-gold">admissions conversation.</span>
+          <h2 className="font-display uppercase text-[2rem] md:text-[3rem] leading-[1.05] max-w-3xl mx-auto">
+            Start your <span className="italic font-editorial text-gold normal-case">admissions conversation.</span>
           </h2>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link to="/apply" className="btn-gold">Apply Now <ArrowRight size={16} /></Link>
