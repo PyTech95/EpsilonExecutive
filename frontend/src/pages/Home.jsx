@@ -5,6 +5,7 @@ import {
 } from 'lucide-react';
 import { programs, testimonials, LOGO_URL } from '../mock';
 import FacultyShowcase from '../components/FacultyShowcase';
+import NetworkBackground from '../components/NetworkBackground';
 
 function HeroStat({ value, label }) {
   return (
@@ -24,11 +25,12 @@ export default function Home() {
           <img
             src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=2400&q=80"
             alt="AI"
-            className="absolute inset-0 w-full h-full object-cover opacity-40"
+            className="absolute inset-0 w-full h-full object-cover opacity-25"
           />
-          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(8,19,31,0.45), rgba(14,31,50,0.85), rgba(8,19,31,1))' }} />
+          <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(8,19,31,0.55), rgba(14,31,50,0.88), rgba(8,19,31,1))' }} />
         </div>
-        <div className="absolute inset-0 starfield opacity-60 pointer-events-none" />
+        {/* Animated spider-net network */}
+        <NetworkBackground className="opacity-70" />
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] rounded-full glow-gold pointer-events-none" />
 
         <div className="relative container-x pt-40 md:pt-44 pb-24">
