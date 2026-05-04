@@ -166,6 +166,18 @@ export default function HomeEditor() {
         <F label="Admissions subtitle" textarea value={data.sections?.admissionsSubtitle} onChange={(v) => update('sections.admissionsSubtitle', v)} />
       </Section>
 
+      <Section title="Corporate Education Page">
+        <F label="Eyebrow" value={data.corporate?.eyebrow} onChange={(v) => update('corporate.eyebrow', v)} />
+        <F label="Hero Title" value={data.corporate?.heroTitle} onChange={(v) => update('corporate.heroTitle', v)} />
+        <F label="Hero Subtitle" textarea value={data.corporate?.heroSubtitle} onChange={(v) => update('corporate.heroSubtitle', v)} />
+        <F label="Intro paragraph" textarea value={data.corporate?.intro} onChange={(v) => update('corporate.intro', v)} />
+        <F label="Why title" value={data.corporate?.whyTitle} onChange={(v) => update('corporate.whyTitle', v)} />
+        <F label="Audiences title" value={data.corporate?.audiencesTitle} onChange={(v) => update('corporate.audiencesTitle', v)} />
+        <F label="CTA title" value={data.corporate?.ctaTitle} onChange={(v) => update('corporate.ctaTitle', v)} />
+        <F label="CTA subtitle" textarea value={data.corporate?.ctaSubtitle} onChange={(v) => update('corporate.ctaSubtitle', v)} />
+        <p className="text-xs text-navy/60 mt-2">Note: Why-items and Audiences arrays can be edited directly in MongoDB or extended later in the admin UI.</p>
+      </Section>
+
       <Section title="Site">
         <F label="Logo URL" value={data.logoUrl} onChange={(v) => update('logoUrl', v)} />
       </Section>

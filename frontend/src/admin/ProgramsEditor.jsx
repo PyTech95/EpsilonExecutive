@@ -16,7 +16,9 @@ const schema = [
   { key: 'short', label: 'Short description', type: 'textarea' },
   { key: 'long', label: 'Long description', type: 'textarea' },
   { key: 'outcomes', label: 'Outcomes', type: 'list-lines' },
-  { key: 'curriculum', label: 'Curriculum', type: 'curriculum' },
+  { key: 'curriculum', label: 'Week-by-Week Curriculum', type: 'curriculum' },
+  { key: 'modules', label: 'Modules (detailed cards)', type: 'modules' },
+  { key: 'faqs', label: 'FAQs', type: 'faqs' },
   { key: 'featured', label: 'Featured on home', type: 'boolean' },
   { key: 'order', label: 'Order', type: 'number' },
 ];
@@ -31,7 +33,7 @@ export default function ProgramsEditor() {
       newItemDefaults={{
         slug: '', title: '', subtitle: '', tagline: '', level: 'mid', levelLabel: 'Mid Career',
         weeks: 12, audience: '', fee: '', nextCohort: '', image: '', short: '', long: '',
-        outcomes: [], curriculum: [], featured: false, order: 999,
+        outcomes: [], curriculum: [], modules: [], faqs: [], featured: false, order: 999,
       }}
     />
   );

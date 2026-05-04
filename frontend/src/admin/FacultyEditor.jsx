@@ -13,6 +13,7 @@ const leadSchema = [
   { key: 'image', label: 'Photo URL' },
   { key: 'bio', label: 'Bio paragraph 1', type: 'textarea' },
   { key: 'bio2', label: 'Bio paragraph 2', type: 'textarea' },
+  { key: 'bio3', label: 'Bio paragraph 3', type: 'textarea' },
   { key: 'tags', label: 'Tags', type: 'tags' },
   { key: 'order', label: 'Order', type: 'number' },
 ];

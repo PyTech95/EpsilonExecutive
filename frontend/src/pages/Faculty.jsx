@@ -50,6 +50,7 @@ export default function Faculty() {
             <div className="space-y-6">
               <p className="font-editorial text-navy/85 text-[1.2rem] leading-relaxed">{lead.bio}</p>
               <p className="font-editorial text-navy/85 text-[1.2rem] leading-relaxed">{lead.bio2}</p>
+              {lead.bio3 && <p className="font-editorial text-navy/85 text-[1.2rem] leading-relaxed">{lead.bio3}</p>}
             </div>
           </div>
         </div>

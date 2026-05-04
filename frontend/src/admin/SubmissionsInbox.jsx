@@ -6,6 +6,8 @@ import { Trash2, Mail, Phone, Clock, Briefcase } from 'lucide-react';
 const TABS = [
   { key: 'apply', label: 'Applications' },
   { key: 'contact', label: 'Contact' },
+  { key: 'schedule', label: 'Schedule a Call' },
+  { key: 'corporate', label: 'Corporate' },
   { key: 'brochure', label: 'Brochure Leads' },
   { key: 'subscribe', label: 'Subscribers' },
 ];

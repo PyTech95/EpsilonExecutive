@@ -15,6 +15,8 @@ import Apply from './pages/Apply';
 import Insights from './pages/Insights';
 import InsightDetail from './pages/InsightDetail';
 import Events from './pages/Events';
+import Corporate from './pages/Corporate';
+import Schedule from './pages/Schedule';
 
 // Admin
 import { AdminAuthProvider } from './admin/AuthContext';
@@ -76,6 +78,8 @@ function App() {
               <Route path="/insights" element={<Insights />} />
               <Route path="/insights/:slug" element={<InsightDetail />} />
               <Route path="/events" element={<Events />} />
+              <Route path="/corporate" element={<Corporate />} />
+              <Route path="/schedule" element={<Schedule />} />
             </Route>
           </Routes>
         </AdminAuthProvider>

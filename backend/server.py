@@ -108,6 +108,30 @@ class SubscribeSubmission(BaseModel):
     email: EmailStr
 
 
+class ScheduleSubmission(BaseModel):
+    name: str
+    email: EmailStr
+    phone: Optional[str] = ""
+    company: Optional[str] = ""
+    role: Optional[str] = ""
+    preferredDate: Optional[str] = ""
+    preferredTime: Optional[str] = ""
+    timezone: Optional[str] = ""
+    interest: Optional[str] = ""
+    message: Optional[str] = ""
+
+
+class CorporateSubmission(BaseModel):
+    name: str
+    email: EmailStr
+    phone: Optional[str] = ""
+    company: str
+    role: Optional[str] = ""
+    teamSize: Optional[str] = ""
+    interest: Optional[str] = ""
+    message: Optional[str] = ""
+
+
 # ---------- sanitize helpers ----------
 def clean(doc: Optional[dict]) -> Optional[dict]:
     if not doc:
@@ -270,6 +294,8 @@ make_submission_routes("apply", "sub_apply", ApplySubmission)
 make_submission_routes("contact", "sub_contact", ContactSubmission)
 make_submission_routes("brochure", "sub_brochure", BrochureSubmission)
 make_submission_routes("subscribe", "sub_subscribe", SubscribeSubmission)
+make_submission_routes("schedule", "sub_schedule", ScheduleSubmission)
+make_submission_routes("corporate", "sub_corporate", CorporateSubmission)
 
 
 # ==================================================================
@@ -290,6 +316,8 @@ async def admin_stats(email: str = Depends(require_admin)):
             "contact": await db.sub_contact.count_documents({}),
             "brochure": await db.sub_brochure.count_documents({}),
             "subscribe": await db.sub_subscribe.count_documents({}),
+            "schedule": await db.sub_schedule.count_documents({}),
+            "corporate": await db.sub_corporate.count_documents({}),
         },
     }
 

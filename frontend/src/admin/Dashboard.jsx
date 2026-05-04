@@ -27,8 +27,8 @@ export default function Dashboard() {
       {/* Submissions */}
       <div className="mt-10">
         <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-4">Form Submissions</p>
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          {['apply', 'contact', 'brochure', 'subscribe'].map((k) => (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          {['apply', 'contact', 'schedule', 'corporate', 'brochure', 'subscribe'].map((k) => (
             <Link to={`/admin/submissions?tab=${k}`} key={k} className="bg-white border border-navy/10 p-6 hover:border-gold/60 transition-colors">
               <Inbox size={18} className="text-gold mb-3" />
               <p className="font-caps text-[0.6rem] text-navy/60 tracking-[0.22em]">{k}</p>

@@ -42,6 +42,8 @@ export const api = {
   submitContact: (body) => axios.post(`${API}/submissions/contact`, body).then((r) => r.data),
   submitBrochure: (body) => axios.post(`${API}/submissions/brochure`, body).then((r) => r.data),
   submitSubscribe: (body) => axios.post(`${API}/submissions/subscribe`, body).then((r) => r.data),
+  submitSchedule: (body) => axios.post(`${API}/submissions/schedule`, body).then((r) => r.data),
+  submitCorporate: (body) => axios.post(`${API}/submissions/corporate`, body).then((r) => r.data),
   listSubmissions: (kind) => axios.get(`${API}/submissions/${kind}`, { headers: authHeader() }).then((r) => r.data),
   removeSubmission: (kind, id) => axios.delete(`${API}/submissions/${kind}/${id}`, { headers: authHeader() }).then((r) => r.data),
 };

@@ -187,6 +187,52 @@ function FieldInput({ schema, value, onChange }) {
       </div>
     );
   }
+  if (type === 'modules') {
+    const items = Array.isArray(value) ? value : [];
+    const update = (i, key2, v) => { const c = [...items]; c[i] = { ...c[i], [key2]: v }; onChange(c); };
+    const updateTopics = (i, str) => update(i, 'topics', str.split('\n').map((s) => s.trim()).filter(Boolean));
+    const add = () => onChange([...items, { n: String(items.length + 1).padStart(2, '0'), title: '', description: '', topics: [] }]);
+    const rm = (i) => onChange(items.filter((_, idx) => idx !== i));
+    return (
+      <div>
+        <p className="fld-label">{label}</p>
+        {items.map((row, i) => (
+          <div key={i} className="bg-bone/40 p-4 mb-3 border border-navy/10">
+            <div className="grid grid-cols-[80px_1fr_auto] gap-3 items-end">
+              <input className="fld-input" placeholder="#" value={row.n || ''} onChange={(e) => update(i, 'n', e.target.value)} />
+              <input className="fld-input" placeholder="Title" value={row.title || ''} onChange={(e) => update(i, 'title', e.target.value)} />
+              <button onClick={() => rm(i)} className="p-2.5 border border-navy/20 text-navy hover:text-red-500"><Trash2 size={14} /></button>
+            </div>
+            <textarea rows={2} placeholder="Description" className="fld-input mt-2" value={row.description || ''} onChange={(e) => update(i, 'description', e.target.value)} />
+            <textarea rows={3} placeholder="Topics (one per line)" className="fld-input mt-2"
+                      value={(row.topics || []).join('\n')} onChange={(e) => updateTopics(i, e.target.value)} />
+          </div>
+        ))}
+        <button onClick={add} type="button" className="btn-outline-gold border-navy/30 text-navy"><Plus size={14} /> Add module</button>
+      </div>
+    );
+  }
+  if (type === 'faqs') {
+    const items = Array.isArray(value) ? value : [];
+    const update = (i, key2, v) => { const c = [...items]; c[i] = { ...c[i], [key2]: v }; onChange(c); };
+    const add = () => onChange([...items, { q: '', a: '' }]);
+    const rm = (i) => onChange(items.filter((_, idx) => idx !== i));
+    return (
+      <div>
+        <p className="fld-label">{label}</p>
+        {items.map((row, i) => (
+          <div key={i} className="bg-bone/40 p-4 mb-3 border border-navy/10">
+            <div className="grid grid-cols-[1fr_auto] gap-3 items-end">
+              <input className="fld-input" placeholder="Question" value={row.q || ''} onChange={(e) => update(i, 'q', e.target.value)} />
+              <button onClick={() => rm(i)} className="p-2.5 border border-navy/20 text-navy hover:text-red-500"><Trash2 size={14} /></button>
+            </div>
+            <textarea rows={3} placeholder="Answer" className="fld-input mt-2" value={row.a || ''} onChange={(e) => update(i, 'a', e.target.value)} />
+          </div>
+        ))}
+        <button onClick={add} type="button" className="btn-outline-gold border-navy/30 text-navy"><Plus size={14} /> Add FAQ</button>
+      </div>
+    );
+  }
   return (
     <label className="block">
       <span className="fld-label">{label}</span>

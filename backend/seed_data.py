@@ -59,6 +59,27 @@ HOME_CONTENT = {
         "admissionsTitle": "A personal conversation. Not a funnel.",
         "admissionsSubtitle": "Every applicant speaks with an admissions lead before a seat is offered. Start with a message — we will write back personally.",
     },
+    "corporate": {
+        "eyebrow": "Corporate Education",
+        "heroTitle": "Built for your team. Run for your business.",
+        "heroSubtitle": "Custom cohorts that turn your senior team into evidence-based decision-makers — built around your operating reality, not a generic syllabus.",
+        "intro": "We design and deliver private cohorts for companies that want their senior leadership to think clearly about AI, data, and modern decision systems. Programmes are bespoke, evidence-anchored, and led by practitioner-educators.",
+        "whyTitle": "Why companies partner with Epsilon",
+        "whyItems": [
+            {"title": "Bespoke curriculum", "body": "Programmes designed around your sector, your data, and the decisions your leaders are actually making."},
+            {"title": "Practitioner faculty", "body": "Educators who have built and shipped — not consultants reading slides."},
+            {"title": "Defended capstones", "body": "Each participant builds and defends a portfolio artefact tied to a real business problem."},
+            {"title": "Measurement built-in", "body": "Pre/post diagnostics, faculty assessments, and a cohort report at the end."},
+        ],
+        "audiencesTitle": "Who we run cohorts for",
+        "audiences": [
+            {"title": "C-Suite & Boards", "body": "Two-to-four-week intensives on AI judgement, governance, and capital allocation under technological change."},
+            {"title": "Senior Leadership", "body": "Eight-to-twelve-week programmes on applied AI, decision science, and executive communication."},
+            {"title": "Functional Teams", "body": "Custom modules for product, finance, risk, marketing, and operations teams."},
+        ],
+        "ctaTitle": "Talk to us about a private cohort.",
+        "ctaSubtitle": "Tell us about your team and what you want them to be able to do. We will design a programme around it.",
+    },
     "logoUrl": LOGO_URL,
 }
 
@@ -97,6 +118,52 @@ PROGRAMS = [
             {"week": "07–08", "topic": "Decision science — from model to memo"},
             {"week": "09–10", "topic": "Deployment, governance, and failure modes"},
             {"week": "11–12", "topic": "Capstone build + faculty defence"},
+        ],
+        "modules": [
+            {
+                "n": "01",
+                "title": "Foundations",
+                "description": "How models actually work — the mathematical and statistical scaffolding behind modern ML, demystified for senior leaders.",
+                "topics": ["Linear models & calibration", "Probability and uncertainty", "Loss functions & training dynamics", "When ML is the wrong tool"],
+            },
+            {
+                "n": "02",
+                "title": "Data & Evaluation",
+                "description": "Reading datasets like an analyst. The difference between a benchmark, a test, and a business case.",
+                "topics": ["Sampling and bias", "Train/validate/test discipline", "Evaluation harnesses", "Cost of error analysis"],
+            },
+            {
+                "n": "03",
+                "title": "Applied LLMs",
+                "description": "Prompting, retrieval, agents — and the workflow discipline that separates demos from systems.",
+                "topics": ["Prompt design patterns", "Retrieval & grounding", "Tool-using agents", "Failure budgets & guardrails"],
+            },
+            {
+                "n": "04",
+                "title": "Decision Science",
+                "description": "Translating model outputs into recommendations a board will defend.",
+                "topics": ["The one-page memo", "Decision frameworks under ambiguity", "Communicating risk", "Boardroom recommendation patterns"],
+            },
+            {
+                "n": "05",
+                "title": "Deployment & Governance",
+                "description": "Production, oversight, and the failure modes that matter.",
+                "topics": ["MLOps essentials for leaders", "Model risk management", "Governance & audit trails", "Recovery & rollback"],
+            },
+            {
+                "n": "06",
+                "title": "Capstone",
+                "description": "A defended, portfolio-grade artefact built with faculty critique throughout.",
+                "topics": ["Problem framing", "Build sprints", "Faculty critique cycles", "Final defence"],
+            },
+        ],
+        "faqs": [
+            {"q": "Who is this programme for?", "a": "Working professionals with 5–15 years of experience who lead, evaluate, or fund AI initiatives — and want to build the judgement to do it well."},
+            {"q": "How much time per week should I budget?", "a": "Plan for 15–20 hours per week — three live evening sessions plus reading, exercises, and capstone work."},
+            {"q": "Do I need to code?", "a": "Comfort reading code helps but is not required. We focus on the judgement to lead AI work, not the syntax to ship it."},
+            {"q": "What does the capstone look like?", "a": "A portfolio-grade artefact you build through the programme — defended in front of faculty and senior peers in the final week."},
+            {"q": "Are there scholarships or payment plans?", "a": "Yes — we offer needs-based partial scholarships and a three-instalment payment plan. Mention it in your application."},
+            {"q": "Will I get a certificate?", "a": "Yes — a Professional Certificate in Applied AI & Machine Learning, signed by faculty, on successful defence of your capstone."},
         ],
         "featured": True,
         "order": 1,
@@ -228,6 +295,7 @@ LEAD_FACULTY = [
         "image": "https://customer-assets.emergentagent.com/job_logos-11/artifacts/oimw09re_image.png",
         "bio": "Kent Bhupathi is an economist, data science leader and educator with more than 15 years of experience leading applied research and analytics work across marketing sciences, healthcare analytics, supply chain, business intelligence, litigation and professional services. He has worked at the intersection of economics, statistics, machine learning and decision support, helping organisations turn complex analysis into practical business action and return on investment (ROI).",
         "bio2": "He holds a dual degree in Economics and Architecture from the University of Texas at Austin and a Master's in Applied Econometrics from New York University. Across his teaching career, he has led curriculum design and lectured on applied statistics, data science, machine learning, quantitative business methods, data visualisation and technical communication. His prior teaching appointments include New York University (NYU), Columbia University and the Indian School of Public Policy (ISPP).",
+        "bio3": "At Epsilon, Kent leads the academic design and teaching of the programme with a strong focus on practical rigour. His approach is built around helping working professionals read data more critically, question AI outputs more confidently, and turn technical work into stronger business judgement, clearer communication and more credible decision-making.",
         "tags": ["Economics", "Data Science", "Machine Learning", "Decision Support"],
         "order": 1,
     }
@@ -265,7 +333,7 @@ async def seed_if_empty(db):
         # without overwriting admin-edited content.
         existing = await db.site_content.find_one({"_id": "home"}) or {}
         patch = {}
-        for key in ("contact", "footer", "sections"):
+        for key in ("contact", "footer", "sections", "corporate"):
             if key not in existing and key in HOME_CONTENT:
                 patch[key] = HOME_CONTENT[key]
         if patch:

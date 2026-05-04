@@ -75,6 +75,7 @@ export default function Navbar() {
           </div>
           <NavLink to="/faculty" className={`${baseNav} ${navColor}`}>Faculty</NavLink>
           <NavLink to="/admissions" className={`${baseNav} ${navColor}`}>Admissions</NavLink>
+          <NavLink to="/corporate" className={`${baseNav} ${navColor}`}>Corporate</NavLink>
           <NavLink to="/about" className={`${baseNav} ${navColor}`}>About</NavLink>
           <NavLink to="/contact" className={`${baseNav} ${navColor}`}>Contact</NavLink>
         </nav>
@@ -106,8 +107,10 @@ export default function Navbar() {
             <Link to="/programs" className="font-caps text-sm text-cream tracking-[0.2em]">Programs</Link>
             <Link to="/faculty" className="font-caps text-sm text-cream tracking-[0.2em]">Faculty</Link>
             <Link to="/admissions" className="font-caps text-sm text-cream tracking-[0.2em]">Admissions</Link>
+            <Link to="/corporate" className="font-caps text-sm text-cream tracking-[0.2em]">Corporate</Link>
             <Link to="/about" className="font-caps text-sm text-cream tracking-[0.2em]">About</Link>
             <Link to="/contact" className="font-caps text-sm text-cream tracking-[0.2em]">Contact</Link>
+            <Link to="/schedule" className="font-caps text-sm text-gold tracking-[0.2em]">Schedule a Call</Link>
             <a href={signInUrl} className="btn-gold w-fit" target="_blank" rel="noopener noreferrer">
               <LogIn size={14} /> Sign In
             </a>
