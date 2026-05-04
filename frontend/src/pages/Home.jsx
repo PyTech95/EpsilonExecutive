@@ -391,26 +391,6 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="mt-20">
-            <SectionOrnament tone="light" />
-            <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] text-center mt-6 mb-10">More Programmes</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {programs.filter((p) => p.slug !== featured.slug).slice(0, 3).map((p) => (
-                <Link to={`/programs/${p.slug}`} key={p.slug || p._id}
-                      className="group bg-white border border-navy/10 hover:border-gold/60 transition-colors lift-card">
-                  <div className="aspect-[4/3] overflow-hidden">
-                    <img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  </div>
-                  <div className="p-6">
-                    <p className="font-caps text-[0.6rem] text-gold">{p.weeks} weeks · {p.levelLabel}</p>
-                    <h3 className="font-display text-navy text-[1.25rem] leading-tight mt-3">{p.subtitle}</h3>
-                    <p className="font-editorial italic text-navy/70 text-base mt-2">{p.tagline}</p>
-                    <span className="link-gold mt-5 inline-flex">Explore <ArrowUpRight size={13} /></span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 

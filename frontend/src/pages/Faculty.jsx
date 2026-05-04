@@ -3,13 +3,12 @@ import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import PageHero from '../components/PageHero';
 import FacultyShowcase from '../components/FacultyShowcase';
-import { leadFaculty as mockLead, guestLecturers as mockGuests } from '../mock';
+import { leadFaculty as mockLead } from '../mock';
 import { useSiteContent } from '../context/SiteContent';
 
 export default function Faculty() {
   const ctx = useSiteContent();
   const leadFaculty = ctx?.leadFaculty?.length ? ctx.leadFaculty : mockLead;
-  const guestLecturers = ctx?.guestLecturers?.length ? ctx.guestLecturers : mockGuests;
   const lead = leadFaculty[0];
 
   return (
@@ -56,32 +55,16 @@ export default function Faculty() {
         </div>
       </section>
 
-      {/* Guest Lecturers detailed */}
-      <section className="bg-bone py-24">
-        <div className="container-x">
-          <p className="eyebrow mb-4">Guest Lecturers · Full Bios</p>
-          <span className="gold-rule-lg" />
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
-            {guestLecturers.map((f) => (
-              <article key={f.slug} className="bg-white border border-navy/10 group hover:border-gold/50 transition-colors flex flex-col md:flex-row overflow-hidden">
-                <div className="md:w-[200px] md:flex-shrink-0 aspect-[4/5] md:aspect-auto overflow-hidden">
-                  <img src={f.image} alt={f.name} className="w-full h-full object-cover grayscale-[20%] group-hover:grayscale-0 transition-all duration-500" />
-                </div>
-                <div className="p-7 flex-1">
-                  <h3 className="font-display text-navy text-[1.35rem] leading-tight">{f.name}</h3>
-                  <p className="font-editorial italic text-gold mt-1.5 text-[0.98rem] leading-snug">{f.role}</p>
-                  <p className="font-sans text-navy/75 text-[0.92rem] leading-relaxed mt-4">{f.bio}</p>
-                  <div className="mt-5 flex flex-wrap gap-1.5">
-                    {f.tags.map((t) => (
-                      <span key={t} className="font-caps text-[0.55rem] tracking-[0.22em] text-navy/70 border border-navy/20 px-2 py-1">
-                        {t}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
+      {/* Guest Lecturers · open in modal via FacultyShowcase above */}
+      <section className="bg-bone py-16">
+        <div className="container-x text-center">
+          <p className="eyebrow mb-3">Guest Lecturers</p>
+          <h3 className="font-display text-navy text-[1.7rem] md:text-[2.1rem] leading-tight max-w-2xl mx-auto">
+            Click any visiting faculty above to <span className="italic font-editorial text-gold">read their full bio.</span>
+          </h3>
+          <p className="font-editorial text-navy/70 text-[1.05rem] leading-relaxed mt-4 max-w-xl mx-auto">
+            Practitioner-educators from law, capital, real estate, and marketing science — each bringing field-tested judgement into the classroom.
+          </p>
         </div>
       </section>
 
