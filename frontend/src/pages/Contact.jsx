@@ -30,8 +30,19 @@ export default function Contact() {
 
       <section className="bg-cream py-24">
         <div className="container-x grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-14">
-          <div className="space-y-8">
-            <div className="flex gap-4">
+          <div>
+            <div className="relative aspect-[4/5] overflow-hidden bg-navy-deep mb-9">
+              <img
+                src="/generated/online-class-collaboration.png"
+                alt="Senior professional in conversation with admissions"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-tr from-navy-deep/30 to-transparent" />
+              <span className="absolute top-3 left-3 w-8 h-8 border-t border-l border-gold/70" />
+              <span className="absolute bottom-3 right-3 w-8 h-8 border-b border-r border-gold/70" />
+            </div>
+            <div className="space-y-8">
+              <div className="flex gap-4">
               <Mail size={18} className="text-gold mt-1" />
               <div>
                 <p className="font-caps text-[0.65rem] text-navy/60">Email</p>
@@ -52,6 +63,7 @@ export default function Contact() {
                 <p className="font-display text-navy mt-1">{contact.address || 'Live online · cohorts based in India'}</p>
               </div>
             </div>
+          </div>
           </div>
 
           <div className="bg-white p-8 md:p-12 border border-navy/10">

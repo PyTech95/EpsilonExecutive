@@ -15,21 +15,33 @@ export default function About() {
 
       {/* Philosophy */}
       <section className="bg-cream py-24">
-        <div className="container-x grid grid-cols-1 md:grid-cols-2 gap-14">
-          <div>
+        <div className="container-x grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-14 items-center">
+          <div className="relative aspect-[4/5] overflow-hidden bg-navy-deep order-2 lg:order-1">
+            <img
+              src="/generated/online-class-female-professional.png"
+              alt="Senior professional studying with Epsilon"
+              className="w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-tr from-navy-deep/30 via-transparent to-transparent" />
+            <span className="absolute top-4 left-4 w-9 h-9 border-t border-l border-gold/70" />
+            <span className="absolute top-4 right-4 w-9 h-9 border-t border-r border-gold/70" />
+            <span className="absolute bottom-4 left-4 w-9 h-9 border-b border-l border-gold/70" />
+            <span className="absolute bottom-4 right-4 w-9 h-9 border-b border-r border-gold/70" />
+          </div>
+          <div className="order-1 lg:order-2">
             <p className="eyebrow mb-4">Our Philosophy</p>
             <span className="gold-rule-lg" />
             <h2 className="font-display text-navy text-[2rem] md:text-[3rem] leading-[1.05] mt-6">
               Turning technical fluency into <span className="italic font-editorial text-gold">strategic value.</span>
             </h2>
-          </div>
-          <div className="space-y-6">
-            <p className="font-editorial text-navy/85 text-[1.25rem] leading-relaxed">
-              Knowing about AI is not the same as deciding with it. Reading a model report is not the same as defending a recommendation to a board. Our programs are built around that gap &mdash; the difference between knowing and deciding.
-            </p>
-            <p className="font-editorial text-navy/85 text-[1.25rem] leading-relaxed">
-              We pair practitioner-educators with senior cohorts, hold them to a high bar of evidence, and end every program with a portfolio-grade capstone &mdash; an artefact that proves capability, not attendance.
-            </p>
+            <div className="space-y-6 mt-8">
+              <p className="font-editorial text-navy/85 text-[1.2rem] leading-relaxed">
+                Knowing about AI is not the same as deciding with it. Reading a model report is not the same as defending a recommendation to a board. Our programs are built around that gap &mdash; the difference between knowing and deciding.
+              </p>
+              <p className="font-editorial text-navy/85 text-[1.2rem] leading-relaxed">
+                We pair practitioner-educators with senior cohorts, hold them to a high bar of evidence, and end every program with a portfolio-grade capstone &mdash; an artefact that proves capability, not attendance.
+              </p>
+            </div>
           </div>
         </div>
       </section>

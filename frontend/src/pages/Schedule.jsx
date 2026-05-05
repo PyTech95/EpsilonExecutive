@@ -53,6 +53,20 @@ export default function Schedule() {
       <section className="bg-cream py-20 md:py-24">
         <div className="container-x grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-12">
           <aside>
+            <div className="relative aspect-[4/5] overflow-hidden bg-navy-deep mb-8">
+              <img
+                src="/generated/online-class-young-student.png"
+                alt="Indian professional preparing for an admissions call"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/80 via-navy-deep/20 to-transparent" />
+              <span className="absolute top-3 left-3 w-7 h-7 border-t border-l border-gold/70" />
+              <span className="absolute bottom-3 right-3 w-7 h-7 border-b border-r border-gold/70" />
+              <div className="absolute bottom-5 left-5 right-5 text-cream">
+                <p className="font-caps text-[0.55rem] tracking-[0.22em] text-gold">A personal call</p>
+                <p className="font-display text-[1.05rem] leading-tight mt-1">Not a sales funnel.</p>
+              </div>
+            </div>
             <p className="eyebrow mb-4">What to Expect</p>
             <span className="gold-rule" />
             <ul className="mt-6 space-y-5 font-editorial text-navy/80 text-[1.05rem]">

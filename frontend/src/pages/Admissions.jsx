@@ -19,22 +19,43 @@ export default function Admissions() {
 
       {/* Process */}
       <section className="bg-cream py-24">
-        <div className="container-x">
-          <p className="eyebrow mb-4">The Process</p>
-          <span className="gold-rule-lg" />
-          <div className="mt-12 grid grid-cols-1 md:grid-cols-4 gap-0">
-            {[
-              { n: '01', t: 'Application', b: 'Tell us about your work and what you want to learn.' },
-              { n: '02', t: 'Conversation', b: 'A personal call with admissions to discuss fit and expectations.' },
-              { n: '03', t: 'Decision', b: 'A seat is offered based on fit, not first-come-first-served.' },
-              { n: '04', t: 'Onboarding', b: 'Pre-work, cohort introductions, and access to Moodle.' },
-            ].map((s, i) => (
-              <div key={s.n} className={`p-8 border-t border-navy/15 ${i !== 0 ? 'md:border-l' : ''}`}>
-                <p className="font-display text-gold text-[2.5rem] leading-none">{s.n}</p>
-                <h3 className="font-display text-navy text-[1.3rem] mt-3">{s.t}</h3>
-                <p className="font-editorial text-navy/75 leading-relaxed mt-3">{s.b}</p>
+        <div className="container-x grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-14 items-start">
+          <div className="lg:sticky lg:top-32">
+            <div className="relative aspect-[4/5] overflow-hidden bg-navy-deep">
+              <img
+                src="/generated/online-class-male-student.png"
+                alt="An admissions conversation, online"
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/70 via-navy-deep/10 to-transparent" />
+              <span className="absolute top-4 left-4 w-9 h-9 border-t border-l border-gold/70" />
+              <span className="absolute top-4 right-4 w-9 h-9 border-t border-r border-gold/70" />
+              <span className="absolute bottom-4 left-4 w-9 h-9 border-b border-l border-gold/70" />
+              <span className="absolute bottom-4 right-4 w-9 h-9 border-b border-r border-gold/70" />
+              <div className="absolute bottom-6 left-6 right-6 text-cream">
+                <p className="font-caps text-[0.6rem] tracking-[0.22em] text-gold">A 25-min conversation</p>
+                <p className="font-display text-[1.3rem] leading-tight mt-2">Reviewed by a person, not an algorithm.</p>
               </div>
-            ))}
+            </div>
+          </div>
+
+          <div>
+            <p className="eyebrow mb-4">The Process</p>
+            <span className="gold-rule-lg" />
+            <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-0">
+              {[
+                { n: '01', t: 'Application', b: 'Tell us about your work and what you want to learn.' },
+                { n: '02', t: 'Conversation', b: 'A personal call with admissions to discuss fit and expectations.' },
+                { n: '03', t: 'Decision', b: 'A seat is offered based on fit, not first-come-first-served.' },
+                { n: '04', t: 'Onboarding', b: 'Pre-work, cohort introductions, and access to Moodle.' },
+              ].map((s, i) => (
+                <div key={s.n} className={`p-7 border-t border-navy/15 ${i % 2 !== 0 ? 'md:border-l' : ''} ${i >= 2 ? 'md:border-t' : ''}`}>
+                  <p className="font-display text-gold text-[2.2rem] leading-none">{s.n}</p>
+                  <h3 className="font-display text-navy text-[1.25rem] mt-3">{s.t}</h3>
+                  <p className="font-editorial text-navy/75 leading-relaxed mt-3">{s.b}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
