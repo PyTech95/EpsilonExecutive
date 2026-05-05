@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Mail, Menu, X, ChevronDown, Building2 } from 'lucide-react';
+import { LogIn, Menu, X, ChevronDown, Building2 } from 'lucide-react';
 import { LOGO_URL, programs as mockPrograms } from '../mock';
 import { useSiteContent } from '../context/SiteContent';
 
@@ -8,6 +8,7 @@ export default function Navbar() {
   const ctx = useSiteContent();
   const programs = ctx?.programs?.length ? ctx.programs : mockPrograms;
   const logoUrl = ctx?.logoUrl || LOGO_URL;
+  const signInUrl = ctx?.home?.footer?.signInUrl || 'https://moodle.org/login/index.php';
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [progOpen, setProgOpen] = useState(false);
@@ -87,19 +88,22 @@ export default function Navbar() {
             )}
           </div>
           <NavLink to="/faculty" className={`${baseNav} ${navColor}`}>Faculty</NavLink>
-          <NavLink to="/admissions" className={`${baseNav} ${navColor}`}>Admissions</NavLink>
           <NavLink to="/about" className={`${baseNav} ${navColor}`}>About</NavLink>
-          <NavLink to="/apply" data-testid="nav-apply-link" className={`${baseNav} ${navColor}`}>Apply</NavLink>
         </nav>
 
-        <div className="hidden lg:flex items-center">
-          <Link
-            to="/contact"
-            data-testid="nav-contact-us-btn"
+        <div className="hidden lg:flex items-center gap-3">
+          <NavLink to="/apply" data-testid="nav-apply-btn" className="btn-gold">
+            Apply Now
+          </NavLink>
+          <a
+            href={signInUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            data-testid="nav-signin-btn"
             className="btn-outline-gold"
           >
-            <Mail size={14} /> Contact Us
-          </Link>
+            <LogIn size={14} /> Sign In
+          </a>
         </div>
 
         <button
@@ -118,12 +122,13 @@ export default function Navbar() {
             <Link to="/programs" className="font-caps text-sm text-cream tracking-[0.2em]">Programs</Link>
             <Link to="/corporate" className="font-caps text-sm text-cream tracking-[0.2em] pl-4 border-l border-gold/30">Corporate Program</Link>
             <Link to="/faculty" className="font-caps text-sm text-cream tracking-[0.2em]">Faculty</Link>
-            <Link to="/admissions" className="font-caps text-sm text-cream tracking-[0.2em]">Admissions</Link>
             <Link to="/about" className="font-caps text-sm text-cream tracking-[0.2em]">About</Link>
-            <Link to="/apply" className="font-caps text-sm text-cream tracking-[0.2em]">Apply</Link>
-            <Link to="/contact" className="btn-gold w-fit mt-2">
-              <Mail size={14} /> Contact Us
-            </Link>
+            <div className="flex gap-3 mt-2">
+              <Link to="/apply" className="btn-gold">Apply Now</Link>
+              <a href={signInUrl} target="_blank" rel="noopener noreferrer" className="btn-outline-gold">
+                <LogIn size={14} /> Sign In
+              </a>
+            </div>
           </div>
         </div>
       )}
