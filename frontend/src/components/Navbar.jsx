@@ -89,6 +89,7 @@ export default function Navbar() {
           <NavLink to="/faculty" className={`${baseNav} ${navColor}`}>Faculty</NavLink>
           <NavLink to="/admissions" className={`${baseNav} ${navColor}`}>Admissions</NavLink>
           <NavLink to="/about" className={`${baseNav} ${navColor}`}>About</NavLink>
+          <NavLink to="/apply" data-testid="nav-apply-link" className={`${baseNav} ${navColor}`}>Apply</NavLink>
         </nav>
 
         <div className="hidden lg:flex items-center">
@@ -119,6 +120,7 @@ export default function Navbar() {
             <Link to="/faculty" className="font-caps text-sm text-cream tracking-[0.2em]">Faculty</Link>
             <Link to="/admissions" className="font-caps text-sm text-cream tracking-[0.2em]">Admissions</Link>
             <Link to="/about" className="font-caps text-sm text-cream tracking-[0.2em]">About</Link>
+            <Link to="/apply" className="font-caps text-sm text-cream tracking-[0.2em]">Apply</Link>
             <Link to="/contact" className="btn-gold w-fit mt-2">
               <Mail size={14} /> Contact Us
             </Link>
