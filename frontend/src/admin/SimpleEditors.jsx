@@ -11,7 +11,7 @@ export function TestimonialsEditor() {
         { key: 'quote', label: 'Quote', type: 'textarea' },
         { key: 'name', label: 'Name' },
         { key: 'role', label: 'Role / Title' },
-        { key: 'avatar', label: 'Avatar URL' },
+        { key: 'avatar', label: 'Avatar', type: 'image' },
         { key: 'order', label: 'Order', type: 'number' },
       ]}
       newItemDefaults={{ quote: '', name: '', role: '', avatar: '', order: 999 }}
@@ -49,7 +49,7 @@ export function InsightsEditor() {
         { key: 'author', label: 'Author' },
         { key: 'date', label: 'Date' },
         { key: 'readTime', label: 'Read time' },
-        { key: 'image', label: 'Image URL' },
+        { key: 'image', label: 'Cover image', type: 'image' },
         { key: 'excerpt', label: 'Excerpt', type: 'textarea' },
         { key: 'body', label: 'Body (paragraphs)', type: 'list-lines' },
         { key: 'featured', label: 'Featured', type: 'boolean' },
@@ -75,7 +75,7 @@ export function EventsEditor() {
         { key: 'duration', label: 'Duration' },
         { key: 'platform', label: 'Platform' },
         { key: 'cta', label: 'CTA Text' },
-        { key: 'image', label: 'Image URL' },
+        { key: 'image', label: 'Cover image', type: 'image' },
         { key: 'order', label: 'Order', type: 'number' },
       ]}
       newItemDefaults={{ type: 'Live Webinar', title: '', description: '', date: '', time: '', duration: '60 min', platform: 'Zoom', cta: 'Register', image: '', order: 999 }}

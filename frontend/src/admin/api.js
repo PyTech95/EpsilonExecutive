@@ -37,6 +37,15 @@ export const api = {
   update: (path, id, body) => axios.put(`${API}/${path}/${id}`, body, { headers: authHeader() }).then((r) => r.data),
   remove: (path, id) => axios.delete(`${API}/${path}/${id}`, { headers: authHeader() }).then((r) => r.data),
 
+  // image upload
+  uploadImage: (file) => {
+    const fd = new FormData();
+    fd.append('file', file);
+    return axios.post(`${API}/admin/upload`, fd, {
+      headers: { ...authHeader(), 'Content-Type': 'multipart/form-data' },
+    }).then((r) => r.data);
+  },
+
   // submissions
   submitApply: (body) => axios.post(`${API}/submissions/apply`, body).then((r) => r.data),
   submitContact: (body) => axios.post(`${API}/submissions/contact`, body).then((r) => r.data),

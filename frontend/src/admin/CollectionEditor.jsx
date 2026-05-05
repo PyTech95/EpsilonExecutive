@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { api } from './api';
 import { Save, Plus, Trash2, ChevronLeft } from 'lucide-react';
+import ImageField from './ImageField';
 
 /**
  * Generic list + edit form for any collection.
@@ -101,6 +102,10 @@ export default function CollectionEditor({ title, path, schema, newItemDefaults,
 
 function FieldInput({ schema, value, onChange }) {
   const { key, label, type = 'text', help } = schema;
+
+  if (type === 'image') {
+    return <ImageField label={label} value={value} onChange={onChange} help={help} />;
+  }
 
   if (type === 'textarea') {
     return (

@@ -12,7 +12,7 @@ const schema = [
   { key: 'audience', label: 'Audience' },
   { key: 'fee', label: 'Fee' },
   { key: 'nextCohort', label: 'Next cohort' },
-  { key: 'image', label: 'Image URL' },
+  { key: 'image', label: 'Image', type: 'image' },
   { key: 'short', label: 'Short description', type: 'textarea' },
   { key: 'long', label: 'Long description', type: 'textarea' },
   { key: 'outcomes', label: 'Outcomes', type: 'list-lines' },

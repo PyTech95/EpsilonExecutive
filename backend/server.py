@@ -1,11 +1,13 @@
 """Epsilon Executive Education backend — auth, content CMS, submissions."""
-from fastapi import FastAPI, APIRouter, HTTPException, Depends, Header
+from fastapi import FastAPI, APIRouter, HTTPException, Depends, Header, UploadFile, File
+from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
 import uuid
+import shutil
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Optional, List, Any, Dict
@@ -19,6 +21,10 @@ from seed_data import seed_if_empty
 # ---------- setup ----------
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / ".env")
+
+UPLOAD_DIR = ROOT_DIR / "uploads"
+UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+ALLOWED_IMAGE_EXT = {".png", ".jpg", ".jpeg", ".webp", ".gif", ".svg", ".avif"}
 
 mongo_url = os.environ["MONGO_URL"]
 client = AsyncIOMotorClient(mongo_url)
@@ -323,12 +329,30 @@ async def admin_stats(email: str = Depends(require_admin)):
 
 
 # ==================================================================
+# IMAGE UPLOAD (admin only)
+# ==================================================================
+@api.post("/admin/upload")
+async def upload_image(file: UploadFile = File(...), email: str = Depends(require_admin)):
+    ext = Path(file.filename or "").suffix.lower()
+    if ext not in ALLOWED_IMAGE_EXT:
+        raise HTTPException(400, f"Unsupported file type: {ext}")
+    safe_name = f"{uuid.uuid4().hex}{ext}"
+    dest = UPLOAD_DIR / safe_name
+    with dest.open("wb") as out:
+        shutil.copyfileobj(file.file, out)
+    return {"url": f"/api/uploads/{safe_name}", "filename": safe_name, "size": dest.stat().st_size}
+
+
+# ==================================================================
 @api.get("/")
 async def root():
     return {"service": "Epsilon CMS", "ok": True}
 
 
 app.include_router(api)
+
+# Serve uploaded images via /api/uploads/<filename>
+app.mount("/api/uploads", StaticFiles(directory=str(UPLOAD_DIR)), name="uploads")
 
 app.add_middleware(
     CORSMiddleware,

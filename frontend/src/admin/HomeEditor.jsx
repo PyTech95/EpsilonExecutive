@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { api } from './api';
 import { Save, Plus, Trash2 } from 'lucide-react';
+import ImageField from './ImageField';
 
 const F = ({ label, value, onChange, textarea, type = 'text' }) => (
   <label className="block">
@@ -96,7 +97,7 @@ export default function HomeEditor() {
           <F label="Secondary CTA text" value={data.hero.secondaryCtaText} onChange={(v) => update('hero.secondaryCtaText', v)} />
           <F label="Secondary CTA href" value={data.hero.secondaryCtaHref} onChange={(v) => update('hero.secondaryCtaHref', v)} />
         </div>
-        <F label="Hero background image URL" value={data.hero.heroImage} onChange={(v) => update('hero.heroImage', v)} />
+        <ImageField label="Hero background image" value={data.hero.heroImage} onChange={(v) => update('hero.heroImage', v)} />
 
         <div>
           <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mt-6 mb-3">Hero Stats</p>
@@ -179,7 +180,7 @@ export default function HomeEditor() {
       </Section>
 
       <Section title="Site">
-        <F label="Logo URL" value={data.logoUrl} onChange={(v) => update('logoUrl', v)} />
+        <ImageField label="Logo" value={data.logoUrl} onChange={(v) => update('logoUrl', v)} help="Recommended: PNG with transparent background." />
       </Section>
 
       <div className="flex justify-end">
