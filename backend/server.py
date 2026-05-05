@@ -85,13 +85,21 @@ class ChangePasswordIn(BaseModel):
 
 
 class ApplySubmission(BaseModel):
-    programme: str
-    fullName: str
+    programme: Optional[str] = ""
+    firstName: Optional[str] = ""
+    lastName: Optional[str] = ""
+    fullName: Optional[str] = ""
     email: EmailStr
+    countryCode: Optional[str] = "+91"
+    mobile: Optional[str] = ""
     phone: Optional[str] = ""
+    country: Optional[str] = "India"
+    state: Optional[str] = ""
+    experience: Optional[str] = ""
+    educationalGoal: Optional[str] = ""
+    currentFunction: Optional[str] = ""
     role: Optional[str] = ""
     company: Optional[str] = ""
-    experience: Optional[str] = ""
     why: Optional[str] = ""
     heard: Optional[str] = ""
 
