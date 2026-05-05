@@ -93,7 +93,7 @@ export default function Navbar() {
 
         <div className="hidden lg:flex items-center gap-3">
           <NavLink to="/apply" data-testid="nav-apply-btn" className="btn-gold">
-            Apply Now
+            Apply
           </NavLink>
           <a
             href={signInUrl}
@@ -124,7 +124,7 @@ export default function Navbar() {
             <Link to="/faculty" className="font-caps text-sm text-cream tracking-[0.2em]">Faculty</Link>
             <Link to="/about" className="font-caps text-sm text-cream tracking-[0.2em]">About</Link>
             <div className="flex gap-3 mt-2">
-              <Link to="/apply" className="btn-gold">Apply Now</Link>
+              <Link to="/apply" className="btn-gold">Apply</Link>
               <a href={signInUrl} target="_blank" rel="noopener noreferrer" className="btn-outline-gold">
                 <LogIn size={14} /> Sign In
               </a>
