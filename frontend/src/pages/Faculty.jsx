@@ -196,7 +196,7 @@ export default function Faculty() {
           </h2>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
             <Link to="/programs" className="btn-gold" data-testid="faculty-cta-explore-programs">
-              Explore Programmes <ArrowRight size={16} />
+              Explore Programs <ArrowRight size={16} />
             </Link>
             <Link to="/apply" className="btn-outline-gold" data-testid="faculty-cta-apply">
               Apply Now <ArrowUpRight size={14} />

@@ -33,7 +33,7 @@ function BrochureDownload({ programs, brochure }) {
     setSent(true);
     const link = document.createElement('a');
     link.href = pdfUrl;
-    link.download = 'Epsilon-Programme-Brochure.pdf';
+    link.download = 'Epsilon-Program-Brochure.pdf';
     link.target = '_blank';
     link.rel = 'noopener';
     document.body.appendChild(link);
@@ -46,10 +46,10 @@ function BrochureDownload({ programs, brochure }) {
       <div className="container-x">
         <SectionHeader
           chapter="Chapter II"
-          eyebrow={brochure?.eyebrow || 'Programme Brochure'}
-          title="The whole programme,"
+          eyebrow={brochure?.eyebrow || 'Program Brochure'}
+          title="The whole program,"
           accent="on a single PDF."
-          subtitle={brochure?.description || '28-page PDF · Programme overview, modules, fees, capstone, faculty and admissions.'}
+          subtitle={brochure?.description || '28-page PDF · Program overview, modules, fees, capstone, faculty and admissions.'}
         />
         <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
         {/* Left: visual */}
@@ -58,13 +58,13 @@ function BrochureDownload({ programs, brochure }) {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full glow-gold" />
             <div className="relative text-center">
               <FileText size={46} className="text-gold mx-auto mb-6" />
-              <p className="eyebrow mb-3">{brochure?.eyebrow || 'Programme Brochure'}</p>
+              <p className="eyebrow mb-3">{brochure?.eyebrow || 'Program Brochure'}</p>
               <h3 className="font-display text-cream text-[1.8rem] md:text-[2.4rem] leading-[1.1] max-w-sm mx-auto">
                 {(brochure?.title || 'Everything you need to decide.').split(' ').slice(0, -1).join(' ')}{' '}
                 <span className="italic font-editorial text-gold">{(brochure?.title || 'decide.').split(' ').slice(-1)}</span>
               </h3>
               <p className="font-sans text-cream/75 text-sm mt-5 max-w-xs mx-auto">
-                {brochure?.description || '28-page PDF · Programme overview, modules, fees, capstone, faculty and admissions.'}
+                {brochure?.description || '28-page PDF · Program overview, modules, fees, capstone, faculty and admissions.'}
               </p>
             </div>
           </div>
@@ -80,7 +80,7 @@ function BrochureDownload({ programs, brochure }) {
               </p>
               <a
                 href={pdfUrl}
-                download="Epsilon-Programme-Brochure.pdf"
+                download="Epsilon-Program-Brochure.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-gold mt-7 inline-flex"
@@ -102,7 +102,7 @@ function BrochureDownload({ programs, brochure }) {
                   Tell us who you are.
                 </h3>
                 <p className="font-editorial text-navy/70 mt-3">
-                  Your copy of the programme brochure will start downloading immediately.
+                  Your copy of the program brochure will start downloading immediately.
                 </p>
               </div>
 
@@ -253,7 +253,7 @@ function AdmissionsContact({ sections, contact }) {
               <div>
                 <label className="fld-label">Topic</label>
                 <select className="fld-input" value={form.topic} onChange={(e)=>setForm({...form,topic:e.target.value})}>
-                  {['General Inquiry','Admissions Question','Programme Fit','Corporate / Cohort Partnerships','Press & Media'].map(t => (
+                  {['General Inquiry','Admissions Question','Program Fit','Corporate / Cohort Partnerships','Press & Media'].map(t => (
                     <option key={t} value={t}>{t}</option>
                   ))}
                 </select>
@@ -340,7 +340,7 @@ export default function Home() {
         <div className="container-x">
           <SectionHeader
             chapter="Chapter I"
-            eyebrow={sections.flagshipEyebrow || 'Flagship Programme'}
+            eyebrow={sections.flagshipEyebrow || 'Flagship Program'}
             title={featured.subtitle || 'Professional Certificate'}
             accent="designed for the AI era."
             subtitle="Twelve weeks. Evidence-based. Defended before senior peers. An artefact that travels with you."

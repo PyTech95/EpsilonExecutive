@@ -69,7 +69,7 @@ export default function SubmissionsInbox() {
                   {it.phone && <span className="inline-flex items-center gap-1.5"><Phone size={13} className="text-gold" /> {it.phone}</span>}
                   {(it.company || it.role) && <span className="inline-flex items-center gap-1.5"><Briefcase size={13} className="text-gold" /> {[it.role, it.company].filter(Boolean).join(' · ')}</span>}
                 </div>
-                {it.programme && <p className="font-caps text-[0.6rem] text-gold mt-3">Programme: {it.programme}</p>}
+                {it.program && <p className="font-caps text-[0.6rem] text-gold mt-3">Program: {it.program}</p>}
                 {it.course && <p className="font-caps text-[0.6rem] text-gold mt-3">Course: {it.course}</p>}
                 {it.topic && <p className="font-caps text-[0.6rem] text-gold mt-3">Topic: {it.topic}</p>}
                 {it.experience && <p className="font-caps text-[0.6rem] text-navy/60 mt-1">Experience: {it.experience}</p>}

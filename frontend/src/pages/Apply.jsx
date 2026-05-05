@@ -68,11 +68,11 @@ function Radios({ label, name, value, onChange, options, columns = 2 }) {
   );
 }
 
-/* ---------- Programme info strip ---------- */
-function InfoStrip({ programme }) {
+/* ---------- Program info strip ---------- */
+function InfoStrip({ program }) {
   const items = [
-    { icon: Calendar, label: 'Starting', value: programme.nextCohort?.split('·')?.[1]?.trim() || programme.nextCohort || '—' },
-    { icon: Clock, label: 'Duration', value: `${programme.weeks} weeks · ${programme.audience || ''}` },
+    { icon: Calendar, label: 'Starting', value: program.nextCohort?.split('·')?.[1]?.trim() || program.nextCohort || '—' },
+    { icon: Clock, label: 'Duration', value: `${program.weeks} weeks · ${program.audience || ''}` },
     { icon: Globe2, label: 'Format', value: 'Live online · evening cohort' },
     { icon: Award, label: 'Outcome', value: 'Defended capstone · Certificate' },
   ];
@@ -99,13 +99,13 @@ function InfoStrip({ programme }) {
 }
 
 /* ---------- Deadline strip (gold band) ---------- */
-function DeadlineStrip({ programme }) {
+function DeadlineStrip({ program }) {
   return (
     <section className="bg-gold text-navy-deep">
       <div className="container-x flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 py-4">
         <p className="font-caps text-[0.65rem] tracking-[0.28em]">Application Deadline</p>
         <p className="font-display text-[1rem] md:text-[1.15rem] leading-tight">
-          {programme.nextCohort || 'Cohort 04 · 15 March 2026'} ·{' '}
+          {program.nextCohort || 'Cohort 04 · 15 March 2026'} ·{' '}
           <span className="font-editorial italic">applications reviewed personally</span>
         </p>
         <a href="#apply-form" className="font-caps text-[0.65rem] tracking-[0.28em] underline underline-offset-4 hover:opacity-70">
@@ -116,24 +116,24 @@ function DeadlineStrip({ programme }) {
   );
 }
 
-/* ---------- Programme overview narrative + 2 stat panels ---------- */
-function Overview({ programme }) {
+/* ---------- Program overview narrative + 2 stat panels ---------- */
+function Overview({ program }) {
   return (
     <section className="bg-bone py-20 md:py-28">
       <div className="container-x grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-14">
         <div>
-          <p className="eyebrow mb-4">Programme Overview</p>
+          <p className="eyebrow mb-4">Program Overview</p>
           <span className="gold-rule" />
           <h2 className="font-display text-navy text-[2rem] md:text-[2.6rem] leading-[1.08] mt-7">
-            {programme.tagline}
+            {program.tagline}
           </h2>
           <p className="font-editorial text-navy/85 text-[1.15rem] md:text-[1.22rem] leading-[1.75] mt-7 max-w-2xl">
-            {programme.long || programme.short}
+            {program.long || program.short}
           </p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-5 lg:mt-16">
           <div className="bg-navy-deep text-cream p-7 lg:p-8">
-            <p className="font-display text-gold text-[2.6rem] leading-none">{programme.weeks}+</p>
+            <p className="font-display text-gold text-[2.6rem] leading-none">{program.weeks}+</p>
             <p className="font-editorial italic text-cream/85 mt-3 leading-snug">
               Weeks of cohort-based learning, capstone-anchored.
             </p>
@@ -151,8 +151,8 @@ function Overview({ programme }) {
 }
 
 /* ---------- Key takeaways (outcomes) ---------- */
-function KeyTakeaways({ programme }) {
-  const outcomes = programme.outcomes || [];
+function KeyTakeaways({ program }) {
+  const outcomes = program.outcomes || [];
   if (!outcomes.length) return null;
   return (
     <section className="bg-cream py-20 md:py-28">
@@ -183,9 +183,9 @@ function KeyTakeaways({ programme }) {
 }
 
 /* ---------- Who is this designed for ---------- */
-function WhoFor({ programme }) {
+function WhoFor({ program }) {
   const audience = [
-    `Working professionals with ${programme.audience || '5–15 years'} of experience`,
+    `Working professionals with ${program.audience || '5–15 years'} of experience`,
     'Senior individual contributors and team leads stepping into broader scope',
     'Functional leaders who own decisions touching AI, data, or modern operating systems',
     'Founders & operators raising the evidence bar in their organisations',
@@ -213,9 +213,9 @@ function WhoFor({ programme }) {
   );
 }
 
-/* ---------- Programme highlights (modules) ---------- */
-function Highlights({ programme }) {
-  const modules = programme.modules || [];
+/* ---------- Program highlights (modules) ---------- */
+function Highlights({ program }) {
+  const modules = program.modules || [];
   // Synthesise highlight tiles from modules + extras so we always show 8.
   const highlights = [
     ...modules.map((m, i) => ({
@@ -234,7 +234,7 @@ function Highlights({ programme }) {
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[1100px] rounded-full glow-gold pointer-events-none" />
       <div className="container-x relative">
         <div className="text-center max-w-2xl mx-auto">
-          <p className="font-caps text-[0.65rem] tracking-[0.28em] text-gold">Programme Highlights</p>
+          <p className="font-caps text-[0.65rem] tracking-[0.28em] text-gold">Program Highlights</p>
           <span className="block w-12 h-px bg-gold/60 mx-auto mt-4" />
           <h2 className="font-display uppercase text-cream text-[2rem] md:text-[2.6rem] leading-[1.08] mt-7">
             Eight pillars of the <span className="italic font-editorial normal-case text-gold">Epsilon method.</span>
@@ -307,8 +307,8 @@ function FacultyTeaser({ lead, guests }) {
 }
 
 /* ---------- FAQ accordion ---------- */
-function FAQs({ programme }) {
-  const faqs = programme.faqs || [];
+function FAQs({ program }) {
+  const faqs = program.faqs || [];
   if (!faqs.length) return null;
   return (
     <section className="bg-bone py-20 md:py-28">
@@ -348,7 +348,7 @@ export default function Apply() {
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [form, setForm] = useState({
-    programme: programs[0]?.title || '',
+    program: programs[0]?.title || '',
     firstName: '', lastName: '', email: '', countryCode: '+91',
     mobile: '', country: 'India', state: '', experience: '',
     educationalGoal: '', currentFunction: '',
@@ -356,10 +356,10 @@ export default function Apply() {
 
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }));
 
-  // Currently-selected programme drives all the rich sections.
-  const selectedProgramme = useMemo(
-    () => programs.find((p) => p.title === form.programme) || programs.find((p) => p.featured) || programs[0],
-    [programs, form.programme],
+  // Currently-selected program drives all the rich sections.
+  const selectedProgram = useMemo(
+    () => programs.find((p) => p.title === form.program) || programs.find((p) => p.featured) || programs[0],
+    [programs, form.program],
   );
 
   const onSubmit = async (e) => {
@@ -377,7 +377,7 @@ export default function Apply() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  if (!selectedProgramme) return null;
+  if (!selectedProgram) return null;
 
   return (
     <div>
@@ -387,7 +387,7 @@ export default function Apply() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full glow-gold pointer-events-none" />
         <div className="container-x relative grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-10 items-end">
           <div>
-            <p className="eyebrow mb-5">Apply · {selectedProgramme.subtitle}</p>
+            <p className="eyebrow mb-5">Apply · {selectedProgram.subtitle}</p>
             <span className="gold-rule-lg" />
             <h1 className="font-display uppercase text-[2.4rem] md:text-[4rem] leading-[1.04] mt-7 max-w-4xl">
               Begin your<br />
@@ -403,23 +403,23 @@ export default function Apply() {
         </div>
       </section>
 
-      {/* ---------- 2. Programme info strip ---------- */}
-      <InfoStrip programme={selectedProgramme} />
+      {/* ---------- 2. Program info strip ---------- */}
+      <InfoStrip program={selectedProgram} />
 
       {/* ---------- 3. Deadline gold band ---------- */}
-      <DeadlineStrip programme={selectedProgramme} />
+      <DeadlineStrip program={selectedProgram} />
 
-      {/* ---------- 4. Programme Overview ---------- */}
-      <Overview programme={selectedProgramme} />
+      {/* ---------- 4. Program Overview ---------- */}
+      <Overview program={selectedProgram} />
 
       {/* ---------- 5. Key Takeaways ---------- */}
-      <KeyTakeaways programme={selectedProgramme} />
+      <KeyTakeaways program={selectedProgram} />
 
       {/* ---------- 6. Who is this designed for ---------- */}
-      <WhoFor programme={selectedProgramme} />
+      <WhoFor program={selectedProgram} />
 
-      {/* ---------- 7. Programme Highlights ---------- */}
-      <Highlights programme={selectedProgramme} />
+      {/* ---------- 7. Program Highlights ---------- */}
+      <Highlights program={selectedProgram} />
 
       {/* ---------- 8. Faculty teaser ---------- */}
       <FacultyTeaser lead={leadFaculty[0]} guests={guestLecturers} />
@@ -459,7 +459,7 @@ export default function Apply() {
                   <span className="absolute bottom-4 left-4 w-8 h-8 border-b border-l border-gold/70" />
                   <span className="absolute bottom-4 right-4 w-8 h-8 border-b border-r border-gold/70" />
                   <div className="absolute bottom-6 left-6 right-6 text-cream">
-                    <p className="font-caps text-[0.6rem] tracking-[0.22em] text-gold">{selectedProgramme.nextCohort}</p>
+                    <p className="font-caps text-[0.6rem] tracking-[0.22em] text-gold">{selectedProgram.nextCohort}</p>
                     <p className="font-display text-[1.4rem] md:text-[1.65rem] leading-tight mt-2 max-w-xs">
                       A personal conversation. <span className="italic font-editorial text-gold">Not a funnel.</span>
                     </p>
@@ -468,7 +468,7 @@ export default function Apply() {
 
                 <ul className="mt-8 space-y-4">
                   {[
-                    `${selectedProgramme.weeks}-week, live online cohort`,
+                    `${selectedProgram.weeks}-week, live online cohort`,
                     'Roughly 15–20 hours per week',
                     'Practitioner-led, capstone-anchored',
                     'Personal call before admission',
@@ -483,13 +483,13 @@ export default function Apply() {
 
               {/* Right: the form */}
               <form onSubmit={onSubmit} data-testid="apply-form" className="space-y-12 bg-white p-7 md:p-10 border border-navy/10">
-                {/* Programme */}
+                {/* Program */}
                 <div>
-                  <p className="font-caps text-[0.7rem] text-gold tracking-[0.22em] mb-4">Programme</p>
+                  <p className="font-caps text-[0.7rem] text-gold tracking-[0.22em] mb-4">Program</p>
                   <span className="gold-rule" />
-                  <label className="fld-label mt-6">Which programme are you applying for?</label>
-                  <select data-testid="apply-programme" className="fld-input"
-                    value={form.programme} onChange={(e) => set('programme', e.target.value)}>
+                  <label className="fld-label mt-6">Which program are you applying for?</label>
+                  <select data-testid="apply-program" className="fld-input"
+                    value={form.program} onChange={(e) => set('program', e.target.value)}>
                     {programs.map((p) => (
                       <option key={p.slug} value={p.title}>{p.title}</option>
                     ))}
@@ -564,7 +564,7 @@ export default function Apply() {
                     {submitting ? 'Submitting…' : 'Submit Application'} <ArrowRight size={16} />
                   </button>
                   <p className="font-sans text-navy/55 text-xs mt-4">
-                    By submitting, you agree to be contacted by our admissions team about programme fit and next steps.
+                    By submitting, you agree to be contacted by our admissions team about program fit and next steps.
                   </p>
                 </div>
               </form>
@@ -574,7 +574,7 @@ export default function Apply() {
       </section>
 
       {/* ---------- 10. FAQ ---------- */}
-      <FAQs programme={selectedProgramme} />
+      <FAQs program={selectedProgram} />
 
       {/* ---------- 11. Final CTA ---------- */}
       <section className="bg-navy-deep text-cream py-20 md:py-24 relative overflow-hidden border-t border-gold/10">

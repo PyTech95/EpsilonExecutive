@@ -6,7 +6,7 @@ import { programs as mockPrograms } from '../mock';
 import { useSiteContent } from '../context/SiteContent';
 
 const FILTERS = [
-  { key: 'all', label: 'All Programmes' },
+  { key: 'all', label: 'All Programs' },
   { key: 'mid', label: 'Mid Career' },
   { key: 'senior', label: 'Senior Leadership' },
 ];
@@ -20,9 +20,9 @@ export default function Programs() {
   return (
     <div>
       <PageHero
-        eyebrow="Programmes"
+        eyebrow="Programs"
         title="Cohorts that produce work-ready capability."
-        subtitle="Each programme is designed for working professionals who want to translate technical fluency into evidence-based business action."
+        subtitle="Each program is designed for working professionals who want to translate technical fluency into evidence-based business action."
       />
 
       <section className="bg-cream py-16 md:py-24">
@@ -47,7 +47,7 @@ export default function Programs() {
           </div>
 
           {list.length === 0 ? (
-            <p className="font-editorial text-navy/60 text-xl py-20 text-center">No programmes match this filter.</p>
+            <p className="font-editorial text-navy/60 text-xl py-20 text-center">No programs match this filter.</p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {list.map((p) => (

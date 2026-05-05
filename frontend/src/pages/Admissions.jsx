@@ -75,7 +75,7 @@ export default function Admissions() {
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="bg-white p-9 hover:shadow-lg transition-shadow">
-              <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em]">Programme Fee</p>
+              <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em]">Program Fee</p>
               <p className="font-display text-navy text-[2.4rem] mt-4">₹1,25,000</p>
               <p className="font-editorial text-navy/75 mt-4 leading-relaxed">All-inclusive of materials, sessions, and certificate</p>
             </div>
@@ -93,10 +93,10 @@ export default function Admissions() {
         </div>
       </section>
 
-      {/* Programmes snapshot */}
+      {/* Programs snapshot */}
       <section className="bg-bone py-24">
         <div className="container-x">
-          <p className="eyebrow mb-4">Programmes</p>
+          <p className="eyebrow mb-4">Programs</p>
           <span className="gold-rule-lg" />
           <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
             {programs.map(p => (

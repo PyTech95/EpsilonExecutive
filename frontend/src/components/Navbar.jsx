@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { LogIn, Menu, X, ChevronDown } from 'lucide-react';
+import { Mail, Menu, X, ChevronDown, Building2 } from 'lucide-react';
 import { LOGO_URL, programs as mockPrograms } from '../mock';
 import { useSiteContent } from '../context/SiteContent';
 
@@ -8,7 +8,6 @@ export default function Navbar() {
   const ctx = useSiteContent();
   const programs = ctx?.programs?.length ? ctx.programs : mockPrograms;
   const logoUrl = ctx?.logoUrl || LOGO_URL;
-  const signInUrl = ctx?.home?.footer?.signInUrl || 'https://moodle.org/login/index.php';
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [progOpen, setProgOpen] = useState(false);
@@ -53,7 +52,7 @@ export default function Navbar() {
             </NavLink>
             {progOpen && (
               <div className="absolute top-full left-1/2 -translate-x-1/2 pt-4 z-50">
-                <div className="bg-navy-deep text-cream border border-gold/20 shadow-2xl w-[360px] p-2">
+                <div className="bg-navy-deep text-cream border border-gold/20 shadow-2xl w-[380px] p-2">
                   {programs.map((p) => (
                     <Link
                       key={p.slug}
@@ -64,9 +63,23 @@ export default function Navbar() {
                       <div className="font-caps text-[0.6rem] text-gold mt-1">{p.weeks} weeks · {p.levelLabel}</div>
                     </Link>
                   ))}
+
+                  {/* Corporate Program (private cohort offering) */}
+                  <Link
+                    to="/corporate"
+                    data-testid="nav-corporate-program-link"
+                    className="block px-4 py-3 hover:bg-navy transition-colors border-t border-gold/15 mt-1"
+                  >
+                    <div className="flex items-center gap-2">
+                      <Building2 size={14} className="text-gold" />
+                      <div className="font-display text-sm text-cream leading-tight">Corporate Program</div>
+                    </div>
+                    <div className="font-caps text-[0.6rem] text-gold mt-1 ml-6">Private cohorts for teams</div>
+                  </Link>
+
                   <div className="border-t border-gold/10 mt-1 pt-1">
                     <Link to="/programs" className="block px-4 py-3 hover:bg-navy transition-colors font-caps text-[0.65rem] text-gold">
-                      View all programmes →
+                      View all programs →
                     </Link>
                   </div>
                 </div>
@@ -75,20 +88,17 @@ export default function Navbar() {
           </div>
           <NavLink to="/faculty" className={`${baseNav} ${navColor}`}>Faculty</NavLink>
           <NavLink to="/admissions" className={`${baseNav} ${navColor}`}>Admissions</NavLink>
-          <NavLink to="/corporate" className={`${baseNav} ${navColor}`}>Corporate</NavLink>
           <NavLink to="/about" className={`${baseNav} ${navColor}`}>About</NavLink>
-          <NavLink to="/contact" className={`${baseNav} ${navColor}`}>Contact</NavLink>
         </nav>
 
         <div className="hidden lg:flex items-center">
-          <a
-            href={signInUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/contact"
+            data-testid="nav-contact-us-btn"
             className="btn-outline-gold"
           >
-            <LogIn size={14} /> Sign In
-          </a>
+            <Mail size={14} /> Contact Us
+          </Link>
         </div>
 
         <button
@@ -105,15 +115,13 @@ export default function Navbar() {
         <div className="lg:hidden bg-navy-deep text-cream border-t border-gold/20">
           <div className="container-x py-6 flex flex-col gap-5">
             <Link to="/programs" className="font-caps text-sm text-cream tracking-[0.2em]">Programs</Link>
+            <Link to="/corporate" className="font-caps text-sm text-cream tracking-[0.2em] pl-4 border-l border-gold/30">Corporate Program</Link>
             <Link to="/faculty" className="font-caps text-sm text-cream tracking-[0.2em]">Faculty</Link>
             <Link to="/admissions" className="font-caps text-sm text-cream tracking-[0.2em]">Admissions</Link>
-            <Link to="/corporate" className="font-caps text-sm text-cream tracking-[0.2em]">Corporate</Link>
             <Link to="/about" className="font-caps text-sm text-cream tracking-[0.2em]">About</Link>
-            <Link to="/contact" className="font-caps text-sm text-cream tracking-[0.2em]">Contact</Link>
-            <Link to="/schedule" className="font-caps text-sm text-gold tracking-[0.2em]">Schedule a Call</Link>
-            <a href={signInUrl} className="btn-gold w-fit" target="_blank" rel="noopener noreferrer">
-              <LogIn size={14} /> Sign In
-            </a>
+            <Link to="/contact" className="btn-gold w-fit mt-2">
+              <Mail size={14} /> Contact Us
+            </Link>
           </div>
         </div>
       )}

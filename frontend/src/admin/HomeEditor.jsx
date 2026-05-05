@@ -159,7 +159,7 @@ export default function HomeEditor() {
       </Section>
 
       <Section title="Section Headers (home page)">
-        <F label="Flagship programme eyebrow" value={data.sections?.flagshipEyebrow} onChange={(v) => update('sections.flagshipEyebrow', v)} />
+        <F label="Flagship program eyebrow" value={data.sections?.flagshipEyebrow} onChange={(v) => update('sections.flagshipEyebrow', v)} />
         <F label="Testimonials eyebrow" value={data.sections?.testimonialsEyebrow} onChange={(v) => update('sections.testimonialsEyebrow', v)} />
         <F label="Testimonials title" value={data.sections?.testimonialsTitle} onChange={(v) => update('sections.testimonialsTitle', v)} />
         <F label="Admissions eyebrow" value={data.sections?.admissionsEyebrow} onChange={(v) => update('sections.admissionsEyebrow', v)} />

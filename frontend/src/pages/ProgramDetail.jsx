@@ -15,8 +15,8 @@ export default function ProgramDetail() {
     return (
       <div className="min-h-[60vh] flex items-center justify-center">
         <div className="text-center">
-          <p className="font-editorial text-2xl text-navy">Programme not found.</p>
-          <Link to="/programs" className="link-gold mt-6 inline-flex">Back to programmes <ArrowUpRight size={13} /></Link>
+          <p className="font-editorial text-2xl text-navy">Program not found.</p>
+          <Link to="/programs" className="link-gold mt-6 inline-flex">Back to programs <ArrowUpRight size={13} /></Link>
         </div>
       </div>
     );
@@ -35,7 +35,7 @@ export default function ProgramDetail() {
         </div>
         <div className="absolute inset-0 starfield opacity-30" />
         <div className="relative container-x">
-          <Link to="/programs" className="link-gold mb-8 inline-flex">← All Programmes</Link>
+          <Link to="/programs" className="link-gold mb-8 inline-flex">← All Programs</Link>
           <p className="eyebrow mb-4">{p.weeks} weeks · {p.levelLabel}</p>
           <h1 className="font-display text-[2.4rem] md:text-[4rem] leading-[1.05] max-w-4xl">{p.title}</h1>
           <p className="font-editorial italic text-gold text-[1.3rem] md:text-[1.6rem] mt-5">{p.tagline}</p>
@@ -48,7 +48,7 @@ export default function ProgramDetail() {
 
           <div className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { v: p.fee, l: 'Programme Fee' },
+              { v: p.fee, l: 'Program Fee' },
               { v: `${p.weeks} weeks`, l: 'Duration' },
               { v: p.audience, l: 'Audience' },
               { v: p.nextCohort, l: 'Next Cohort' },

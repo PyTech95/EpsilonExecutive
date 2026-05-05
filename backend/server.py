@@ -85,7 +85,7 @@ class ChangePasswordIn(BaseModel):
 
 
 class ApplySubmission(BaseModel):
-    programme: Optional[str] = ""
+    program: Optional[str] = ""
     firstName: Optional[str] = ""
     lastName: Optional[str] = ""
     fullName: Optional[str] = ""

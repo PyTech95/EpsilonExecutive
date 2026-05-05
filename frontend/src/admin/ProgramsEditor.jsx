@@ -26,7 +26,7 @@ const schema = [
 export default function ProgramsEditor() {
   return (
     <CollectionEditor
-      title="Programmes"
+      title="Programs"
       path="programs"
       schema={schema}
       displayKey="subtitle"

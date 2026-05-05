@@ -4,7 +4,7 @@ import { api } from './api';
 import { BookOpen, Users, MessageSquare, FileText, Calendar, Inbox, GraduationCap } from 'lucide-react';
 
 const CARDS = [
-  { key: 'programs', label: 'Programmes', icon: BookOpen, to: '/admin/programs' },
+  { key: 'programs', label: 'Programs', icon: BookOpen, to: '/admin/programs' },
   { key: 'lead_faculty', label: 'Lead Faculty', icon: Users, to: '/admin/faculty' },
   { key: 'guest_lecturers', label: 'Guest Lecturers', icon: Users, to: '/admin/faculty' },
   { key: 'testimonials', label: 'Testimonials', icon: MessageSquare, to: '/admin/testimonials' },

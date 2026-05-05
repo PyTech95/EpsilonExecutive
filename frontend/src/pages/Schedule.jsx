@@ -10,7 +10,7 @@ const TZS = ['Asia/Kolkata (IST)', 'Asia/Singapore (SGT)', 'Asia/Dubai (GST)', '
 export default function Schedule() {
   const ctx = useSiteContent();
   const programs = ctx?.programs || [];
-  const interests = ['Programme Fit Discussion', 'Admissions Conversation', 'Corporate / Cohort Partnership', 'General Inquiry'];
+  const interests = ['Program Fit Discussion', 'Admissions Conversation', 'Corporate / Cohort Partnership', 'General Inquiry'];
 
   const today = new Date();
   const minDate = today.toISOString().slice(0, 10);
@@ -128,7 +128,7 @@ export default function Schedule() {
                       <label className="fld-label">Topic</label>
                       <select className="fld-input" value={form.interest} onChange={(e) => setForm({ ...form, interest: e.target.value })}>
                         {interests.map((i) => <option key={i}>{i}</option>)}
-                        {programs.map((p) => <option key={p.slug}>{`Programme: ${p.subtitle}`}</option>)}
+                        {programs.map((p) => <option key={p.slug}>{`Program: ${p.subtitle}`}</option>)}
                       </select>
                     </div>
                     <div>

@@ -23,16 +23,16 @@ HOME_CONTENT = {
         ],
     },
     "brochure": {
-        "eyebrow": "Programme Brochure",
+        "eyebrow": "Program Brochure",
         "title": "Everything you need to decide.",
-        "description": "28-page PDF · Programme overview, modules, fees, capstone, faculty and admissions.",
+        "description": "28-page PDF · Program overview, modules, fees, capstone, faculty and admissions.",
         "pdfUrl": "https://customer-assets.emergentagent.com/job_logos-11/artifacts/pjvgovi6_brochure%203e%20sample.pdf",
     },
     "about": {
         "eyebrow": "About Epsilon",
         "title": "A school for the people who decide.",
-        "paragraph1": "Knowing about AI is not the same as deciding with it. Reading a model report is not the same as defending a recommendation to a board. Our programmes are built around that gap — the difference between knowing and deciding.",
-        "paragraph2": "We pair practitioner-educators with senior cohorts, hold them to a high bar of evidence, and end every programme with a portfolio-grade capstone — an artefact that proves capability, not attendance.",
+        "paragraph1": "Knowing about AI is not the same as deciding with it. Reading a model report is not the same as defending a recommendation to a board. Our programs are built around that gap — the difference between knowing and deciding.",
+        "paragraph2": "We pair practitioner-educators with senior cohorts, hold them to a high bar of evidence, and end every program with a portfolio-grade capstone — an artefact that proves capability, not attendance.",
     },
     "cta": {
         "eyebrow": "Take the next step",
@@ -43,7 +43,7 @@ HOME_CONTENT = {
         "email": "admissions@epsilon-edu.in",
         "phone": "+91 · on request",
         "address": "Live online · cohorts based in India",
-        "subtext": "Questions about a programme, fit, fees, or partnerships? Drop us a line and a member of the team will write back personally.",
+        "subtext": "Questions about a program, fit, fees, or partnerships? Drop us a line and a member of the team will write back personally.",
     },
     "footer": {
         "tagline": "Turning technical fluency into strategic value — executive education for the AI era.",
@@ -52,7 +52,7 @@ HOME_CONTENT = {
         "signInUrl": "https://moodle.org/login/index.php",
     },
     "sections": {
-        "flagshipEyebrow": "Flagship Programme",
+        "flagshipEyebrow": "Flagship Program",
         "testimonialsEyebrow": "In Their Words",
         "testimonialsTitle": "The judgement shows up in their work.",
         "admissionsEyebrow": "Admissions",
@@ -63,10 +63,10 @@ HOME_CONTENT = {
         "eyebrow": "Corporate Education",
         "heroTitle": "Built for your team. Run for your business.",
         "heroSubtitle": "Custom cohorts that turn your senior team into evidence-based decision-makers — built around your operating reality, not a generic syllabus.",
-        "intro": "We design and deliver private cohorts for companies that want their senior leadership to think clearly about AI, data, and modern decision systems. Programmes are bespoke, evidence-anchored, and led by practitioner-educators.",
+        "intro": "We design and deliver private cohorts for companies that want their senior leadership to think clearly about AI, data, and modern decision systems. Programs are bespoke, evidence-anchored, and led by practitioner-educators.",
         "whyTitle": "Why companies partner with Epsilon",
         "whyItems": [
-            {"title": "Bespoke curriculum", "body": "Programmes designed around your sector, your data, and the decisions your leaders are actually making."},
+            {"title": "Bespoke curriculum", "body": "Programs designed around your sector, your data, and the decisions your leaders are actually making."},
             {"title": "Practitioner faculty", "body": "Educators who have built and shipped — not consultants reading slides."},
             {"title": "Defended capstones", "body": "Each participant builds and defends a portfolio artefact tied to a real business problem."},
             {"title": "Measurement built-in", "body": "Pre/post diagnostics, faculty assessments, and a cohort report at the end."},
@@ -74,11 +74,11 @@ HOME_CONTENT = {
         "audiencesTitle": "Who we run cohorts for",
         "audiences": [
             {"title": "C-Suite & Boards", "body": "Two-to-four-week intensives on AI judgement, governance, and capital allocation under technological change."},
-            {"title": "Senior Leadership", "body": "Eight-to-twelve-week programmes on applied AI, decision science, and executive communication."},
+            {"title": "Senior Leadership", "body": "Eight-to-twelve-week programs on applied AI, decision science, and executive communication."},
             {"title": "Functional Teams", "body": "Custom modules for product, finance, risk, marketing, and operations teams."},
         ],
         "ctaTitle": "Talk to us about a private cohort.",
-        "ctaSubtitle": "Tell us about your team and what you want them to be able to do. We will design a programme around it.",
+        "ctaSubtitle": "Tell us about your team and what you want them to be able to do. We will design a program around it.",
     },
     "logoUrl": LOGO_URL,
 }
@@ -158,10 +158,10 @@ PROGRAMS = [
             },
         ],
         "faqs": [
-            {"q": "Who is this programme for?", "a": "Working professionals with 5–15 years of experience who lead, evaluate, or fund AI initiatives — and want to build the judgement to do it well."},
+            {"q": "Who is this program for?", "a": "Working professionals with 5–15 years of experience who lead, evaluate, or fund AI initiatives — and want to build the judgement to do it well."},
             {"q": "How much time per week should I budget?", "a": "Plan for 15–20 hours per week — three live evening sessions plus reading, exercises, and capstone work."},
             {"q": "Do I need to code?", "a": "Comfort reading code helps but is not required. We focus on the judgement to lead AI work, not the syntax to ship it."},
-            {"q": "What does the capstone look like?", "a": "A portfolio-grade artefact you build through the programme — defended in front of faculty and senior peers in the final week."},
+            {"q": "What does the capstone look like?", "a": "A portfolio-grade artefact you build through the program — defended in front of faculty and senior peers in the final week."},
             {"q": "Are there scholarships or payment plans?", "a": "Yes — we offer needs-based partial scholarships and a three-instalment payment plan. Mention it in your application."},
             {"q": "Will I get a certificate?", "a": "Yes — a Professional Certificate in Applied AI & Machine Learning, signed by faculty, on successful defence of your capstone."},
         ],
@@ -171,7 +171,7 @@ PROGRAMS = [
     {
         "_id": "strategic-leadership",
         "slug": "strategic-leadership",
-        "title": "Advanced Programme in Strategic Leadership",
+        "title": "Advanced Program in Strategic Leadership",
         "subtitle": "Strategic Leadership",
         "tagline": "Lead with Clarity. Decide with Conviction.",
         "level": "senior",
@@ -182,7 +182,7 @@ PROGRAMS = [
         "nextCohort": "Cohort 03 · 22 April 2026",
         "image": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1600&q=80",
         "short": "Lead with Clarity. Decide with Conviction.",
-        "long": "A ten-week programme for senior professionals who must set direction under ambiguity — combining decision science, executive communication, and frameworks that survive the boardroom.",
+        "long": "A ten-week program for senior professionals who must set direction under ambiguity — combining decision science, executive communication, and frameworks that survive the boardroom.",
         "outcomes": [
             "Translate analysis into boardroom recommendations",
             "Use decision frameworks that scale with ambiguity",
@@ -213,7 +213,7 @@ PROGRAMS = [
         "nextCohort": "Cohort 02 · 10 May 2026",
         "image": "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1600&q=80",
         "short": "Read the Numbers. Lead the Business.",
-        "long": "An eight-week programme that gives non-finance leaders the vocabulary and judgement to read statements, interrogate assumptions, and lead commercial conversations with confidence.",
+        "long": "An eight-week program that gives non-finance leaders the vocabulary and judgement to read statements, interrogate assumptions, and lead commercial conversations with confidence.",
         "outcomes": [
             "Read P&L, balance sheet, and cash flow with fluency",
             "Interrogate business cases and financial models",
@@ -232,7 +232,7 @@ PROGRAMS = [
     {
         "_id": "digital-transformation",
         "slug": "digital-transformation",
-        "title": "Programme in Digital Transformation",
+        "title": "Program in Digital Transformation",
         "subtitle": "Digital Transformation",
         "tagline": "From Strategy to Shipped Reality.",
         "level": "senior",
@@ -243,7 +243,7 @@ PROGRAMS = [
         "nextCohort": "Cohort 02 · 05 June 2026",
         "image": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80",
         "short": "From Strategy to Shipped Reality.",
-        "long": "A ten-week programme that bridges the gap between transformation slideware and shipped change — operating models, technology choice, and the craft of leading delivery.",
+        "long": "A ten-week program that bridges the gap between transformation slideware and shipped change — operating models, technology choice, and the craft of leading delivery.",
         "outcomes": [
             "Design a transformation roadmap that survives contact",
             "Make credible technology and vendor choices",
@@ -295,7 +295,7 @@ LEAD_FACULTY = [
         "image": "https://customer-assets.emergentagent.com/job_logos-11/artifacts/oimw09re_image.png",
         "bio": "Kent Bhupathi is an economist, data science leader and educator with more than 15 years of experience leading applied research and analytics work across marketing sciences, healthcare analytics, supply chain, business intelligence, litigation and professional services. He has worked at the intersection of economics, statistics, machine learning and decision support, helping organisations turn complex analysis into practical business action and return on investment (ROI).",
         "bio2": "He holds a dual degree in Economics and Architecture from the University of Texas at Austin and a Master's in Applied Econometrics from New York University. Across his teaching career, he has led curriculum design and lectured on applied statistics, data science, machine learning, quantitative business methods, data visualisation and technical communication. His prior teaching appointments include New York University (NYU), Columbia University and the Indian School of Public Policy (ISPP).",
-        "bio3": "At Epsilon, Kent leads the academic design and teaching of the programme with a strong focus on practical rigour. His approach is built around helping working professionals read data more critically, question AI outputs more confidently, and turn technical work into stronger business judgement, clearer communication and more credible decision-making.",
+        "bio3": "At Epsilon, Kent leads the academic design and teaching of the program with a strong focus on practical rigour. His approach is built around helping working professionals read data more critically, question AI outputs more confidently, and turn technical work into stronger business judgement, clearer communication and more credible decision-making.",
         "tags": ["Economics", "Data Science", "Machine Learning", "Decision Support"],
         "order": 1,
     }
@@ -312,14 +312,14 @@ INSIGHTS = [
     {"_id": "evidence-over-enthusiasm", "slug": "evidence-over-enthusiasm", "title": "Evidence Over Enthusiasm: How Executives Should Read AI Reports", "category": "Decision Science", "featured": True, "author": "Kent Oliver Bhupathi", "date": "12 February 2026", "readTime": "7 min read", "image": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1600&q=80", "excerpt": "A practical framework for separating durable AI capability from the sugar-rush of every new model release — and the questions to ask before approving an AI initiative.", "body": ["The headline model benchmarks you read this morning are not a business case.", "A disciplined executive reads an AI report the way a senior analyst reads a research note: with a standing list of questions about method, sample, baseline, and cost of error.", "The framework has three moves. First, isolate the claim from the demonstration. Second, interrogate the evaluation. Third, stress the economics.", "Do this consistently, and you will find your meetings shorter, your approvals rarer, and your initiatives meaningfully more likely to ship."], "order": 1},
     {"_id": "the-executive-prompt", "slug": "the-executive-prompt", "title": "The Executive Prompt: Designing AI Workflows That Actually Ship", "category": "Applied AI", "featured": False, "author": "Rohan Mathur", "date": "04 February 2026", "readTime": "9 min read", "image": "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1600&q=80", "excerpt": "Most LLM workflows fail not because the models are weak, but because the workflow is undisciplined. Here is the discipline.", "body": ["Teams that ship LLM workflows in production look strangely similar.", "We walk through four decisions: the unit of work, the evaluation harness, the human-in-the-loop pattern, and the failure budget."], "order": 2},
     {"_id": "one-page-memo", "slug": "one-page-memo", "title": "The One-Page Memo: How Senior Leaders Translate Models into Decisions", "category": "Executive Communication", "featured": False, "author": "Priya Krishnan", "date": "27 January 2026", "readTime": "6 min read", "image": "https://images.unsplash.com/photo-1456324504439-367cee3b3c32?auto=format&fit=crop&w=1600&q=80", "excerpt": "A structured method for turning a technical analysis into a single page that moves a board.", "body": ["The one-page memo is the senior leader's sharpest tool.", "We teach a fixed rhythm: context, decision, evidence, risks, recommendation."], "order": 3},
-    {"_id": "judgement-not-tools", "slug": "judgement-not-tools", "title": "Judgement, Not Tools: What Executive Education Actually Buys You", "category": "Philosophy", "featured": False, "author": "Dr. Anaya Iyer", "date": "18 January 2026", "readTime": "8 min read", "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80", "excerpt": "Tools change every year. Judgement compounds for a career.", "body": ["The half-life of a tool in our industry is shrinking.", "We close with three tests you can run on any executive programme before you apply."], "order": 4},
-    {"_id": "capstone-portfolio", "slug": "capstone-portfolio", "title": "Why a Capstone Beats a Certificate: Portfolio Outcomes That Travel", "category": "Programme Design", "featured": False, "author": "Kent Oliver Bhupathi", "date": "09 January 2026", "readTime": "5 min read", "image": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1600&q=80", "excerpt": "A certificate signals attendance. A defended capstone signals capability.", "body": ["A defended capstone is the closest thing a working professional has to a public demonstration of judgement."], "order": 5},
+    {"_id": "judgement-not-tools", "slug": "judgement-not-tools", "title": "Judgement, Not Tools: What Executive Education Actually Buys You", "category": "Philosophy", "featured": False, "author": "Dr. Anaya Iyer", "date": "18 January 2026", "readTime": "8 min read", "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80", "excerpt": "Tools change every year. Judgement compounds for a career.", "body": ["The half-life of a tool in our industry is shrinking.", "We close with three tests you can run on any executive program before you apply."], "order": 4},
+    {"_id": "capstone-portfolio", "slug": "capstone-portfolio", "title": "Why a Capstone Beats a Certificate: Portfolio Outcomes That Travel", "category": "Program Design", "featured": False, "author": "Kent Oliver Bhupathi", "date": "09 January 2026", "readTime": "5 min read", "image": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1600&q=80", "excerpt": "A certificate signals attendance. A defended capstone signals capability.", "body": ["A defended capstone is the closest thing a working professional has to a public demonstration of judgement."], "order": 5},
 ]
 
 EVENTS = [
     {"_id": "info-ai-ml-04", "type": "Live Webinar", "title": "Info Session: Applied AI & Machine Learning Cohort 04", "description": "Meet faculty, see the curriculum walk-through, and ask anything about the upcoming Cohort 04 starting 15 March 2026.", "date": "20 February 2026", "time": "6:30 PM IST", "duration": "60 min", "platform": "Zoom", "cta": "Reserve a Seat", "image": "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=1600&q=80", "order": 1},
     {"_id": "open-house-ds", "type": "Live Webinar", "title": "Open House: How We Teach Decision Science", "description": "A working session led by Dr. Anaya Iyer on how we teach disciplined reasoning in our cohorts. Bring questions.", "date": "06 March 2026", "time": "7:00 PM IST", "duration": "75 min", "platform": "Zoom", "cta": "Register", "image": "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=1600&q=80", "order": 2},
-    {"_id": "alumni-panel", "type": "Panel", "title": "Alumni Panel: One Year After Epsilon", "description": "Hear from three Cohort 02 alumni on what changed in their work after the programme — and what they would do differently.", "date": "28 March 2026", "time": "6:00 PM IST", "duration": "90 min", "platform": "Zoom", "cta": "Reserve a Seat", "image": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1600&q=80", "order": 3},
+    {"_id": "alumni-panel", "type": "Panel", "title": "Alumni Panel: One Year After Epsilon", "description": "Hear from three Cohort 02 alumni on what changed in their work after the program — and what they would do differently.", "date": "28 March 2026", "time": "6:00 PM IST", "duration": "90 min", "platform": "Zoom", "cta": "Reserve a Seat", "image": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1600&q=80", "order": 3},
     {"_id": "memo-workshop", "type": "Hands-On Workshop", "title": "Workshop: Writing the Executive Memo", "description": "A free open workshop with Priya Krishnan on the structure, rhythm, and discipline of the one-page executive memo.", "date": "12 April 2026", "time": "5:00 PM IST", "duration": "2 hrs", "platform": "Zoom", "cta": "Register", "image": "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80", "order": 4},
 ]
 

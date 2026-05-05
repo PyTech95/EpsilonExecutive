@@ -32,7 +32,7 @@ export const programs = [
   },
   {
     slug: 'strategic-leadership',
-    title: 'Advanced Programme in Strategic Leadership',
+    title: 'Advanced Program in Strategic Leadership',
     tagline: 'Lead with Clarity. Decide with Conviction.',
     subtitle: 'Strategic Leadership',
     level: 'senior',
@@ -43,7 +43,7 @@ export const programs = [
     nextCohort: 'Cohort 03 · 22 April 2026',
     image: '/generated/strategic-leadership.png',
     short: 'Lead with Clarity. Decide with Conviction.',
-    long: 'A ten-week programme for senior professionals who must set direction under ambiguity — combining decision science, executive communication, and frameworks that survive the boardroom.',
+    long: 'A ten-week program for senior professionals who must set direction under ambiguity — combining decision science, executive communication, and frameworks that survive the boardroom.',
     outcomes: [
       'Translate analysis into boardroom recommendations',
       'Use decision frameworks that scale with ambiguity',
@@ -71,7 +71,7 @@ export const programs = [
     nextCohort: 'Cohort 02 · 10 May 2026',
     image: '/generated/finance-non-finance.png',
     short: 'Read the Numbers. Lead the Business.',
-    long: 'An eight-week programme that gives non-finance leaders the vocabulary and judgement to read statements, interrogate assumptions, and lead commercial conversations with confidence.',
+    long: 'An eight-week program that gives non-finance leaders the vocabulary and judgement to read statements, interrogate assumptions, and lead commercial conversations with confidence.',
     outcomes: [
       'Read P&L, balance sheet, and cash flow with fluency',
       'Interrogate business cases and financial models',
@@ -87,7 +87,7 @@ export const programs = [
   },
   {
     slug: 'digital-transformation',
-    title: 'Programme in Digital Transformation',
+    title: 'Program in Digital Transformation',
     tagline: 'From Strategy to Shipped Reality.',
     subtitle: 'Digital Transformation',
     level: 'senior',
@@ -98,7 +98,7 @@ export const programs = [
     nextCohort: 'Cohort 02 · 05 June 2026',
     image: '/generated/digital-transformation.png',
     short: 'From Strategy to Shipped Reality.',
-    long: 'A ten-week programme that bridges the gap between transformation slideware and shipped change — operating models, technology choice, and the craft of leading delivery.',
+    long: 'A ten-week program that bridges the gap between transformation slideware and shipped change — operating models, technology choice, and the craft of leading delivery.',
     outcomes: [
       'Design a transformation roadmap that survives contact',
       'Make credible technology and vendor choices',
@@ -262,16 +262,16 @@ export const insights = [
     date: '18 January 2026',
     readTime: '8 min read',
     image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80',
-    excerpt: 'Tools change every year. Judgement compounds for a career. Here is why we design every Epsilon programme around the latter.',
+    excerpt: 'Tools change every year. Judgement compounds for a career. Here is why we design every Epsilon program around the latter.',
     body: [
       'The half-life of a tool in our industry is shrinking. The half-life of judgement is not. That asymmetry should shape how you choose where to spend a learning budget.',
-      'We close with three tests you can run on any executive programme before you apply.'
+      'We close with three tests you can run on any executive program before you apply.'
     ]
   },
   {
     slug: 'capstone-portfolio',
     title: 'Why a Capstone Beats a Certificate: Portfolio Outcomes That Travel',
-    category: 'Programme Design',
+    category: 'Program Design',
     author: 'Kent Oliver Bhupathi',
     date: '09 January 2026',
     readTime: '5 min read',
@@ -312,7 +312,7 @@ export const events = [
     id: 'alumni-panel',
     type: 'Panel',
     title: 'Alumni Panel: One Year After Epsilon',
-    description: 'Hear from three Cohort 02 alumni on what changed in their work after the programme — and what they would do differently.',
+    description: 'Hear from three Cohort 02 alumni on what changed in their work after the program — and what they would do differently.',
     date: '28 March 2026',
     time: '6:00 PM IST',
     duration: '90 min',

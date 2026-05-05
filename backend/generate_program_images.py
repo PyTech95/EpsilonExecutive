@@ -1,4 +1,4 @@
-"""Generate matching on-brand programme images via Nano Banana."""
+"""Generate matching on-brand program images via Nano Banana."""
 import asyncio
 import os
 import base64
@@ -17,20 +17,20 @@ BRAND = (
 
 PROMPTS = {
     "strategic-leadership": (
-        "Abstract hero image for an Advanced Programme in Strategic Leadership — "
+        "Abstract hero image for an Advanced Program in Strategic Leadership — "
         "a single elegant gold chess knight piece illuminated on a dark navy "
         "marble surface, with delicate gold light filaments suggesting strategic "
         "pathways, soft volumetric haze, shallow depth of field." + BRAND
     ),
     "finance-non-finance": (
-        "Abstract hero image for a Finance for Non-Finance Executives programme — "
+        "Abstract hero image for a Finance for Non-Finance Executives program — "
         "an upward-trending three-dimensional gold candlestick / line chart "
         "rendered as glowing geometry on a deep navy background, scattered subtle "
         "data points like constellations, cinematic light rays, refined and "
         "premium." + BRAND
     ),
     "digital-transformation": (
-        "Abstract hero image for a Digital Transformation programme — an elegant "
+        "Abstract hero image for a Digital Transformation program — an elegant "
         "isometric architecture of glowing gold interconnected blocks and bridges "
         "dissolving into light particles on a deep navy background, suggesting "
         "modern operating systems being rebuilt, cinematic and refined." + BRAND

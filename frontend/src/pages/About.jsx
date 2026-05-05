@@ -10,7 +10,7 @@ export default function About() {
       <PageHero
         eyebrow="About Epsilon"
         title="A school for the people who decide."
-        subtitle="Epsilon Executive Education exists to bridge the gap between technical possibility and credible business action. We design programmes that produce work-ready capability, not just course completion."
+        subtitle="Epsilon Executive Education exists to bridge the gap between technical possibility and credible business action. We design programs that produce work-ready capability, not just course completion."
       />
 
       {/* Philosophy */}
@@ -25,10 +25,10 @@ export default function About() {
           </div>
           <div className="space-y-6">
             <p className="font-editorial text-navy/85 text-[1.25rem] leading-relaxed">
-              Knowing about AI is not the same as deciding with it. Reading a model report is not the same as defending a recommendation to a board. Our programmes are built around that gap &mdash; the difference between knowing and deciding.
+              Knowing about AI is not the same as deciding with it. Reading a model report is not the same as defending a recommendation to a board. Our programs are built around that gap &mdash; the difference between knowing and deciding.
             </p>
             <p className="font-editorial text-navy/85 text-[1.25rem] leading-relaxed">
-              We pair practitioner-educators with senior cohorts, hold them to a high bar of evidence, and end every programme with a portfolio-grade capstone &mdash; an artefact that proves capability, not attendance.
+              We pair practitioner-educators with senior cohorts, hold them to a high bar of evidence, and end every program with a portfolio-grade capstone &mdash; an artefact that proves capability, not attendance.
             </p>
           </div>
         </div>
@@ -61,7 +61,7 @@ export default function About() {
             Build the judgement your <span className="italic font-editorial text-gold normal-case">next decade</span> demands.
           </h2>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Link to="/programs" className="btn-gold">Explore Programmes <ArrowRight size={16} /></Link>
+            <Link to="/programs" className="btn-gold">Explore Programs <ArrowRight size={16} /></Link>
             <Link to="/contact" className="btn-outline-gold">Talk to Us</Link>
           </div>
         </div>

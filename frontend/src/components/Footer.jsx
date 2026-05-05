@@ -58,9 +58,9 @@ export default function Footer() {
           </div>
 
           <div>
-            <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-5">Programmes</p>
+            <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-5">Programs</p>
             <ul className="space-y-3 font-sans text-[0.95rem]">
-              <li><Link to="/programs" className="text-cream/85 hover:text-gold transition-colors">All Programmes</Link></li>
+              <li><Link to="/programs" className="text-cream/85 hover:text-gold transition-colors">All Programs</Link></li>
               {programs.map((p) => (
                 <li key={p.slug || p._id}>
                   <Link to={`/programs/${p.slug}`} className="text-cream/85 hover:text-gold transition-colors">

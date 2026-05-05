@@ -52,11 +52,11 @@ export default function Corporate() {
             <p className="eyebrow mb-4">Why Epsilon for Corporate</p>
             <span className="gold-rule-lg" />
             <h2 className="font-display text-navy text-[2rem] md:text-[2.8rem] leading-[1.05] mt-6">
-              Bespoke programmes <span className="italic font-editorial text-gold">that ship.</span>
+              Bespoke programs <span className="italic font-editorial text-gold">that ship.</span>
             </h2>
           </div>
           <p className="font-editorial text-navy/85 text-[1.2rem] leading-relaxed">
-            {c.intro || 'We design and deliver private cohorts for companies that want their senior leadership to think clearly about AI, data, and modern decision systems. Programmes are bespoke, evidence-anchored, and led by practitioner-educators.'}
+            {c.intro || 'We design and deliver private cohorts for companies that want their senior leadership to think clearly about AI, data, and modern decision systems. Programs are bespoke, evidence-anchored, and led by practitioner-educators.'}
           </p>
         </div>
       </section>
@@ -114,7 +114,7 @@ export default function Corporate() {
               {c.ctaTitle || 'Talk to us about a private cohort.'}
             </h2>
             <p className="font-editorial text-navy/80 text-[1.2rem] leading-relaxed mt-6 max-w-md">
-              {c.ctaSubtitle || 'Tell us about your team and what you want them to be able to do. We will design a programme around it.'}
+              {c.ctaSubtitle || 'Tell us about your team and what you want them to be able to do. We will design a program around it.'}
             </p>
             <div className="mt-8 flex gap-3 items-center">
               <Mail size={16} className="text-gold" />

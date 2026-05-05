@@ -24,7 +24,7 @@ PROMPTS = {
     ),
     "applied-ai-ml": (
         "Abstract premium hero photograph for an Applied AI and Machine Learning "
-        "executive programme — a glowing 3D neural network of luminous gold and "
+        "executive program — a glowing 3D neural network of luminous gold and "
         "soft amber nodes connected by delicate light filaments, set against a "
         "deep navy almost black background with subtle starfield, minimal "
         "depth-of-field, cinematic, refined, editorial, no text, no logos, no "

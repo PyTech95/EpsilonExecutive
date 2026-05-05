@@ -9,7 +9,7 @@ import { useAuth } from './AuthContext';
 const navItems = [
   { to: '/admin', icon: LayoutDashboard, label: 'Dashboard', end: true },
   { to: '/admin/home', icon: Home, label: 'Home Page' },
-  { to: '/admin/programs', icon: BookOpen, label: 'Programmes' },
+  { to: '/admin/programs', icon: BookOpen, label: 'Programs' },
   { to: '/admin/faculty', icon: Users, label: 'Faculty' },
   { to: '/admin/testimonials', icon: MessageSquare, label: 'Testimonials' },
   { to: '/admin/cohorts', icon: GraduationCap, label: 'Cohorts' },
