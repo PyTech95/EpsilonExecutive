@@ -310,7 +310,7 @@ export default function Home() {
         <NetworkBackground className="opacity-70" />
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] rounded-full glow-gold pointer-events-none" />
 
-        <div className="relative container-x pt-32 sm:pt-40 md:pt-44 pb-[25px]">
+        <div className="relative container-x pt-32 sm:pt-40 md:pt-44 pb-[25px] md:pb-[50px]">
           <p className="eyebrow mb-7 fade-up">
             <Sparkles size={12} className="inline mr-2 -mt-1 text-gold" /> {hero.eyebrow || 'The AI Era of Executive Education'}
           </p>
