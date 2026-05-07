@@ -54,10 +54,16 @@ function BrochureDownload({ programs, brochure }) {
         <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
         {/* Left: visual */}
           <div className="relative bg-navy-deep overflow-hidden min-h-[380px] flex items-center justify-center p-10">
-            <div className="absolute inset-0 starfield opacity-30" />
+            <img
+              src="https://customer-assets.emergentagent.com/job_logos-11/artifacts/x9cwf42w_ChatGPT%20Image%20May%207%2C%202026%2C%2002_00_19%20PM.png"
+              alt=""
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-navy-deep/55" />
+            <div className="absolute inset-0 starfield opacity-25" />
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full glow-gold" />
             <div className="relative text-center">
-              <FileText size={46} className="text-gold mx-auto mb-6" />
+              <FileText size={92} className="text-gold mx-auto mb-6" />
               <p className="eyebrow mb-3">{brochure?.eyebrow || 'Program Brochure'}</p>
               <h3 className="font-display text-cream text-[1.8rem] md:text-[2.4rem] leading-[1.1] max-w-sm mx-auto">
                 {(brochure?.title || 'Everything you need to decide.').split(' ').slice(0, -1).join(' ')}{' '}
