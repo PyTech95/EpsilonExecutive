@@ -182,7 +182,6 @@ function AdmissionsContact({ sections, contact }) {
           title="A personal conversation."
           accent="Not a funnel."
           subtitle={sections?.admissionsSubtitle || 'Every applicant speaks with an admissions lead before a seat is offered. Start with a message — we will write back personally.'}
-          align="center"
         />
 
         <div className="mt-16 grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-14 lg:gap-16">
@@ -411,7 +410,6 @@ export default function Home() {
             eyebrow="Faculty"
             title="Practitioner-educators who"
             accent="do the work."
-            align="center"
             tone="dark"
           />
         </div>
