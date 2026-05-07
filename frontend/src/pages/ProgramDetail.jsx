@@ -134,34 +134,34 @@ export default function ProgramDetail() {
   return (
     <div>
       {/* Hero */}
-      <section className="relative bg-navy-deep text-cream pt-[180px] pb-12 overflow-hidden">
+      <section className="relative bg-navy-deep text-cream pt-[130px] sm:pt-[150px] md:pt-[180px] pb-10 md:pb-12 overflow-hidden">
         <div className="absolute inset-0">
           <img src={p.image} alt="" className="w-full h-full object-cover opacity-25" />
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(8,19,31,0.6), rgba(8,19,31,0.95))' }} />
         </div>
         <div className="absolute inset-0 starfield opacity-30" />
         <div className="relative container-x">
-          <Link to="/programs" className="link-gold mb-8 inline-flex">← All Programs</Link>
-          <p className="eyebrow mb-4">{p.weeks} weeks · {p.levelLabel}</p>
-          <h1 className="font-display text-[2.4rem] md:text-[4rem] leading-[1.05] max-w-4xl">{p.title}</h1>
-          <p className="font-editorial italic text-gold text-[1.3rem] md:text-[1.6rem] mt-5">{p.tagline}</p>
-          <p className="font-editorial text-cream/80 text-[1.2rem] leading-relaxed mt-6 max-w-3xl">{p.long}</p>
+          <Link to="/programs" className="link-gold mb-6 md:mb-8 inline-flex">← All Programs</Link>
+          <p className="eyebrow mb-3 md:mb-4">{p.weeks} weeks · {p.levelLabel}</p>
+          <h1 className="font-display text-[1.9rem] sm:text-[2.4rem] md:text-[4rem] leading-[1.05] max-w-4xl">{p.title}</h1>
+          <p className="font-editorial italic text-gold text-[1.1rem] sm:text-[1.3rem] md:text-[1.6rem] mt-4 md:mt-5">{p.tagline}</p>
+          <p className="font-editorial text-cream/80 text-[1.02rem] md:text-[1.2rem] leading-relaxed mt-5 md:mt-6 max-w-3xl">{p.long}</p>
 
-          <div className="mt-10 flex flex-wrap gap-4">
+          <div className="mt-7 md:mt-10 flex flex-wrap gap-3 md:gap-4">
             <Link to="/apply" className="btn-gold">Apply Now <ArrowRight size={16} /></Link>
             <Link to="/schedule" className="btn-outline-gold">Schedule a Call</Link>
           </div>
 
-          <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="mt-10 md:mt-12 grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-6">
             {[
               { v: p.fee, l: 'Program Fee' },
               { v: `${p.weeks} weeks`, l: 'Duration' },
               { v: p.audience, l: 'Audience' },
               { v: p.nextCohort, l: 'Next Cohort' },
             ].map((s) => (
-              <div key={s.l} className="border-l border-gold/40 pl-4">
-                <p className="font-display text-xl text-cream">{s.v}</p>
-                <p className="font-caps text-[0.6rem] text-cream/60 mt-1">{s.l}</p>
+              <div key={s.l} className="border-l border-gold/40 pl-3 md:pl-4">
+                <p className="font-display text-[1rem] sm:text-lg md:text-xl text-cream leading-snug">{s.v}</p>
+                <p className="font-caps text-[0.55rem] sm:text-[0.6rem] text-cream/60 mt-1">{s.l}</p>
               </div>
             ))}
           </div>

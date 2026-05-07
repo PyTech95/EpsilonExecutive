@@ -382,18 +382,18 @@ export default function Apply() {
   return (
     <div>
       {/* ---------- 1. Page hero ---------- */}
-      <section className="relative bg-navy-deep text-cream pt-[170px] md:pt-[190px] pb-16 md:pb-20 overflow-hidden">
+      <section className="relative bg-navy-deep text-cream pt-[130px] sm:pt-[150px] md:pt-[190px] pb-12 md:pb-20 overflow-hidden">
         <div className="absolute inset-0 starfield opacity-40 pointer-events-none" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full glow-gold pointer-events-none" />
-        <div className="container-x relative grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-10 items-end">
+        <div className="container-x relative grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-8 lg:gap-10 items-end">
           <div>
-            <p className="eyebrow mb-5">Apply · {selectedProgram.subtitle}</p>
+            <p className="eyebrow mb-4 md:mb-5">Apply · {selectedProgram.subtitle}</p>
             <span className="gold-rule-lg" />
-            <h1 className="font-display uppercase text-[2.4rem] md:text-[4rem] leading-[1.04] mt-7 max-w-4xl">
+            <h1 className="font-display uppercase text-[1.9rem] sm:text-[2.4rem] md:text-[4rem] leading-[1.05] mt-6 md:mt-7 max-w-4xl">
               Begin your<br />
               <span className="font-editorial italic normal-case text-gold">conversation with Epsilon.</span>
             </h1>
-            <p className="font-editorial text-cream/80 text-[1.1rem] md:text-[1.25rem] leading-relaxed mt-8 max-w-2xl">
+            <p className="font-editorial text-cream/80 text-[1.02rem] md:text-[1.25rem] leading-relaxed mt-6 md:mt-8 max-w-2xl">
               Applications are reviewed personally by our admissions team. Tell us about you and what you want to learn — we will reach out to discuss fit, expectations, and next steps.
             </p>
           </div>
