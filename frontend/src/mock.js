@@ -340,4 +340,4 @@ export const beliefs = [
   { n: '03', title: 'Craft over content', body: 'Mastery is built by doing the work, with feedback, in front of senior peers.' }
 ];
 
-export const LOGO_URL = 'https://customer-assets.emergentagent.com/job_logos-11/artifacts/d7h51yi7_EPSILON%20LOGO2%20%281%29.png';
+export const LOGO_URL = 'https://customer-assets.emergentagent.com/job_logos-11/artifacts/0r3ksglp_EPSILON%20LOGO2.png';

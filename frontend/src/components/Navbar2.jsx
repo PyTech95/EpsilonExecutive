@@ -4,7 +4,7 @@ import { LogIn, Menu, X, ChevronDown } from 'lucide-react';
 import { useSiteContent } from '../context/SiteContent';
 import { programs as mockPrograms } from '../mock';
 
-const BOXED_LOGO = '/favicon-512.png';
+const BOXED_LOGO = 'https://customer-assets.emergentagent.com/job_logos-11/artifacts/4dwmzm3j_image.png';
 
 /**
  * Home2 navbar — square boxed logo CENTERED, primary nav split left of logo,
