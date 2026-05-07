@@ -197,27 +197,33 @@ export default function ProgramDetail() {
             {/* Visual */}
             <div className="relative bg-navy-deep min-h-[360px] aspect-[4/5] lg:aspect-auto lg:h-full overflow-hidden flex items-center justify-center p-8 order-2 lg:order-1">
               {p.certificateImage ? (
-                <img src={p.certificateImage} alt="" className="absolute inset-0 w-full h-full object-cover" />
+                /* Admin-uploaded certificate image — show as-is, no overlay */
+                <img
+                  src={p.certificateImage}
+                  alt={`${p.subtitle || p.title} certificate`}
+                  className="absolute inset-0 w-full h-full object-contain bg-navy-deep"
+                />
               ) : (
+                /* Default decorative placeholder */
                 <>
                   <div className="absolute inset-0 starfield opacity-30" />
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[480px] h-[480px] rounded-full glow-gold" />
+                  <div className="relative text-center text-cream">
+                    <Award size={72} className="text-gold mx-auto mb-5" />
+                    <p className="font-caps text-[0.65rem] tracking-[0.28em] text-gold mb-2">Certificate</p>
+                    <p className="font-display text-[1.6rem] md:text-[2rem] leading-tight max-w-xs mx-auto">
+                      Professional Certificate
+                    </p>
+                    <p className="font-editorial italic text-gold text-[1rem] md:text-[1.1rem] mt-2">
+                      {p.subtitle}
+                    </p>
+                  </div>
                 </>
               )}
-              <div className="relative text-center text-cream">
-                <Award size={72} className="text-gold mx-auto mb-5" />
-                <p className="font-caps text-[0.65rem] tracking-[0.28em] text-gold mb-2">Certificate</p>
-                <p className="font-display text-[1.6rem] md:text-[2rem] leading-tight max-w-xs mx-auto">
-                  Professional Certificate
-                </p>
-                <p className="font-editorial italic text-gold text-[1rem] md:text-[1.1rem] mt-2">
-                  {p.subtitle}
-                </p>
-              </div>
-              <span className="absolute top-4 left-4 w-8 h-8 border-t border-l border-gold/70" />
-              <span className="absolute top-4 right-4 w-8 h-8 border-t border-r border-gold/70" />
-              <span className="absolute bottom-4 left-4 w-8 h-8 border-b border-l border-gold/70" />
-              <span className="absolute bottom-4 right-4 w-8 h-8 border-b border-r border-gold/70" />
+              <span className="absolute top-4 left-4 w-8 h-8 border-t border-l border-gold/70 z-10" />
+              <span className="absolute top-4 right-4 w-8 h-8 border-t border-r border-gold/70 z-10" />
+              <span className="absolute bottom-4 left-4 w-8 h-8 border-b border-l border-gold/70 z-10" />
+              <span className="absolute bottom-4 right-4 w-8 h-8 border-b border-r border-gold/70 z-10" />
             </div>
 
             {/* Copy */}
