@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
 import { leadFaculty as mockLead, guestLecturers as mockGuests } from '../mock';
 import { useSiteContent } from '../context/SiteContent';
 import {
@@ -72,6 +74,14 @@ export default function FacultyShowcase() {
                 </div>
               ))}
             </div>
+
+            <Link
+              to="/faculty"
+              data-testid="lead-faculty-read-more"
+              className="btn-outline-gold mt-8 border-gold/50 text-cream hover:text-gold"
+            >
+              Read More <ArrowRight size={14} />
+            </Link>
           </div>
         </div>
 
