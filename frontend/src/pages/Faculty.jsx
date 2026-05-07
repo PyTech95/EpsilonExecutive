@@ -127,12 +127,12 @@ function GuestCard({ g }) {
         <p className="font-editorial italic text-navy/70 text-[0.92rem] leading-snug mt-1.5">
           {g.role}
         </p>
-        <p className="font-sans text-navy/75 text-[0.88rem] leading-relaxed mt-3 line-clamp-5">
+        <p className="font-sans text-navy/75 text-[0.88rem] leading-relaxed mt-3">
           {g.bio}
         </p>
         {g.tags?.length > 0 && (
           <div className="mt-4 flex flex-wrap gap-1.5">
-            {g.tags.slice(0, 3).map((t) => (
+            {g.tags.map((t) => (
               <span key={t} className="font-caps text-[0.5rem] tracking-[0.2em] text-navy/70 border border-navy/20 px-2 py-1">
                 {t}
               </span>
