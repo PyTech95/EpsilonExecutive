@@ -42,7 +42,7 @@ export default function Navbar() {
           <img src={logoUrl} alt="Epsilon" className="h-[85px] w-auto object-contain" />
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-10">
+        <nav className="hidden lg:flex items-center gap-10 -ml-[50px]" data-testid="primary-nav">
           <div
             className="relative"
             onMouseEnter={() => setProgOpen(true)}
