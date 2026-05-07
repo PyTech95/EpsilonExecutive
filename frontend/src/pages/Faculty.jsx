@@ -5,91 +5,99 @@ import PageHero from '../components/PageHero';
 import { leadFaculty as mockLead, guestLecturers as mockGuests } from '../mock';
 import { useSiteContent } from '../context/SiteContent';
 
+/* ---------- Lead Faculty: image left, text right; text never overflows below image ---------- */
 function LeadFacultyBlock({ lead }) {
   return (
-    <section className="relative bg-navy-deep text-cream py-24 md:py-32 overflow-hidden">
-      <div className="absolute inset-0 starfield opacity-40 pointer-events-none" />
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[1100px] rounded-full glow-gold pointer-events-none" />
+    <section className="relative bg-navy-deep text-cream py-14 md:py-16 overflow-hidden">
+      <div className="absolute inset-0 starfield opacity-35 pointer-events-none" />
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full glow-gold pointer-events-none" />
 
       <div className="container-x relative">
-        <p className="font-caps text-[0.65rem] tracking-[0.28em] text-gold mb-3">Lead Faculty</p>
-        <span className="block w-12 h-px bg-gold/60 mb-12" />
+        <p className="font-caps text-[0.62rem] tracking-[0.28em] text-gold mb-3">Lead Faculty</p>
+        <span className="block w-10 h-px bg-gold/60 mb-8" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,460px)_1fr] gap-14 lg:gap-20 items-start">
-          {/* Portrait + badge */}
-          <div className="relative mx-auto lg:mx-0 w-full max-w-[460px]">
+        {/*
+          The grid cells stretch to the same height; the image fills the cell,
+          and the text column is internally scroll-free with a subtle inner
+          scroll fallback so it never extends past the image height.
+        */}
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,420px)_1fr] gap-10 lg:gap-14 items-stretch">
+          {/* Portrait */}
+          <div className="relative mx-auto lg:mx-0 w-full max-w-[420px] self-start">
             <div className="aspect-[4/5] overflow-hidden bg-navy">
               <img src={lead.image} alt={lead.name} className="w-full h-full object-cover" />
             </div>
-            <div className="absolute right-[-12px] bottom-[-12px] md:right-[-16px] md:bottom-[-16px] bg-gold text-navy-deep px-7 py-5 md:px-9 md:py-6 max-w-[78%]">
-              <p className="font-caps text-[0.65rem] tracking-[0.22em] text-navy-deep/80 mb-1">{lead.badge}</p>
-              <p className="font-display text-navy-deep text-[1.2rem] md:text-[1.4rem] leading-tight">{lead.name}</p>
+            <div className="absolute right-[-10px] bottom-[-10px] md:right-[-14px] md:bottom-[-14px] bg-gold text-navy-deep px-6 py-4 max-w-[78%]">
+              <p className="font-caps text-[0.6rem] tracking-[0.2em] text-navy-deep/80 mb-0.5">{lead.badge}</p>
+              <p className="font-display text-navy-deep text-[1.1rem] md:text-[1.25rem] leading-tight">{lead.name}</p>
             </div>
           </div>
 
-          {/* Content */}
-          <div>
-            <h2 className="font-display uppercase text-cream text-[2rem] md:text-[2.8rem] leading-[1.05]">
+          {/* Content — capped to image height on desktop, with subtle inner scroll if needed */}
+          <div className="lg:max-h-[600px] lg:overflow-y-auto faculty-scroll">
+            <h2 className="font-display uppercase text-cream text-[1.7rem] md:text-[2.3rem] leading-[1.05]">
               {lead.name}
             </h2>
-            <p className="font-editorial italic text-gold text-[1.2rem] md:text-[1.45rem] mt-3 leading-snug">
+            <p className="font-editorial italic text-gold text-[1.05rem] md:text-[1.2rem] mt-2 leading-snug">
               {lead.role}
             </p>
 
-            {/* Credentials */}
-            <div className="mt-10 grid grid-cols-2 gap-8 max-w-xl border-t border-b border-gold/25 py-7">
+            {/* Credentials — compact 2-col */}
+            <div className="mt-6 grid grid-cols-2 gap-5 border-t border-b border-gold/25 py-5">
               {(lead.credentials || []).map((c) => (
                 <div key={c.institution}>
-                  <p className="font-editorial italic text-gold text-[1.3rem] md:text-[1.5rem] leading-tight">
+                  <p className="font-editorial italic text-gold text-[1.1rem] md:text-[1.25rem] leading-tight">
                     {c.institution}
                   </p>
-                  <p className="font-caps text-[0.62rem] tracking-[0.22em] text-cream/65 mt-2">
+                  <p className="font-caps text-[0.55rem] tracking-[0.2em] text-cream/65 mt-1.5">
                     {c.detail}
                   </p>
                 </div>
               ))}
             </div>
 
-            {/* Bios */}
-            <div className="mt-10 space-y-6 max-w-3xl">
-              <p className="font-editorial italic text-cream text-[1.35rem] md:text-[1.55rem] leading-snug text-gold/95">
-                {lead.heroBlurb}
-              </p>
+            {/* Bios — tightened spacing */}
+            <p className="font-editorial italic text-gold/95 text-[1.1rem] md:text-[1.2rem] leading-snug mt-6">
+              {lead.heroBlurb}
+            </p>
+            <div className="mt-4 space-y-3">
               {[lead.bio, lead.bio2, lead.bio3].filter(Boolean).map((para, i) => (
-                <p key={i} className="font-sans text-cream/85 text-[1rem] md:text-[1.05rem] leading-[1.8]">
+                <p key={i} className="font-sans text-cream/85 text-[0.95rem] md:text-[1rem] leading-[1.65]">
                   {para}
                 </p>
               ))}
             </div>
 
-            {/* Affiliations + tags */}
-            <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-10 max-w-3xl">
-              {lead.affiliations?.length > 0 && (
-                <div>
-                  <p className="font-caps text-[0.6rem] tracking-[0.22em] text-gold mb-4">Affiliations</p>
-                  <ul className="space-y-2">
-                    {lead.affiliations.map((a) => (
-                      <li key={a} className="font-sans text-cream/80 text-[0.95rem] leading-relaxed flex gap-2">
-                        <span className="text-gold mt-[3px]">·</span>
-                        <span>{a}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              {lead.tags?.length > 0 && (
-                <div>
-                  <p className="font-caps text-[0.6rem] tracking-[0.22em] text-gold mb-4">Areas</p>
-                  <div className="flex flex-wrap gap-2">
-                    {lead.tags.map((t) => (
-                      <span key={t} className="font-caps text-[0.55rem] tracking-[0.22em] text-cream/80 border border-gold/35 px-3 py-1.5">
-                        {t}
-                      </span>
-                    ))}
+            {/* Affiliations + tags — compact */}
+            {(lead.affiliations?.length > 0 || lead.tags?.length > 0) && (
+              <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                {lead.affiliations?.length > 0 && (
+                  <div>
+                    <p className="font-caps text-[0.55rem] tracking-[0.2em] text-gold mb-2">Affiliations</p>
+                    <ul className="space-y-1.5">
+                      {lead.affiliations.map((a) => (
+                        <li key={a} className="font-sans text-cream/80 text-[0.88rem] leading-snug flex gap-2">
+                          <span className="text-gold mt-[2px]">·</span>
+                          <span>{a}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                </div>
-              )}
-            </div>
+                )}
+                {lead.tags?.length > 0 && (
+                  <div>
+                    <p className="font-caps text-[0.55rem] tracking-[0.2em] text-gold mb-2">Areas</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {lead.tags.map((t) => (
+                        <span key={t} className="font-caps text-[0.5rem] tracking-[0.2em] text-cream/80 border border-gold/35 px-2.5 py-1">
+                          {t}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -97,49 +105,35 @@ function LeadFacultyBlock({ lead }) {
   );
 }
 
-function GuestRow({ g, index }) {
-  const reverse = index % 2 === 1;
+/* ---------- Guest Faculty card: smaller portrait, vertical stack, consistent rhythm ---------- */
+function GuestCard({ g }) {
   return (
     <article
-      data-testid={`faculty-guest-row-${g.slug || g._id}`}
-      className={`grid grid-cols-1 lg:grid-cols-[minmax(0,420px)_1fr] gap-12 lg:gap-16 items-start ${
-        reverse ? 'lg:[&>*:first-child]:order-2' : ''
-      }`}
+      data-testid={`faculty-guest-card-${g.slug || g._id}`}
+      className="group flex flex-col bg-white border border-navy/10 hover:border-gold/50 transition-colors"
     >
-      {/* Portrait */}
-      <div className="relative mx-auto lg:mx-0 w-full max-w-[420px]">
-        <div className="aspect-[4/5] overflow-hidden bg-navy/10 border border-navy/10">
-          <img
-            src={g.image}
-            alt={g.name}
-            className="w-full h-full object-cover grayscale-[15%] hover:grayscale-0 transition-all duration-700"
-          />
-        </div>
-        {/* Gold corner accents */}
-        <span className="absolute top-3 left-3 w-7 h-7 border-t border-l border-gold/70" />
-        <span className="absolute bottom-3 right-3 w-7 h-7 border-b border-r border-gold/70" />
+      <div className="aspect-[4/5] overflow-hidden bg-navy/5">
+        <img
+          src={g.image}
+          alt={g.name}
+          className="w-full h-full object-cover grayscale-[15%] group-hover:grayscale-0 transition-all duration-500"
+        />
       </div>
-
-      {/* Content */}
-      <div className="pt-2">
-        <p className="font-caps text-[0.62rem] tracking-[0.28em] text-gold">{g.expertise}</p>
-        <span className="block w-10 h-px bg-gold/60 mt-3 mb-5" />
-
-        <h3 className="font-display text-navy text-[1.9rem] md:text-[2.4rem] leading-[1.05]">
+      <div className="p-5 md:p-6 flex flex-col flex-1">
+        <p className="font-caps text-[0.55rem] tracking-[0.22em] text-gold">{g.expertise}</p>
+        <h3 className="font-display text-navy text-[1.2rem] md:text-[1.3rem] leading-tight mt-2">
           {g.name}
         </h3>
-        <p className="font-editorial italic text-gold text-[1.05rem] md:text-[1.2rem] leading-snug mt-3">
+        <p className="font-editorial italic text-navy/70 text-[0.92rem] leading-snug mt-1.5">
           {g.role}
         </p>
-
-        <p className="font-editorial text-navy/85 text-[1.1rem] md:text-[1.18rem] leading-[1.75] mt-7 max-w-2xl">
+        <p className="font-sans text-navy/75 text-[0.88rem] leading-relaxed mt-3 line-clamp-5">
           {g.bio}
         </p>
-
         {g.tags?.length > 0 && (
-          <div className="mt-7 flex flex-wrap gap-2">
-            {g.tags.map((t) => (
-              <span key={t} className="font-caps text-[0.55rem] tracking-[0.22em] text-navy/75 border border-navy/25 px-3 py-1.5">
+          <div className="mt-4 flex flex-wrap gap-1.5">
+            {g.tags.slice(0, 3).map((t) => (
+              <span key={t} className="font-caps text-[0.5rem] tracking-[0.2em] text-navy/70 border border-navy/20 px-2 py-1">
                 {t}
               </span>
             ))}
@@ -164,37 +158,39 @@ export default function Faculty() {
         subtitle="Our faculty are senior practitioners and educators — advisors, founders, and researchers who bring real problems into the classroom and rigorous frameworks back out."
       />
 
-      {/* Lead Faculty — full editorial spread */}
+      {/* Lead Faculty */}
       {lead && <LeadFacultyBlock lead={lead} />}
 
-      {/* Guest Lecturers — alternating editorial rows */}
-      <section className="bg-cream py-24 md:py-32">
+      {/* Guest Lecturers — uniform 4-up grid, smaller portraits, no editorial flips */}
+      <section className="bg-cream py-14 md:py-16">
         <div className="container-x">
-          <div className="text-center max-w-2xl mx-auto mb-20">
-            <p className="font-caps text-[0.65rem] tracking-[0.28em] text-gold">Visiting Faculty &amp; Industry Experts</p>
-            <span className="block w-12 h-px bg-gold/60 mx-auto mt-4 mb-7" />
-            <h2 className="font-display text-navy text-[2.1rem] md:text-[2.8rem] leading-[1.08]">
+          <div className="text-center max-w-2xl mx-auto mb-10">
+            <p className="font-caps text-[0.62rem] tracking-[0.28em] text-gold">
+              Visiting Faculty &amp; Industry Experts
+            </p>
+            <span className="block w-10 h-px bg-gold/60 mx-auto mt-3 mb-5" />
+            <h2 className="font-display text-navy text-[1.7rem] md:text-[2.2rem] leading-[1.08]">
               Practitioners who bring the field <span className="italic font-editorial text-gold">into the cohort.</span>
             </h2>
           </div>
 
-          <div className="space-y-24 md:space-y-32 max-w-6xl mx-auto">
-            {guestLecturers.map((g, i) => (
-              <GuestRow key={g.slug || g._id} g={g} index={i} />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            {guestLecturers.map((g) => (
+              <GuestCard key={g.slug || g._id} g={g} />
             ))}
           </div>
         </div>
       </section>
 
       {/* CTA */}
-      <section className="bg-navy-deep text-cream py-24 relative overflow-hidden">
+      <section className="bg-navy-deep text-cream py-14 md:py-16 relative overflow-hidden">
         <div className="absolute inset-0 starfield opacity-40" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full glow-gold" />
         <div className="container-x relative text-center">
-          <h2 className="font-display uppercase text-[2rem] md:text-[3rem] leading-[1.05] max-w-3xl mx-auto">
+          <h2 className="font-display uppercase text-[1.7rem] md:text-[2.4rem] leading-[1.08] max-w-3xl mx-auto">
             Learn from the people who <span className="italic font-editorial text-gold normal-case">do the work.</span>
           </h2>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
+          <div className="mt-7 flex flex-wrap justify-center gap-4">
             <Link to="/programs" className="btn-gold" data-testid="faculty-cta-explore-programs">
               Explore Programs <ArrowRight size={16} />
             </Link>
