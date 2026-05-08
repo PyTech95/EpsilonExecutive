@@ -205,16 +205,16 @@ function AdmissionsContact({ sections, contact }) {
             ))}
           </div>
 
-          <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-            <div className="flex gap-3">
+          <div className="mt-10 flex flex-col sm:grid sm:grid-cols-3 gap-4 text-sm">
+            <div className="flex gap-3 items-start">
               <Mail size={16} className="text-gold mt-1 flex-shrink-0" />
-              <span className="text-navy/85">{contact?.email || 'admissions@epsilonexec.com'}</span>
+              <span className="text-navy/85 break-all">{contact?.email || 'admissions@epsilonexec.com'}</span>
             </div>
-            <div className="flex gap-3">
+            <div className="flex gap-3 items-start">
               <Phone size={16} className="text-gold mt-1 flex-shrink-0" />
               <span className="text-navy/85">{contact?.phone || '+91 · on request'}</span>
             </div>
-            <div className="flex gap-3">
+            <div className="flex gap-3 items-start">
               <MapPin size={16} className="text-gold mt-1 flex-shrink-0" />
               <span className="text-navy/85">{contact?.address || 'Live online · India'}</span>
             </div>
