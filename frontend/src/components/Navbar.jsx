@@ -40,13 +40,14 @@ export default function Navbar() {
   const navColor = 'text-cream hover:text-gold';
 
   return (
-    <header
-      className={`fixed top-0 left-0 right-0 z-[99998] transition-all duration-300 bg-navy-deep lg:bg-[#08131fd6] backdrop-blur-md ${
-        transparent
-          ? 'border-b border-transparent'
-          : 'border-b border-gold/15 shadow-[0_4px_20px_rgba(8,19,31,0.35)]'
-      }`}
-    >
+    <>
+      <header
+        className={`fixed top-0 left-0 right-0 z-[99998] transition-all duration-300 bg-navy-deep lg:bg-[#08131fd6] backdrop-blur-md ${
+          transparent
+            ? 'border-b border-transparent'
+            : 'border-b border-gold/15 shadow-[0_4px_20px_rgba(8,19,31,0.35)]'
+        }`}
+      >
       <div className="container-x flex items-center justify-between h-[78px] lg:h-[96px]">
         <Link to="/" className="flex items-center gap-2">
           <img src={logoUrl} alt="Epsilon" className="h-[58px] sm:h-[64px] lg:h-[68px] w-auto object-contain" />
@@ -128,122 +129,124 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu - Side Drawer (No Portal) */}
-      {mobileOpen && (
-        <div className="lg:hidden">
-          {/* Backdrop */}
-          <div 
-            className="fixed inset-0 bg-black/70 z-[99999]"
-            onClick={() => setMobileOpen(false)}
-          />
-          
-          {/* Drawer */}
-          <div className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm z-[100000] shadow-2xl overflow-y-auto" style={{ backgroundColor: '#EDE5D2' }}>
-            {/* Header */}
-            <div className="p-6 flex items-center justify-between sticky top-0 z-10" style={{ backgroundColor: '#0E1F32' }}>
-              <img src={logoUrl} alt="Epsilon" className="h-7" />
-              <button
-                onClick={() => setMobileOpen(false)}
-                className="text-cream hover:text-gold transition-colors -mr-2"
-                aria-label="Close Menu"
-              >
-                <X size={28} strokeWidth={2} />
-              </button>
-            </div>
+    </header>
 
-            {/* Menu Content */}
-            <div className="p-6" style={{ backgroundColor: '#EDE5D2' }}>
-              {/* Programs Accordion */}
-              <div className="mb-6">
-                <button
-                  type="button"
-                  onClick={() => setProgOpen((v) => !v)}
-                  className="w-full flex items-center justify-between py-3 border-b-2 border-navy/10 group bg-cream"
-                >
-                  <span className="font-caps text-[0.7rem] tracking-[0.2em] text-navy group-hover:text-gold transition-colors font-semibold">
-                    PROGRAMS
-                  </span>
-                  <ChevronDown 
-                    size={18} 
-                    className={`text-gold transition-transform duration-300 ${progOpen ? 'rotate-180' : ''}`}
-                  />
-                </button>
-                
-                {progOpen && (
-                  <div className="mt-4 space-y-2 pl-2 bg-cream">
-                    {programs.map((p) => (
-                      <Link
-                        key={p.slug}
-                        to={`/programs/${p.slug}`}
-                        onClick={() => setMobileOpen(false)}
-                        className="block py-3 px-4 bg-navy/5 hover:bg-gold/10 transition-colors group rounded"
-                      >
-                        <div className="font-display text-navy text-[0.9rem] leading-tight group-hover:text-gold transition-colors">
-                          {p.subtitle}
-                        </div>
-                        <div className="font-caps text-[0.55rem] text-navy/60 mt-1 tracking-wider">
-                          {p.weeks} WEEKS · {p.levelLabel?.toUpperCase()}
-                        </div>
-                      </Link>
-                    ))}
-                    
+    {/* Mobile menu - Rendered OUTSIDE header to avoid height clipping */}
+    {mobileOpen && (
+      <div className="lg:hidden">
+        {/* Backdrop */}
+        <div 
+          className="fixed inset-0 bg-black/70 z-[99999]"
+          onClick={() => setMobileOpen(false)}
+        />
+        
+        {/* Drawer */}
+        <div className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm z-[100000] shadow-2xl overflow-y-auto" style={{ backgroundColor: '#EDE5D2' }}>
+          {/* Header */}
+          <div className="p-6 flex items-center justify-between sticky top-0 z-10" style={{ backgroundColor: '#0E1F32' }}>
+            <img src={logoUrl} alt="Epsilon" className="h-7" />
+            <button
+              onClick={() => setMobileOpen(false)}
+              className="text-cream hover:text-gold transition-colors -mr-2"
+              aria-label="Close Menu"
+            >
+              <X size={28} strokeWidth={2} />
+            </button>
+          </div>
+
+          {/* Menu Content */}
+          <div className="p-6" style={{ backgroundColor: '#EDE5D2' }}>
+            {/* Programs Accordion */}
+            <div className="mb-6">
+              <button
+                type="button"
+                onClick={() => setProgOpen((v) => !v)}
+                className="w-full flex items-center justify-between py-3 border-b-2 border-navy/10 group bg-cream"
+              >
+                <span className="font-caps text-[0.7rem] tracking-[0.2em] text-navy group-hover:text-gold transition-colors font-semibold">
+                  PROGRAMS
+                </span>
+                <ChevronDown 
+                  size={18} 
+                  className={`text-gold transition-transform duration-300 ${progOpen ? 'rotate-180' : ''}`}
+                />
+              </button>
+              
+              {progOpen && (
+                <div className="mt-4 space-y-2 pl-2 bg-cream">
+                  {programs.map((p) => (
                     <Link
-                      to="/corporate"
+                      key={p.slug}
+                      to={`/programs/${p.slug}`}
                       onClick={() => setMobileOpen(false)}
-                      className="flex items-start gap-3 py-3 px-4 bg-gold/10 hover:bg-gold/20 transition-colors group rounded"
+                      className="block py-3 px-4 bg-navy/5 hover:bg-gold/10 transition-colors group rounded"
                     >
-                      <Building2 size={14} className="text-gold mt-1 flex-shrink-0" />
-                      <div>
-                        <div className="font-display text-navy text-[0.9rem] leading-tight group-hover:text-gold transition-colors">
-                          Corporate Program
-                        </div>
-                        <div className="font-caps text-[0.55rem] text-navy/60 mt-1 tracking-wider">
-                          PRIVATE COHORTS
-                        </div>
+                      <div className="font-display text-navy text-[0.9rem] leading-tight group-hover:text-gold transition-colors">
+                        {p.subtitle}
+                      </div>
+                      <div className="font-caps text-[0.55rem] text-navy/60 mt-1 tracking-wider">
+                        {p.weeks} WEEKS · {p.levelLabel?.toUpperCase()}
                       </div>
                     </Link>
-                  </div>
-                )}
-              </div>
-
-              {/* Other Menu Items */}
-              <nav className="space-y-0 bg-cream">
-                {menuItems.map((item, idx) => (
-                  <Link 
-                    key={idx} 
-                    to={item.link} 
+                  ))}
+                  
+                  <Link
+                    to="/corporate"
                     onClick={() => setMobileOpen(false)}
-                    className="block font-caps text-[0.7rem] tracking-[0.2em] text-navy hover:text-gold transition-colors py-4 border-b-2 border-navy/10 font-semibold bg-cream"
+                    className="flex items-start gap-3 py-3 px-4 bg-gold/10 hover:bg-gold/20 transition-colors group rounded"
                   >
-                    {item.label.toUpperCase()}
+                    <Building2 size={14} className="text-gold mt-1 flex-shrink-0" />
+                    <div>
+                      <div className="font-display text-navy text-[0.9rem] leading-tight group-hover:text-gold transition-colors">
+                        Corporate Program
+                      </div>
+                      <div className="font-caps text-[0.55rem] text-navy/60 mt-1 tracking-wider">
+                        PRIVATE COHORTS
+                      </div>
+                    </div>
                   </Link>
-                ))}
-              </nav>
+                </div>
+              )}
+            </div>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col gap-3 mt-8 pt-8 border-t-2 border-navy/10 bg-cream">
+            {/* Other Menu Items */}
+            <nav className="space-y-0 bg-cream">
+              {menuItems.map((item, idx) => (
                 <Link 
-                  to="/apply" 
+                  key={idx} 
+                  to={item.link} 
                   onClick={() => setMobileOpen(false)}
-                  className="btn-gold w-full text-center justify-center py-4 font-caps tracking-wider text-sm shadow-lg"
+                  className="block font-caps text-[0.7rem] tracking-[0.2em] text-navy hover:text-gold transition-colors py-4 border-b-2 border-navy/10 font-semibold bg-cream"
                 >
-                  {applyButtonText?.toUpperCase() || 'APPLY'}
+                  {item.label.toUpperCase()}
                 </Link>
-                <a 
-                  href={signInUrl} 
-                  target="_blank" 
-                  rel="noopener noreferrer" 
-                  className="w-full text-center py-4 font-caps tracking-wider text-sm border-2 border-navy text-navy hover:bg-navy hover:text-cream transition-all"
-                >
-                  <span className="flex items-center justify-center gap-2">
-                    <LogIn size={14} /> {signInButtonText?.toUpperCase() || 'SIGN IN'}
-                  </span>
-                </a>
-              </div>
+              ))}
+            </nav>
+
+            {/* Action Buttons */}
+            <div className="flex flex-col gap-3 mt-8 pt-8 border-t-2 border-navy/10 bg-cream">
+              <Link 
+                to="/apply" 
+                onClick={() => setMobileOpen(false)}
+                className="btn-gold w-full text-center justify-center py-4 font-caps tracking-wider text-sm shadow-lg"
+              >
+                {applyButtonText?.toUpperCase() || 'APPLY'}
+              </Link>
+              <a 
+                href={signInUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="w-full text-center py-4 font-caps tracking-wider text-sm border-2 border-navy text-navy hover:bg-navy hover:text-cream transition-all"
+              >
+                <span className="flex items-center justify-center gap-2">
+                  <LogIn size={14} /> {signInButtonText?.toUpperCase() || 'SIGN IN'}
+                </span>
+              </a>
             </div>
           </div>
         </div>
-      )}
-    </header>
+      </div>
+    )}
+    </>
   );
 }
