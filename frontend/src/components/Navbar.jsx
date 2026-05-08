@@ -128,8 +128,8 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu - Side Drawer Style */}
-      {mobileOpen && (
+      {/* Mobile menu - Side Drawer Style (Portal to body) */}
+      {mobileOpen && createPortal(
         <>
           {/* Backdrop */}
           <div 
@@ -244,7 +244,8 @@ export default function Navbar() {
               </div>
             </div>
           </div>
-        </>
+        </>,
+        document.body
       )}
     </header>
   );
