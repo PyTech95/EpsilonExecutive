@@ -128,107 +128,108 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu - Modern Full Screen Overlay */}
+      {/* Mobile menu - Clean Modern Style */}
       {mobileOpen && (
-        <div className="lg:hidden fixed inset-0 z-50 bg-navy-deep/95 backdrop-blur-md animate-in fade-in duration-300">
+        <div className="lg:hidden fixed inset-0 z-50 bg-navy-deep/98 backdrop-blur-lg">
           <div className="h-full overflow-y-auto">
-            {/* Close button */}
-            <div className="container-x py-6 flex justify-end">
+            {/* Header with logo and close */}
+            <div className="container-x py-6 flex items-center justify-between border-b border-gold/10">
+              <img src={logoUrl} alt="Epsilon" className="h-8" />
               <button
                 onClick={() => setMobileOpen(false)}
-                className="text-cream hover:text-gold transition-colors p-2"
+                className="text-cream hover:text-gold transition-colors p-2 -mr-2"
                 aria-label="Close Menu"
               >
-                <X size={32} strokeWidth={1.5} />
+                <X size={28} strokeWidth={2} />
               </button>
             </div>
 
             {/* Menu content */}
-            <div className="container-x pb-12 flex flex-col gap-8 pt-8">
-              {/* Programs Accordion */}
-              <div className="border-b border-gold/20 pb-6">
-                <button
-                  type="button"
-                  onClick={() => setProgOpen((v) => !v)}
-                  className="w-full flex items-center justify-between group"
-                >
-                  <span className="font-display text-cream text-2xl tracking-wide group-hover:text-gold transition-colors">
-                    Programs
-                  </span>
-                  <ChevronDown 
-                    size={24} 
-                    className={`text-gold transition-transform duration-300 ${progOpen ? 'rotate-180' : ''}`}
-                  />
-                </button>
-                
-                {progOpen && (
-                  <div className="mt-6 space-y-4 pl-4 animate-in slide-in-from-top-2 duration-300">
-                    {programs.map((p, i) => (
+            <div className="container-x py-12">
+              <nav className="space-y-1">
+                {/* Programs Accordion */}
+                <div className="border-b border-gold/10 pb-1">
+                  <button
+                    type="button"
+                    onClick={() => setProgOpen((v) => !v)}
+                    className="w-full flex items-center justify-between py-5 group"
+                  >
+                    <span className="font-caps text-[0.75rem] tracking-[0.2em] text-cream group-hover:text-gold transition-colors">
+                      PROGRAMS
+                    </span>
+                    <ChevronDown 
+                      size={18} 
+                      className={`text-gold transition-transform duration-300 ${progOpen ? 'rotate-180' : ''}`}
+                    />
+                  </button>
+                  
+                  {progOpen && (
+                    <div className="pb-6 space-y-1 animate-in slide-in-from-top-2 duration-300">
+                      {programs.map((p) => (
+                        <Link
+                          key={p.slug}
+                          to={`/programs/${p.slug}`}
+                          onClick={() => setMobileOpen(false)}
+                          className="block py-4 px-4 -mx-4 hover:bg-gold/10 transition-colors group"
+                        >
+                          <div className="font-display text-cream text-[0.95rem] leading-tight group-hover:text-gold transition-colors">
+                            {p.subtitle}
+                          </div>
+                          <div className="font-caps text-[0.6rem] text-gold/70 mt-1.5 tracking-wider">
+                            {p.weeks} WEEKS · {p.levelLabel?.toUpperCase()}
+                          </div>
+                        </Link>
+                      ))}
+                      
+                      {/* Corporate Program */}
                       <Link
-                        key={p.slug}
-                        to={`/programs/${p.slug}`}
+                        to="/corporate"
                         onClick={() => setMobileOpen(false)}
-                        className="block group py-3 border-l-2 border-gold/30 hover:border-gold pl-4 transition-all"
+                        className="flex items-start gap-3 py-4 px-4 -mx-4 hover:bg-gold/10 transition-colors group"
                       >
-                        <div className="font-display text-cream text-base leading-tight group-hover:text-gold transition-colors">
-                          {p.subtitle}
-                        </div>
-                        <div className="font-caps text-[0.65rem] text-gold/70 mt-1.5 tracking-wider">
-                          {p.weeks} weeks · {p.levelLabel}
+                        <Building2 size={16} className="text-gold mt-0.5 flex-shrink-0" />
+                        <div>
+                          <div className="font-display text-cream text-[0.95rem] leading-tight group-hover:text-gold transition-colors">
+                            Corporate Program
+                          </div>
+                          <div className="font-caps text-[0.6rem] text-gold/70 mt-1.5 tracking-wider">
+                            PRIVATE COHORTS FOR TEAMS
+                          </div>
                         </div>
                       </Link>
-                    ))}
-                    
-                    {/* Corporate Program */}
-                    <Link
-                      to="/corporate"
-                      onClick={() => setMobileOpen(false)}
-                      className="flex items-start gap-3 py-3 border-l-2 border-gold/30 hover:border-gold pl-4 transition-all group"
-                    >
-                      <Building2 size={18} className="text-gold mt-1 flex-shrink-0" />
-                      <div>
-                        <div className="font-display text-cream text-base leading-tight group-hover:text-gold transition-colors">
-                          Corporate Program
-                        </div>
-                        <div className="font-caps text-[0.65rem] text-gold/70 mt-1.5 tracking-wider">
-                          Private cohorts for teams
-                        </div>
-                      </div>
-                    </Link>
-                  </div>
-                )}
-              </div>
+                    </div>
+                  )}
+                </div>
 
-              {/* Other Menu Items */}
-              <div className="space-y-6">
+                {/* Other Menu Items */}
                 {menuItems.map((item, idx) => (
                   <Link 
                     key={idx} 
                     to={item.link} 
                     onClick={() => setMobileOpen(false)}
-                    className="block font-display text-cream text-2xl tracking-wide hover:text-gold transition-colors border-b border-gold/20 pb-6"
+                    className="block font-caps text-[0.75rem] tracking-[0.2em] text-cream hover:text-gold transition-colors py-5 border-b border-gold/10"
                   >
-                    {item.label}
+                    {item.label.toUpperCase()}
                   </Link>
                 ))}
-              </div>
+              </nav>
 
               {/* Action Buttons */}
-              <div className="flex flex-col gap-4 pt-8">
+              <div className="flex flex-col gap-3 mt-12 pt-12 border-t border-gold/10">
                 <Link 
                   to="/apply" 
                   onClick={() => setMobileOpen(false)}
-                  className="btn-gold w-full text-center justify-center py-4 text-lg"
+                  className="btn-gold w-full text-center justify-center py-4 font-caps tracking-wider"
                 >
-                  {applyButtonText}
+                  {applyButtonText?.toUpperCase() || 'APPLY'}
                 </Link>
                 <a 
                   href={signInUrl} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="btn-outline-gold w-full text-center justify-center py-4 text-lg"
+                  className="btn-outline-gold w-full text-center justify-center py-4 font-caps tracking-wider"
                 >
-                  <LogIn size={16} /> {signInButtonText}
+                  <LogIn size={14} /> {signInButtonText?.toUpperCase() || 'SIGN IN'}
                 </a>
               </div>
             </div>
