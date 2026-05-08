@@ -24,6 +24,7 @@ import AdminLayout from './admin/AdminLayout';
 import AdminLogin from './admin/Login';
 import Dashboard from './admin/Dashboard';
 import HomeEditor from './admin/HomeEditor';
+import HeaderFooterEditor from './admin/HeaderFooterEditor';
 import ProgramsEditor from './admin/ProgramsEditor';
 import FacultyEditor from './admin/FacultyEditor';
 import {
@@ -49,6 +50,7 @@ function App() {
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<Dashboard />} />
               <Route path="home" element={<HomeEditor />} />
+              <Route path="header-footer" element={<HeaderFooterEditor />} />
               <Route path="programs" element={<ProgramsEditor />} />
               <Route path="faculty" element={<FacultyEditor />} />
               <Route path="testimonials" element={<TestimonialsEditor />} />

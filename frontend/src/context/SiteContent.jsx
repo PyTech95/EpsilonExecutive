@@ -21,6 +21,8 @@ export function SiteContentProvider({ children }) {
     insights: mock.insights,
     events: mock.events,
     logoUrl: mock.LOGO_URL,
+    navbar: null,
+    footer: null,
   });
 
   useEffect(() => {
@@ -52,6 +54,8 @@ export function SiteContentProvider({ children }) {
           insights: insights?.length ? insights : mock.insights,
           events: events?.length ? events : mock.events,
           logoUrl: home?.logoUrl || mock.LOGO_URL,
+          navbar: home?.navbar || null,
+          footer: home?.footer || null,
         });
       } catch {
         setState((s) => ({ ...s, loaded: true }));

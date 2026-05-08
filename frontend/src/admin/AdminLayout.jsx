@@ -2,13 +2,14 @@ import React from 'react';
 import { NavLink, Outlet, useNavigate, Navigate } from 'react-router-dom';
 import {
   LayoutDashboard, Home, BookOpen, Users, Calendar, MessageSquare,
-  FileText, Inbox, LogOut, Lock, GraduationCap
+  FileText, Inbox, LogOut, Lock, GraduationCap, Menu
 } from 'lucide-react';
 import { useAuth } from './AuthContext';
 
 const navItems = [
   { to: '/admin', icon: LayoutDashboard, label: 'Dashboard', end: true },
   { to: '/admin/home', icon: Home, label: 'Home Page' },
+  { to: '/admin/header-footer', icon: Menu, label: 'Header & Footer' },
   { to: '/admin/programs', icon: BookOpen, label: 'Programs' },
   { to: '/admin/faculty', icon: Users, label: 'Faculty' },
   { to: '/admin/testimonials', icon: MessageSquare, label: 'Testimonials' },

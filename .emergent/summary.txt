@@ -1,0 +1,148 @@
+<analysis>**original_problem_statement**: Create a pixel-perfect clone of the Epsilon Executive Education website matching its design, layout, colors, fonts, images, animations, and structure. The site should be fully dynamic with a WordPress-style admin panel. PRODUCT REQUIREMENTS: Make the header and footer fully editable from the backend admin panel, with the user specifically requesting a visual editor experience.
+
+**User's preferred language**: English (EN). (INSTRUCT next agent to respond in English only).
+
+**what currently exists?**: A fully functional, responsive, full-stack application (React + FastAPI + MongoDB). It features a dark navy/gold/cream aesthetic, specialized typography, and a comprehensive dynamic Admin panel (). Recently, extensive UI refinements were made (responsive spacing, mobile accordion nav, 4-column footer, floating WhatsApp button), image upload capabilities were added to the admin panel, and Program Detail pages were upgraded to be fully customizable Elementor-style from the backend (toggles for sections, custom week-by-week curriculum, certificates, and forms). 
+
+**Last working item**:
+    - Last item agent was working: The user requested to make the Header and Footer fully editable from the backend admin panel and asked for a visual editor. The agent used the  tool to get clarification on exactly what kind of visual editor experience they expect for the header/footer before proceeding.
+    - Status: USER VERIFICATION PENDING
+    - Agent Testing Done: N
+    - Which testing method agent to use? Frontend testing agent / screenshot tool
+    - User Testing Done: N
+
+**All Pending/In progress Issue list**: 
+  - Issue 1: Header and Footer Admin Editability (Priority: P0)
+     - Attempted fixes: None yet. Awaiting user response to .
+     - Next debug checklist: Depending on user response, update  to store header/footer configuration in the DB (if not fully covered by ). Create/update  and  in the admin panel. Map the dynamic Context API data directly to  and  (e.g., dynamic nav links, custom logos, footer column links, social links).
+     - Why fix this issue and what will be achieved with the fix? It fulfills the user's request to have 100% of the website's content editable via the backend, removing any hardcoded navigation or footer links.
+     - Status: USER VERIFICATION PENDING
+     - Is recurring issue? N
+     - Should Test frontend/backend/both after fix? Both (Backend for new DB fields, Frontend for UI mapping)
+     - Blocked on other issue: None
+
+**In progress Task List**: None
+
+**Upcoming and Future Tasks**:
+  - Task 1: Implement Header/Footer Editor in Admin Panel (P0)
+    - Parse user's response regarding visual editor. If they mean a live-preview editor, consider a split-pane layout in the admin. If they just mean a user-friendly form with image uploads (like the rest of the admin), proceed with standard .
+  - Task 2: Drag-and-drop support for the admin Image upload field (P2 - Backlog suggestion)
+  - Task 3: Capture UTM/referrer in application submissions for the inbox (P2 - Backlog suggestion)
+  - Task 4: Email notifications on new submissions via Resend integration (P1 - Discussed previously)
+
+**Completed work in this session**:
+- Implemented  with  for direct image uploads to .
+- Created a reusable  component for the admin panel.
+- Made every section image across the entire website admin-editable.
+- Upgraded  and  to function like a page builder (custom curriculum, certificate uploads, dynamic modules, hide/show toggles).
+- Redesigned  to a two-column sticky layout.
+- Redesigned  to remove modals, display full text inline, and use a clean 4-up grid for guest lecturers.
+- Redesigned  into a clean 4-column layout, removing the newsletter and tagline.
+- Added a floating WhatsApp button () that is admin-editable.
+- Added Favicon and updated site metadata.
+- Implemented extensive responsive design tweaks (mobile padding, navbar opacity on scroll, logo resizing, typography scaling).
+- Generated multiple custom AI images using Gemini Nano Banana (Emergent LLM Key).
+- Refactored  to handle mobile accordion dropdowns for Programs.
+- Replaced programme with Program across the entire codebase and database.
+
+**Earlier issues found/mentioned but not fixed**: None.
+
+**Known issue recurrence from previous fork**: 
+  - Issue recurrence in previous fork: N/A
+  - Recurrence count: 0
+  - Status: RESOLVED
+
+**Code Architecture**:
+/app
+├── backend
+│   ├── server.py (FastAPI, Motor, JWT Auth, file upload endpoints)
+│   ├── seed_data.py
+│   ├── uploads/ (Directory for user-uploaded images)
+│   └── requirements.txt
+├── frontend
+│   ├── src
+│   │   ├── admin (Admin Dashboard, ImageField.jsx, Editors, Inbox)
+│   │   ├── components (Navbar.jsx, Footer.jsx, WhatsAppFloat.jsx)
+│   │   ├── context (SiteContent.jsx)
+│   │   ├── pages (Home, Programs, ProgramDetail, Faculty, Apply, Contact)
+│   │   └── App.js
+│   └── public/ (favicons)
+
+**Key Technical Concepts**: 
+React Context API for global dynamic content state, FastAPI for REST APIs, MongoDB (Motor) for NoSQL storage,  for file uploads, JWT authentication, Tailwind CSS for responsive layouts.
+
+**key DB schema**:
+  - : {hero, brochure, admissions, contact, footer, sections, corporate}
+  - : {slug, title, subtitle, heroImage, outcomes, modules, curriculum, faq, certificate, etc.}
+  - : {lead_faculty, guest_lecturers}
+  - : {type, data, created_at}
+
+**changes in tech stack**: 
+- Added  for handling  image uploads on the FastAPI backend.
+
+**All files of reference**: 
+-  &  (Targets for the pending header/footer editability task).
+-  (Contains the  endpoints that will store header/footer data).
+-  (Good reference for how existing visual editors are structured).
+
+**Areas that need refactoring**: 
+ is extremely large (~514 lines).  and  are also growing. Admin components could be modularized further.
+
+**key api endpoints**:
+-  (Handles image file uploads)
+-  (Where footer data currently lives)
+
+**Critical Info for New Agent**: 
+- The user has deployed the app to production (). However, you are operating in the **PREVIEW** environment. Any code changes you make only affect preview. If the user complains about production bugs, you must fix them in preview and tell the user to deploy.
+- **Do not** use  if the target string does not uniquely exist. Use line ranges or broader matches.
+- All images across the site are now manageable via the admin panel. If the user asks for image changes, direct them to the admin panel or verify the change directly via database updates/admin tools.
+
+**documents and test reports created in this job**: 
+-  (Updated with admin credentials)
+-  (Created and updated with feature logs)
+
+**Last 10 User Messages and any pending HUMAN messages**: 
+1. (User) Requested to make What you walk away with a 2x2 grid. (Done)
+2. (User) Requested favicon icon. (Done)
+3. (User) Requested floating WhatsApp button. (Done)
+4. (User) Requested multiple menu text changes and removal of Admissions from menu. (Done)
+5. (User) Requested heavy spacing/padding reductions across the site and removal of a Home 2 variant. (Done)
+6. (User) Requested program pages be fully editable from admin like Elementor, with specific additions to Applied AI & ML. (Done)
+7. (User) Requested certificate background to be white and image not to overlap text. (Done)
+8. (User) Requested mobile navigation improvements (accordion dropdown) and Faculty page redesign. (Done)
+9. (User) Requested redesign of footer layout and placement of square logo above home CTA. (Done)
+10. **(User) Requested header and footer to be editable from backend admin panel with a visual editor. (PENDING - Agent asked for clarification via ask_human).**
+
+**Project Health Check**: 
+Healthy. Full-stack integration works, image uploads work, fully responsive.
+
+**3rd Party Integrations**: 
+- Gemini Nano Banana (via Emergent LLM Key) — used strictly for programmatic image generation during seeding/development. Not exposed to end-users.
+
+**Testing status**: 
+- Testing agent used after significant changes: NO (Main agent used screenshot tool extensively for visual verification).
+- Troubleshoot agent used after agent stuck in loop: NO
+- Test files created: None
+- Known regressions: None
+
+**Credentials to test flow**:
+- Admin panel: 
+- Email: 
+- Password: 
+
+**What agent forgot to execute**: 
+None. The agent successfully paused to clarify an ambiguous request (visual editor) before implementing the header/footer admin controls.
+
+**Debugging checklist for current issue**
+    Issue: Header and Footer Admin Editability
+    
+    Frontend files to check: 
+    -  (or create a dedicated )
+    -  (Map hardcoded links to context state)
+    -  (Map hardcoded links to context state)
+  
+    Backend files to check:
+    -  (Ensure  and  objects are properly accepted in the  PUT requests).
+
+    Database to check:
+    -  collection (Add/verify  and  JSON structures).</analysis>

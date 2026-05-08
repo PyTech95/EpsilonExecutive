@@ -9,7 +9,32 @@ export default function Footer() {
   const programs = ctx?.programs?.length ? ctx.programs : mockPrograms;
   const home = ctx?.home || {};
   const contact = home.contact || {};
-  const footer = home.footer || {};
+  
+  // Use footer data from context if available, otherwise fallback to defaults
+  const footerData = ctx?.footer || {};
+  const programsCol = footerData.programsColumn || { title: 'Programs', links: [] };
+  const discoverCol = footerData.discoverColumn || {
+    title: 'Discover',
+    links: [
+      { label: 'Home', url: '/' },
+      { label: 'Faculty', url: '/faculty' },
+      { label: 'About', url: '/about' },
+    ],
+  };
+  const getTouchCol = footerData.getTouchColumn || {
+    title: 'Get in Touch',
+    links: [
+      { label: 'Apply', url: '/apply' },
+      { label: 'Contact', url: '/contact' },
+    ],
+  };
+  const signInUrl = footerData.signInUrl || home.footer?.signInUrl || 'https://moodle.org/login/index.php';
+  const copyright = footerData.copyright || '© 2026 Epsilon Executive Education · All rights reserved';
+  const bottomLinks = footerData.bottomLinks || [
+    { label: 'Privacy', url: '/about' },
+    { label: 'Terms', url: '/about' },
+    { label: 'Press', url: '/contact' },
+  ];
 
   return (
     <footer className="bg-navy-deep text-cream pt-16 pb-10 border-t border-gold/10 relative overflow-hidden">
@@ -17,11 +42,18 @@ export default function Footer() {
       <div className="container-x relative">
         {/* 4 columns in a row */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
-          {/* Programs */}
+          {/* Column 1: Programs */}
           <div>
-            <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-5">Programs</p>
+            <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-5">{programsCol.title}</p>
             <ul className="space-y-3 font-sans text-[0.95rem]">
-              <li><Link to="/programs" className="text-cream/85 hover:text-gold transition-colors">All Programs</Link></li>
+              {programsCol.links.map((link, i) => (
+                <li key={i}>
+                  <Link to={link.url} className="text-cream/85 hover:text-gold transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+              {/* Dynamic program list */}
               {programs.map((p) => (
                 <li key={p.slug || p._id}>
                   <Link to={`/programs/${p.slug}`} className="text-cream/85 hover:text-gold transition-colors">
@@ -32,30 +64,45 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Discover */}
+          {/* Column 2: Discover */}
           <div>
-            <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-5">Discover</p>
+            <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-5">{discoverCol.title}</p>
             <ul className="space-y-3 font-sans text-[0.95rem]">
-              <li><Link to="/" className="text-cream/85 hover:text-gold transition-colors">Home</Link></li>
-              <li><Link to="/faculty" className="text-cream/85 hover:text-gold transition-colors">Faculty</Link></li>
-              <li><Link to="/admissions" className="text-cream/85 hover:text-gold transition-colors">Admissions</Link></li>
-              <li><Link to="/about" className="text-cream/85 hover:text-gold transition-colors">About</Link></li>
-              <li><Link to="/insights" className="text-cream/85 hover:text-gold transition-colors">Insights</Link></li>
-              <li><Link to="/events" className="text-cream/85 hover:text-gold transition-colors">Events</Link></li>
+              {discoverCol.links.map((link, i) => (
+                <li key={i}>
+                  <Link to={link.url} className="text-cream/85 hover:text-gold transition-colors">
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Get in Touch */}
+          {/* Column 3: Get in Touch */}
           <div>
-            <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-5">Get in Touch</p>
+            <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-5">{getTouchCol.title}</p>
             <ul className="space-y-3 font-sans text-[0.95rem]">
-              <li><Link to="/apply" className="text-cream/85 hover:text-gold transition-colors">Apply</Link></li>
-              <li><Link to="/contact" className="text-cream/85 hover:text-gold transition-colors">Contact</Link></li>
-              <li><Link to="/schedule" className="text-cream/85 hover:text-gold transition-colors">Schedule a Call</Link></li>
-              <li><Link to="/corporate" className="text-cream/85 hover:text-gold transition-colors">Corporate Program</Link></li>
+              {getTouchCol.links.map((link, i) => (
+                <li key={i}>
+                  {link.url.startsWith('http') ? (
+                    <a
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-cream/85 hover:text-gold transition-colors"
+                    >
+                      {link.label}
+                    </a>
+                  ) : (
+                    <Link to={link.url} className="text-cream/85 hover:text-gold transition-colors">
+                      {link.label}
+                    </Link>
+                  )}
+                </li>
+              ))}
               <li>
                 <a
-                  href={footer.signInUrl || 'https://moodle.org/login/index.php'}
+                  href={signInUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-cream/85 hover:text-gold transition-colors inline-flex items-center gap-2"
@@ -94,12 +141,18 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-12 pt-7 border-t border-cream/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <p className="font-caps text-[0.6rem] text-cream/70 tracking-[0.22em]">
-            {footer.copyright || '© 2026 Epsilon Executive Education · All rights reserved'}
+            {copyright}
           </p>
           <div className="flex gap-6">
-            <Link to="/about" className="font-caps text-[0.6rem] text-cream/70 tracking-[0.22em] hover:text-gold transition-colors">Privacy</Link>
-            <Link to="/about" className="font-caps text-[0.6rem] text-cream/70 tracking-[0.22em] hover:text-gold transition-colors">Terms</Link>
-            <Link to="/contact" className="font-caps text-[0.6rem] text-cream/70 tracking-[0.22em] hover:text-gold transition-colors">Press</Link>
+            {bottomLinks.map((link, i) => (
+              <Link
+                key={i}
+                to={link.url}
+                className="font-caps text-[0.6rem] text-cream/70 tracking-[0.22em] hover:text-gold transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

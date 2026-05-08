@@ -7,8 +7,18 @@ import { useSiteContent } from '../context/SiteContent';
 export default function Navbar() {
   const ctx = useSiteContent();
   const programs = ctx?.programs?.length ? ctx.programs : mockPrograms;
-  const logoUrl = ctx?.logoUrl || LOGO_URL;
-  const signInUrl = ctx?.home?.footer?.signInUrl || 'https://moodle.org/login/index.php';
+  
+  // Use navbar data from context if available, otherwise fallback to ctx.logoUrl and defaults
+  const navbar = ctx?.navbar || {};
+  const logoUrl = navbar.logoUrl || ctx?.logoUrl || LOGO_URL;
+  const menuItems = navbar.menuItems || [
+    { label: 'Faculty', link: '/faculty', type: 'link' },
+    { label: 'About', link: '/about', type: 'link' },
+  ];
+  const applyButtonText = navbar.applyButtonText || 'Apply';
+  const signInButtonText = navbar.signInButtonText || 'Sign In';
+  const signInUrl = navbar.signInUrl || ctx?.home?.footer?.signInUrl || 'https://moodle.org/login/index.php';
+  
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [progOpen, setProgOpen] = useState(false);
@@ -93,13 +103,16 @@ export default function Navbar() {
               </div>
             )}
           </div>
-          <NavLink to="/faculty" className={`${baseNav} ${navColor}`}>Faculty</NavLink>
-          <NavLink to="/about" className={`${baseNav} ${navColor}`}>About</NavLink>
+          {menuItems.map((item, idx) => (
+            <NavLink key={idx} to={item.link} className={`${baseNav} ${navColor}`}>
+              {item.label}
+            </NavLink>
+          ))}
         </nav>
 
         <div className="hidden lg:flex items-center gap-3">
           <NavLink to="/apply" data-testid="nav-apply-btn" className="btn-gold">
-            Apply
+            {applyButtonText}
           </NavLink>
           <a
             href={signInUrl}
@@ -108,7 +121,7 @@ export default function Navbar() {
             data-testid="nav-signin-btn"
             className="btn-outline-gold"
           >
-            <LogIn size={14} /> Sign In
+            <LogIn size={14} /> {signInButtonText}
           </a>
         </div>
 
@@ -164,12 +177,16 @@ export default function Navbar() {
               </div>
             )}
 
-            <Link to="/faculty" className="font-caps text-sm text-cream tracking-[0.2em] py-1">Faculty</Link>
-            <Link to="/about" className="font-caps text-sm text-cream tracking-[0.2em] py-1">About</Link>
+            {menuItems.map((item, idx) => (
+              <Link key={idx} to={item.link} className="font-caps text-sm text-cream tracking-[0.2em] py-1">
+                {item.label}
+              </Link>
+            ))}
+            
             <div className="flex gap-3 mt-3">
-              <Link to="/apply" className="btn-gold">Apply</Link>
+              <Link to="/apply" className="btn-gold">{applyButtonText}</Link>
               <a href={signInUrl} target="_blank" rel="noopener noreferrer" className="btn-outline-gold">
-                <LogIn size={14} /> Sign In
+                <LogIn size={14} /> {signInButtonText}
               </a>
             </div>
           </div>
