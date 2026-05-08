@@ -41,7 +41,7 @@ export default function Navbar() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-navy-deep lg:bg-[#08131fd6] backdrop-blur-md ${
+      className={`fixed top-0 left-0 right-0 z-[99998] transition-all duration-300 bg-navy-deep lg:bg-[#08131fd6] backdrop-blur-md ${
         transparent
           ? 'border-b border-transparent'
           : 'border-b border-gold/15 shadow-[0_4px_20px_rgba(8,19,31,0.35)]'
@@ -128,21 +128,19 @@ export default function Navbar() {
         </button>
       </div>
 
-      {/* Mobile menu - Side Drawer Style (Portal to body) */}
-      {mobileOpen && createPortal(
-        <>
+      {/* Mobile menu - Side Drawer (No Portal) */}
+      {mobileOpen && (
+        <div className="lg:hidden">
           {/* Backdrop */}
           <div 
-            className="lg:hidden fixed inset-0 bg-black/70 z-[999]"
+            className="fixed inset-0 bg-black/70 z-[99999]"
             onClick={() => setMobileOpen(false)}
           />
           
           {/* Drawer */}
-          <div 
-            className="lg:hidden fixed top-0 right-0 bottom-0 w-[85%] max-w-sm bg-cream z-[1000] shadow-2xl overflow-y-auto transform translate-x-0"
-          >
+          <div className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm z-[100000] shadow-2xl overflow-y-auto" style={{ backgroundColor: '#EDE5D2' }}>
             {/* Header */}
-            <div className="bg-navy-deep p-6 flex items-center justify-between sticky top-0 z-10">
+            <div className="p-6 flex items-center justify-between sticky top-0 z-10" style={{ backgroundColor: '#0E1F32' }}>
               <img src={logoUrl} alt="Epsilon" className="h-7" />
               <button
                 onClick={() => setMobileOpen(false)}
@@ -154,7 +152,7 @@ export default function Navbar() {
             </div>
 
             {/* Menu Content */}
-            <div className="p-6 bg-cream">
+            <div className="p-6" style={{ backgroundColor: '#EDE5D2' }}>
               {/* Programs Accordion */}
               <div className="mb-6">
                 <button
@@ -244,8 +242,7 @@ export default function Navbar() {
               </div>
             </div>
           </div>
-        </>,
-        document.body
+        </div>
       )}
     </header>
   );

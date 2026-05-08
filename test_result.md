@@ -386,7 +386,7 @@ frontend:
     implemented: true
     working: false
     file: "/app/frontend/src/components/Navbar.jsx"
-    stuck_count: 1
+    stuck_count: 2
     priority: "high"
     needs_retesting: false
     status_history:
@@ -396,6 +396,9 @@ frontend:
       - working: false
         agent: "testing"
         comment: "CRITICAL ISSUE PERSISTS: Tested NEW side drawer design (cream drawer from right, dark backdrop on left). Page content STILL shows through drawer. Hero text 'TURNING TECHNICAL FLUENCY', buttons 'APPLY NOW', 'CONTACT US', and all page content clearly visible in all screenshots. Drawer has correct styling: backdrop rgba(0,0,0,0.7), drawer bg-cream rgb(245,239,224), navy header rgb(8,19,31), z-index 1000. All menu items visible with correct colors (gold apply button, navy text). ADDITIONAL ISSUES: 1) Programs accordion clicked but 0 program links found (may not be expanding). 2) Backdrop close not working (drawer still visible after backdrop click). 3) Sticky navy header intercepts clicks on PROGRAMS button (had to use force=True). The transparency issue is NOT FIXED - same problem as before."
+      - working: false
+        agent: "testing"
+        comment: "ROOT CAUSE IDENTIFIED: Mobile drawer is only 78px tall (header height) instead of 812px (full viewport). Drawer element has correct inline style backgroundColor: rgb(237, 229, 210), correct z-index 100000, correct position fixed, correct width 318.75px (85%), but dimensions are 318.75x78 instead of 318.75x812. CSS classes 'top-0 right-0 bottom-0' are present but drawer is being clipped to header height. Backdrop also only 78px tall. DOM structure shows drawer is inside <header> element (lines 132-246 in Navbar.jsx), causing it to be clipped despite position:fixed. SOLUTION: Move mobile menu outside header element or use React Portal to render at document body level. All menu items (PROGRAMS, FACULTY, ABOUT, APPLY) are in DOM with correct colors (navy text on cream background) but not visible because drawer is clipped. Inline styles are correct - this is a structural DOM issue, not a styling issue."
 
 metadata:
   created_by: "testing_agent"
@@ -405,7 +408,7 @@ metadata:
 
 test_plan:
   current_focus:
-    - "Mobile Menu - Page content transparency issue STILL NOT FIXED"
+    - "Mobile Menu - Drawer height clipped to 78px (header height) - needs DOM restructure"
   stuck_tasks:
     - "Mobile Menu - Visibility and Navigation"
     - "Footer Editing - UI Accessibility"
@@ -421,3 +424,5 @@ agent_communication:
     message: "Completed mobile menu visibility testing on iPhone X viewport (375x812). CRITICAL ISSUE FOUND: Page content is showing through the mobile menu overlay. The hero section text ('TURNING TECHNICAL FLUENCY', 'THE AI ERA OF EXECUTIVE EDUCATION'), buttons ('APPLY NOW', 'CONTACT US'), and program details are all visible behind the menu items. The menu has bg-navy-deep and backdrop-blur-xl classes, but the background is not solid/opaque as required. ALL OTHER TESTS PASSED: ✅ Menu opens/closes correctly. ✅ Logo and X button visible at top. ✅ PROGRAMS accordion with chevron works. ✅ FACULTY and ABOUT links are visible and accessible. ✅ APPLY (gold) and SIGN IN (outlined) buttons visible at bottom. ✅ Programs accordion expands showing program list and Corporate Program. ✅ Navigation works (clicked FACULTY, navigated correctly, menu closed). ✅ Menu is scrollable (439px content in 78px viewport). ✅ Proper z-index (9999). FIX NEEDED: Make mobile menu background fully opaque to prevent page content from showing through."
   - agent: "testing"
     message: "RE-TESTED NEW side drawer mobile menu design. CRITICAL ISSUE PERSISTS - NOT FIXED. Page content is STILL showing through the drawer in all screenshots. Hero text 'TURNING TECHNICAL FLUENCY', buttons 'APPLY NOW'/'CONTACT US', and all page content clearly visible behind the cream drawer. The new design has correct styling (cream drawer from right, dark backdrop on left, navy header), but the transparency problem remains. WHAT WORKS: ✅ Drawer appearance correct (backdrop rgba(0,0,0,0.7), cream bg rgb(245,239,224), navy header rgb(8,19,31), width 318.75px = 85%). ✅ All menu items visible (PROGRAMS with chevron, FACULTY, ABOUT, APPLY gold button, SIGN IN navy border). ✅ Text colors correct (navy rgb(14,31,50)). ✅ Drawer scrollable (478px scroll height). ✅ X button close works. NEW ISSUES FOUND: ❌ Programs accordion not expanding (0 program links found after click). ❌ Backdrop close not working (drawer still visible after backdrop click). ❌ Sticky header intercepts PROGRAMS button clicks. This task is now STUCK - same transparency issue after redesign."
+  - agent: "testing"
+    message: "FINAL TEST COMPLETE - ROOT CAUSE IDENTIFIED. The mobile drawer is only 78px tall (header height) instead of 812px (full viewport height). Comprehensive DOM inspection reveals: DRAWER ELEMENT EXISTS with correct inline style backgroundColor: rgb(237, 229, 210) (#EDE5D2), correct z-index 100000 (highest), correct position fixed, correct width 318.75px (85% of viewport), but DIMENSIONS ARE 318.75x78 instead of 318.75x812. The CSS classes 'top-0 right-0 bottom-0' are present but the drawer is being CLIPPED to header height. BACKDROP also only 78px tall (should be 812px). DOM STRUCTURE ISSUE: The mobile menu is rendered INSIDE the <header> element (lines 132-246 in Navbar.jsx), causing it to be clipped despite position:fixed. All menu items (PROGRAMS, FACULTY, ABOUT, APPLY) are in the DOM with correct colors (navy text rgb(14,31,50) on cream background rgb(245,239,224)) but NOT VISIBLE because drawer is clipped. SOLUTION REQUIRED: Move mobile menu OUTSIDE the header element OR use React Portal to render at document body level. This is NOT a styling issue - inline styles are correct. This is a STRUCTURAL DOM issue. The drawer cannot extend beyond header height while nested inside it. Task stuck_count incremented to 2."
