@@ -357,13 +357,13 @@ export default function ProgramDetail() {
         <section className="bg-bone py-20 md:py-24">
           <div className="container-x grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-16 items-center">
             {/* Visual */}
-            <div className="relative bg-white min-h-[360px] aspect-[4/5] lg:aspect-auto lg:h-full overflow-hidden flex items-center justify-center order-2 lg:order-1 border border-navy/10">
+            <div className="relative bg-bone min-h-[360px] aspect-[4/5] lg:aspect-auto lg:h-full overflow-hidden flex items-center justify-center order-2 lg:order-1 border border-navy/10">
               {p.certificateImage ? (
                 /* Admin-uploaded certificate image — show as-is, no overlay */
                 <img
                   src={p.certificateImage}
                   alt={`${p.subtitle || p.title} certificate`}
-                  className="absolute inset-0 w-full h-full object-contain bg-white"
+                  className="absolute inset-0 w-full h-full object-contain bg-bone"
                 />
               ) : (
                 /* Default decorative placeholder */
