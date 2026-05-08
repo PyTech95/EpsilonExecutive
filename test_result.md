@@ -334,17 +334,65 @@ frontend:
         agent: "testing"
         comment: "Footer section is difficult to access in the editor. When scrolling to bottom of page, the footer section button is not easily clickable. The 'Add' buttons for footer columns are not consistently visible or accessible. This makes footer editing challenging through automated testing and potentially for users as well."
 
+  - task: "Programme Modules Accordion - Display and Expansion"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/ProgramDetail.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "All 4 programme modules (The Analytical Engine, The AI Practitioner, Advanced AI Operations, The Strategic Voice) display correctly on the Applied AI & ML program page. Each module has proper icon (Lightbulb, Target, Cog, TrendingUp), title, subtitle, and weeks label. Accordion expansion/collapse works smoothly with chevron rotation (180 degrees). Content slides in/out without jumping."
+
+  - task: "Programme Modules Accordion - Content Display"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/ProgramDetail.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "When modules are expanded, all content displays correctly: Key Learning Objectives section with 3-4 bullet points, Week-by-Week Breakdown in 2-column grid showing correct weeks (Module 1: Weeks 1-4, Module 2: Weeks 5-6, Module 3: Weeks 7-10, Module 4: Weeks 11-12), and Milestone section with Award icon and description. All 12 weeks display correctly across all modules."
+
+  - task: "Programme Modules Accordion - Multiple Expansion"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/ProgramDetail.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Multiple modules can be expanded simultaneously. Tested expanding all 4 modules at once - all content remains visible and accessible. No conflicts or collapsing of other modules when expanding a new one. All 12 weeks visible when all modules expanded."
+
+  - task: "Programme Modules Accordion - Visual Styling"
+    implemented: true
+    working: true
+    file: "/app/frontend/src/pages/ProgramDetail.jsx"
+    stuck_count: 0
+    priority: "high"
+    needs_retesting: false
+    status_history:
+      - working: true
+        agent: "testing"
+        comment: "Visual styling matches brochure aesthetic: Gold borders and accents present (170+ elements), Navy backgrounds for module headers (94+ elements), Icons display correctly in circular gold-accented containers, Smooth transitions and animations with proper CSS classes, Week cards have hover effects (navy background on hover), Chevron icons rotate smoothly with transition classes. No console errors detected."
+
 metadata:
   created_by: "testing_agent"
   version: "1.0"
-  test_sequence: 1
+  test_sequence: 2
   run_ui: false
 
 test_plan:
   current_focus:
-    - "Header & Footer editor functionality tested"
-    - "Header editing fully functional"
-    - "Footer editing UI needs improvement"
+    - "Programme Modules accordion fully tested and working"
+    - "All expansion/collapse functionality verified"
+    - "Content display and styling confirmed"
   stuck_tasks:
     - "Footer Editing - UI Accessibility"
   test_all: false
@@ -353,3 +401,5 @@ test_plan:
 agent_communication:
   - agent: "testing"
     message: "Completed Header & Footer editor testing. HEADER EDITING: Fully functional - successfully changed Apply Button Text to 'Start Application' and added 'Contact Us' menu item. Changes persist to database and display correctly on both desktop and mobile views. FOOTER EDITING: UI accessibility issue - footer section is difficult to access when scrolling, and Add buttons for footer columns are not consistently visible. This makes footer editing challenging. SAVE FUNCTIONALITY: Works correctly with success toast messages. Overall, the core functionality is working but footer editing UX needs improvement for better accessibility."
+  - agent: "testing"
+    message: "Completed Programme Modules accordion testing on Applied AI & ML program page. ALL TESTS PASSED: ✅ All 4 modules display correctly with proper icons, titles, and styling. ✅ Expansion/collapse works smoothly with chevron rotation. ✅ All content displays correctly (Key Learning Objectives, Week-by-Week Breakdown with correct weeks 1-12, Milestones with Award icons). ✅ Multiple modules can be expanded simultaneously without conflicts. ✅ Visual styling matches brochure aesthetic with gold borders, navy backgrounds, and smooth animations. ✅ Week cards have hover effects. ✅ No console errors detected. The accordion functionality is fully working as specified in the review request."

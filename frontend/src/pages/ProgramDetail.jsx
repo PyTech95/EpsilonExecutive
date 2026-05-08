@@ -26,6 +26,106 @@ function TitleWithAccent({ title, accent, className }) {
   );
 }
 
+/* ---------- Module Accordion Component ---------- */
+function ModuleAccordion({ module }) {
+  const [expanded, setExpanded] = useState(false);
+
+  return (
+    <div className="bg-white border border-navy/10 shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden">
+      {/* Module Header - Clickable */}
+      <button
+        onClick={() => setExpanded(!expanded)}
+        className="w-full bg-gradient-to-r from-navy-deep to-navy p-6 md:p-10 text-left hover:from-navy hover:to-navy-deep transition-all duration-300"
+      >
+        <div className="flex items-start gap-4 md:gap-6">
+          <div className="flex-shrink-0 w-14 h-14 md:w-20 md:h-20 rounded-full bg-gold/20 backdrop-blur-sm flex items-center justify-center ring-2 ring-gold/40">
+            <module.Icon size={36} className="text-gold" />
+          </div>
+          <div className="flex-1">
+            <p className="font-caps text-[0.6rem] md:text-[0.65rem] tracking-[0.28em] text-gold/90 mb-2">
+              Module {module.num} · {module.weeks}
+            </p>
+            <h3 className="font-display text-cream text-[1.4rem] md:text-[2rem] leading-tight mb-2">
+              {module.title}
+            </h3>
+            <p className="font-editorial text-cream/75 text-[0.95rem] md:text-[1.05rem] leading-relaxed">
+              {module.subtitle}
+            </p>
+          </div>
+          <ChevronDown 
+            size={24} 
+            className={`text-gold flex-shrink-0 mt-2 transition-transform duration-300 ${expanded ? 'rotate-180' : ''}`}
+          />
+        </div>
+      </button>
+
+      {/* Expandable Content */}
+      {expanded && (
+        <div className="p-6 md:p-10 bg-white">
+          {/* Learning Objectives */}
+          <div className="mb-8">
+            <p className="font-caps text-[0.65rem] tracking-[0.25em] text-gold mb-5 flex items-center gap-2">
+              <BookOpen size={16} className="text-gold" />
+              Key Learning Objectives
+            </p>
+            <ul className="space-y-3">
+              {module.objectives.map((obj, i) => (
+                <li key={i} className="flex gap-3 items-start">
+                  <span className="flex-shrink-0 mt-1.5 w-1.5 h-1.5 rounded-full bg-gold" />
+                  <span className="font-sans text-navy/85 text-[0.95rem] md:text-[1rem] leading-relaxed">{obj}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Week-by-Week Breakdown */}
+          <div className="mb-8">
+            <p className="font-caps text-[0.65rem] tracking-[0.25em] text-navy/60 mb-5 flex items-center gap-2">
+              <Calendar size={16} className="text-navy/60" />
+              Week-by-Week Breakdown
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {module.weekData.map((week) => (
+                <div 
+                  key={week.week}
+                  className="group bg-gradient-to-br from-navy-deep/5 to-cream hover:from-navy-deep hover:to-navy p-5 border border-navy/10 hover:border-gold transition-all duration-300"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-10 h-10 rounded-full bg-gold/10 group-hover:bg-gold/20 flex items-center justify-center">
+                      <p className="font-display text-gold text-[1rem]">{String(week.week).padStart(2, '0')}</p>
+                    </div>
+                    <p className="font-caps text-[0.6rem] tracking-[0.22em] text-gold">
+                      Week {week.week}
+                    </p>
+                  </div>
+                  <p className="font-display text-navy group-hover:text-cream text-[1.05rem] md:text-[1.15rem] leading-tight transition-colors">
+                    {week.topic}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Milestone */}
+          <div className="bg-gradient-to-r from-gold/10 to-gold/5 border-l-4 border-gold p-6 md:p-8">
+            <div className="flex gap-4 items-start">
+              <Award size={26} className="text-gold flex-shrink-0 mt-1" />
+              <div>
+                <p className="font-caps text-[0.65rem] tracking-[0.25em] text-gold mb-3 flex items-center gap-2">
+                  Module {module.num} Milestone
+                </p>
+                <p className="font-sans text-navy text-[1rem] md:text-[1.1rem] leading-relaxed font-medium">
+                  {module.milestone}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 /* ---------- inline contact form ---------- */
 function ContactForm({ p }) {
   const [sent, setSent] = useState(false);
@@ -170,7 +270,7 @@ export default function ProgramDetail() {
         </div>
       </section>
 
-      {/* Programme Modules (brochure-style) — directly under hero */}
+      {/* Programme Modules (accordion-style with full brochure content) */}
       {showCurriculum && (
         <section className="bg-cream py-20 md:py-28" id="programme-modules">
           <div className="container-x">
@@ -185,108 +285,68 @@ export default function ProgramDetail() {
               {p.curriculumDescription || 'Four comprehensive modules designed to transform technical knowledge into strategic business value.'}
             </p>
 
-            <div className="mt-16 space-y-8">
-              {p.curriculum.map((row, i) => {
-                // Group weeks into modules (every 3-4 weeks)
-                const isModuleStart = i === 0 || 
-                  (row.week && (row.week === 5 || row.week === 7 || row.week === 11));
-                
-                // Determine module info
-                let moduleNum, moduleTitle, moduleWeeks, Icon;
-                if (i === 0 || (row.week >= 1 && row.week <= 4)) {
-                  moduleNum = 1;
-                  moduleTitle = 'The Analytical Engine';
-                  moduleWeeks = 'Weeks 1-4';
-                  Icon = Lightbulb;
-                } else if (row.week >= 5 && row.week <= 6) {
-                  moduleNum = 2;
-                  moduleTitle = 'The AI Practitioner';
-                  moduleWeeks = 'Weeks 5-6';
-                  Icon = Target;
-                } else if (row.week >= 7 && row.week <= 10) {
-                  moduleNum = 3;
-                  moduleTitle = 'Advanced AI Operations';
-                  moduleWeeks = 'Weeks 7-10';
-                  Icon = Cog;
-                } else {
-                  moduleNum = 4;
-                  moduleTitle = 'The Strategic Voice';
-                  moduleWeeks = 'Weeks 11-12';
-                  Icon = TrendingUp;
+            <div className="mt-16 space-y-6">
+              {[
+                {
+                  num: 1,
+                  title: 'The Analytical Engine',
+                  subtitle: 'Data, Prediction & Causality',
+                  weeks: 'Weeks 1-4',
+                  Icon: Lightbulb,
+                  objectives: [
+                    'Build a practical foundation in data science, statistical coding, and data manipulation',
+                    'Understand how machine learning models learn and how to interpret their outputs',
+                    'Move beyond correlation and think more clearly about causality, testing, and business impact'
+                  ],
+                  weekData: p.curriculum.filter(w => w.week >= 1 && w.week <= 4),
+                  milestone: 'Produce a Model Interpretation Memo based on a real dataset and a business-facing recommendation.'
+                },
+                {
+                  num: 2,
+                  title: 'The AI Practitioner',
+                  subtitle: 'Prompting, Context and Economics',
+                  weeks: 'Weeks 5-6',
+                  Icon: Target,
+                  objectives: [
+                    'Learn how prompts, retrieved information, tool use, and system instructions shape AI output',
+                    'Understand how to choose models based on cost, speed, accuracy, and business need',
+                    'Build evaluation criteria and simple test sets to assess output quality'
+                  ],
+                  weekData: p.curriculum.filter(w => w.week >= 5 && w.week <= 6),
+                  milestone: 'Produce an AI System Specification covering model choice, context strategy, evaluation, and governance.'
+                },
+                {
+                  num: 3,
+                  title: 'Advanced AI Operations',
+                  subtitle: 'Workflow Design, Supervision and Deployment',
+                  weeks: 'Weeks 7-10',
+                  Icon: Cog,
+                  objectives: [
+                    'Map how information moves across systems and workflows',
+                    'Learn how custom agents are structured and how they use tools and knowledge',
+                    'Use AI as a co-developer to build practical business applications and automations',
+                    'Think through deployment, handoff, monitoring, and performance in real operating environments'
+                  ],
+                  weekData: p.curriculum.filter(w => w.week >= 7 && w.week <= 10),
+                  milestone: 'Build and deploy a functional AI workflow prototype with complete operating documentation.'
+                },
+                {
+                  num: 4,
+                  title: 'The Strategic Voice',
+                  subtitle: 'Leadership, Authority and Defence',
+                  weeks: 'Weeks 11-12',
+                  Icon: TrendingUp,
+                  objectives: [
+                    'Learn how to explain technical work clearly in business language',
+                    'Strengthen your ability to defend assumptions, methods, and recommendations',
+                    'Build a professional proof pack from the work completed across the programme'
+                  ],
+                  weekData: p.curriculum.filter(w => w.week >= 11 && w.week <= 12),
+                  milestone: 'Complete the Executive Decision Dossier and present it in a live capstone review.'
                 }
-
-                return (
-                  <div key={i}>
-                    {/* Module Header (show only at module start) */}
-                    {isModuleStart && (
-                      <div className="bg-gradient-to-br from-navy-deep via-navy to-navy-deep p-8 md:p-12 mb-0 border-b-4 border-gold">
-                        <div className="flex items-start gap-6">
-                          <div className="flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-full bg-gold/20 backdrop-blur-sm flex items-center justify-center ring-2 ring-gold/40">
-                            <Icon size={36} className="text-gold" />
-                          </div>
-                          <div className="flex-1">
-                            <p className="font-caps text-[0.65rem] tracking-[0.28em] text-gold/90 mb-3">
-                              Module {moduleNum} · {moduleWeeks}
-                            </p>
-                            <h3 className="font-display text-cream text-[1.8rem] md:text-[2.4rem] leading-tight">
-                              {moduleTitle}
-                            </h3>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-
-                    {/* Week Row */}
-                    <div className="group bg-white hover:bg-cream/50 transition-all duration-300 border-l-4 border-transparent hover:border-gold">
-                      <div className="grid grid-cols-1 md:grid-cols-[140px_1fr] gap-4 md:gap-8 items-center p-6 md:p-8">
-                        <div className="flex items-center gap-3">
-                          <div className="flex-shrink-0 w-12 h-12 rounded-full bg-navy/5 group-hover:bg-navy group-hover:text-cream flex items-center justify-center transition-colors">
-                            <p className="font-display text-gold group-hover:text-gold text-[1.1rem]">
-                              {String(row.week).padStart(2, '0')}
-                            </p>
-                          </div>
-                          <p className="font-caps text-[0.6rem] text-gold tracking-[0.22em] md:hidden">
-                            Week {row.week}
-                          </p>
-                        </div>
-                        <div>
-                          <p className="font-display text-navy text-[1.15rem] md:text-[1.35rem] leading-tight group-hover:text-gold transition-colors">
-                            {row.topic}
-                          </p>
-                          {row.description && (
-                            <p className="font-sans text-navy/70 text-[0.9rem] leading-relaxed mt-2">
-                              {row.description}
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Module Milestone (show at module end) */}
-                    {((row.week === 4 && i < p.curriculum.length - 1) || 
-                      (row.week === 6 && i < p.curriculum.length - 1) || 
-                      (row.week === 10 && i < p.curriculum.length - 1) || 
-                      (i === p.curriculum.length - 1)) && (
-                      <div className="bg-gold/10 border-l-4 border-gold p-6 md:p-8 mb-8">
-                        <div className="flex gap-4 items-start">
-                          <Award size={24} className="text-gold flex-shrink-0 mt-1" />
-                          <div>
-                            <p className="font-caps text-[0.65rem] tracking-[0.25em] text-gold mb-2">
-                              Module {moduleNum} Milestone
-                            </p>
-                            <p className="font-sans text-navy text-[1rem] md:text-[1.05rem] leading-relaxed">
-                              {row.week <= 4 && 'Produce a Model Interpretation Memo based on real data with business recommendations.'}
-                              {row.week > 4 && row.week <= 6 && 'Deliver an AI System Specification covering model choice, context strategy, and governance.'}
-                              {row.week > 6 && row.week <= 10 && 'Build and deploy a functional AI workflow prototype with operating documentation.'}
-                              {row.week > 10 && 'Complete Executive Decision Dossier and defend it in a live capstone review.'}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
+              ].map((module) => (
+                <ModuleAccordion key={module.num} module={module} />
+              ))}
             </div>
           </div>
         </section>
