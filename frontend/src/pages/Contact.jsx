@@ -46,7 +46,7 @@ export default function Contact() {
               <Mail size={18} className="text-gold mt-1" />
               <div>
                 <p className="font-caps text-[0.65rem] text-navy/60">Email</p>
-                <p className="font-display text-navy mt-1">{contact.email || 'admissions@epsilon-edu.in'}</p>
+                <p className="font-display text-navy mt-1">{contact.email || 'admissions@epsilonexec.com'}</p>
               </div>
             </div>
             <div className="flex gap-4">

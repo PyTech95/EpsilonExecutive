@@ -208,7 +208,7 @@ function AdmissionsContact({ sections, contact }) {
           <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
             <div className="flex gap-3">
               <Mail size={16} className="text-gold mt-1 flex-shrink-0" />
-              <span className="text-navy/85">{contact?.email || 'admissions@epsilon-edu.in'}</span>
+              <span className="text-navy/85">{contact?.email || 'admissions@epsilonexec.com'}</span>
             </div>
             <div className="flex gap-3">
               <Phone size={16} className="text-gold mt-1 flex-shrink-0" />

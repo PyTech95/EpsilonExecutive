@@ -118,7 +118,7 @@ export default function Corporate() {
             </p>
             <div className="mt-8 flex gap-3 items-center">
               <Mail size={16} className="text-gold" />
-              <span className="font-display text-navy">{contact.email || 'admissions@epsilon-edu.in'}</span>
+              <span className="font-display text-navy">{contact.email || 'admissions@epsilonexec.com'}</span>
             </div>
           </div>
 

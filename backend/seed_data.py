@@ -40,7 +40,7 @@ HOME_CONTENT = {
         "subtitle": "Apply, talk to admissions, or sign in to your learning environment.",
     },
     "contact": {
-        "email": "admissions@epsilon-edu.in",
+        "email": "admissions@epsilonexec.com",
         "phone": "+91 · on request",
         "address": "Live online · cohorts based in India",
         "subtext": "Questions about a program, fit, fees, or partnerships? Drop us a line and a member of the team will write back personally.",

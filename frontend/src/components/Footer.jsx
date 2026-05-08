@@ -120,10 +120,10 @@ export default function Footer() {
               <li className="flex gap-3">
                 <Mail size={16} className="text-gold mt-1 flex-shrink-0" />
                 <a
-                  href={`mailto:${contact.email || 'admissions@epsilon-edu.in'}`}
+                  href={`mailto:${contact.email || 'admissions@epsilonexec.com'}`}
                   className="text-cream/85 hover:text-gold transition-colors break-all"
                 >
-                  {contact.email || 'admissions@epsilon-edu.in'}
+                  {contact.email || 'admissions@epsilonexec.com'}
                 </a>
               </li>
               <li className="flex gap-3">
