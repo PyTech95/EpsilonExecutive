@@ -99,9 +99,6 @@ body {
   font-weight: 600;
   color: var(--gold);
 }
-@media (max-width: 767px) {
-  .eyebrow { padding-top: 100px; }
-}
 
 .gold-rule-lg { display: inline-block; width: 64px; height: 2px; background: var(--gold); }
 .gold-rule { display: inline-block; width: 40px; height: 1px; background: var(--gold); }
