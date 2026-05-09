@@ -334,7 +334,7 @@ export default function Home() {
               <LogIn size={16} /> {hero.secondaryCtaText || 'Sign In to Learn'}
             </a>
           </div>
-          <div className="mt-8 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 fade-up">
+          <div className="mt-8 md:mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 pb-10 md:pb-0 fade-up">
             {(hero.stats || []).map((s, i) => <HeroStat key={i} value={s.value} label={s.label} />)}
           </div>
         </div>
