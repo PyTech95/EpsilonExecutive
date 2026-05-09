@@ -32,8 +32,8 @@ db = client[os.environ["DB_NAME"]]
 
 JWT_SECRET = os.environ.get("JWT_SECRET", "dev-secret")
 JWT_ALGO = "HS256"
-ADMIN_EMAIL = os.environ.get("ADMIN_EMAIL", "admin@epsilon-edu.in")
-ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "Epsilon@2026")
+ADMIN_EMAIL = os.environ.get("ADMIN_EMAIL", "admin@epsilonexec.com")
+ADMIN_PASSWORD = os.environ.get("ADMIN_PASSWORD", "Welcome@123##2")
 
 pwd_ctx = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
@@ -376,7 +376,8 @@ logger = logging.getLogger("epsilon")
 
 @app.on_event("startup")
 async def on_startup():
-    # Ensure admin exists
+    # Idempotent admin seed: create if missing, otherwise update password hash
+    # whenever ADMIN_PASSWORD env var no longer matches the stored hash.
     existing = await db.admins.find_one({"email": ADMIN_EMAIL})
     if not existing:
         await db.admins.insert_one({
@@ -385,6 +386,14 @@ async def on_startup():
             "createdAt": datetime.now(tz=timezone.utc).isoformat(),
         })
         logger.info("Seeded admin: %s", ADMIN_EMAIL)
+    elif not pwd_ctx.verify(ADMIN_PASSWORD, existing.get("password_hash", "")):
+        await db.admins.update_one(
+            {"email": ADMIN_EMAIL},
+            {"$set": {"password_hash": pwd_ctx.hash(ADMIN_PASSWORD)}},
+        )
+        logger.info("Updated admin password for: %s", ADMIN_EMAIL)
+    # Remove any stale legacy admin accounts to avoid confusion
+    await db.admins.delete_many({"email": {"$nin": [ADMIN_EMAIL]}})
     # Seed content
     await seed_if_empty(db)
     logger.info("Startup complete")
