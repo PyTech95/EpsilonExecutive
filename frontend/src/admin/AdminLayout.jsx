@@ -2,7 +2,7 @@ import React from 'react';
 import { NavLink, Outlet, useNavigate, Navigate } from 'react-router-dom';
 import {
   LayoutDashboard, Home, BookOpen, Users, Calendar, MessageSquare,
-  FileText, Inbox, LogOut, Lock, GraduationCap, Menu
+  FileText, Inbox, LogOut, Lock, GraduationCap, Menu, Search
 } from 'lucide-react';
 import { useAuth } from './AuthContext';
 
@@ -16,6 +16,7 @@ const navItems = [
   { to: '/admin/cohorts', icon: GraduationCap, label: 'Cohorts' },
   { to: '/admin/insights', icon: FileText, label: 'Insights' },
   { to: '/admin/events', icon: Calendar, label: 'Events' },
+  { to: '/admin/seo', icon: Search, label: 'SEO & Meta' },
   { to: '/admin/submissions', icon: Inbox, label: 'Submissions' },
   { to: '/admin/password', icon: Lock, label: 'Password' },
 ];

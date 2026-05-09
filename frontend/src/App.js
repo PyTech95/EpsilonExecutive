@@ -35,6 +35,7 @@ import {
 } from './admin/SimpleEditors';
 import SubmissionsInbox from './admin/SubmissionsInbox';
 import ChangePassword from './admin/ChangePassword';
+import SEOEditor from './admin/SEOEditor';
 
 // Site content provider for public pages
 import { SiteContentProvider } from './context/SiteContent';
@@ -57,6 +58,7 @@ function App() {
               <Route path="cohorts" element={<CohortsEditor />} />
               <Route path="insights" element={<InsightsEditor />} />
               <Route path="events" element={<EventsEditor />} />
+              <Route path="seo" element={<SEOEditor />} />
               <Route path="submissions" element={<SubmissionsInbox />} />
               <Route path="password" element={<ChangePassword />} />
             </Route>
