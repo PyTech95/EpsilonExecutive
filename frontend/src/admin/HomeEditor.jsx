@@ -14,6 +14,13 @@ const F = ({ label, value, onChange, textarea, type = 'text' }) => (
   </label>
 );
 
+const Section = ({ title, children }) => (
+  <section className="bg-white p-6 md:p-8 border border-navy/10 mb-6">
+    <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-4">{title}</p>
+    <div className="space-y-4">{children}</div>
+  </section>
+);
+
 export default function HomeEditor() {
   const [data, setData] = useState(null);
   const [beliefs, setBeliefs] = useState([]);
@@ -68,13 +75,6 @@ export default function HomeEditor() {
       setTimeout(() => setToast(''), 2000);
     } finally { setSaving(false); }
   };
-
-  const Section = ({ title, children }) => (
-    <section className="bg-white p-6 md:p-8 border border-navy/10 mb-6">
-      <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-4">{title}</p>
-      <div className="space-y-4">{children}</div>
-    </section>
-  );
 
   return (
     <div>
@@ -182,6 +182,12 @@ export default function HomeEditor() {
 
       <Section title="Site">
         <ImageField label="Logo" value={data.logoUrl} onChange={(v) => update('logoUrl', v)} help="Recommended: PNG with transparent background." />
+        <ImageField
+          label="Favicon / Browser Tab Icon"
+          value={data.faviconUrl}
+          onChange={(v) => update('faviconUrl', v)}
+          help="Square PNG (e.g. 512×512). Shown in browser tabs and bookmarks. Updates live across the site."
+        />
       </Section>
 
       <Section title="Section Images (across the site)">

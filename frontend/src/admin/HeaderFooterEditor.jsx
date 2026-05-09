@@ -16,6 +16,19 @@ const F = ({ label, value, onChange, placeholder, type = 'text' }) => (
   </label>
 );
 
+const Section = ({ title, expanded, onToggle, children }) => (
+  <section className="bg-white border border-navy/10 mb-6 overflow-hidden">
+    <button
+      onClick={onToggle}
+      className="w-full flex items-center justify-between p-6 hover:bg-gray-50 transition-colors"
+    >
+      <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em]">{title}</p>
+      {expanded ? <ChevronUp size={18} className="text-navy" /> : <ChevronDown size={18} className="text-navy" />}
+    </button>
+    {expanded && <div className="px-6 pb-6 space-y-4">{children}</div>}
+  </section>
+);
+
 export default function HeaderFooterEditor() {
   const [data, setData] = useState(null);
   const [saving, setSaving] = useState(false);
@@ -176,19 +189,6 @@ export default function HeaderFooterEditor() {
       setSaving(false);
     }
   };
-
-  const Section = ({ title, expanded, onToggle, children }) => (
-    <section className="bg-white border border-navy/10 mb-6 overflow-hidden">
-      <button
-        onClick={onToggle}
-        className="w-full flex items-center justify-between p-6 hover:bg-gray-50 transition-colors"
-      >
-        <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em]">{title}</p>
-        {expanded ? <ChevronUp size={18} className="text-navy" /> : <ChevronDown size={18} className="text-navy" />}
-      </button>
-      {expanded && <div className="px-6 pb-6 space-y-4">{children}</div>}
-    </section>
-  );
 
   return (
     <div>

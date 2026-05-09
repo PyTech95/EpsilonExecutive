@@ -65,6 +65,22 @@ export function SiteContentProvider({ children }) {
     return () => { cancel = true; };
   }, []);
 
+  // Sync admin-set favicon to <head> as soon as it's available
+  useEffect(() => {
+    const url = state.home?.faviconUrl;
+    if (!url) return;
+    let link = document.getElementById('app-favicon');
+    if (!link) {
+      link = document.createElement('link');
+      link.id = 'app-favicon';
+      link.rel = 'icon';
+      document.head.appendChild(link);
+    }
+    link.href = url;
+    const apple = document.querySelector('link[rel="apple-touch-icon"]');
+    if (apple) apple.href = url;
+  }, [state.home?.faviconUrl]);
+
   return <Ctx.Provider value={state}>{children}</Ctx.Provider>;
 }
 
