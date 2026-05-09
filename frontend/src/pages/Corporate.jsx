@@ -63,7 +63,7 @@ export default function Corporate() {
 
       {/* Why */}
       {c.whyItems?.length > 0 && (
-        <section className="bg-bone py-24">
+        <section className="bg-bone py-12 md:py-24">
           <div className="container-x">
             <p className="eyebrow mb-4">{c.whyTitle || 'Why companies partner with Epsilon'}</p>
             <span className="gold-rule-lg" />
@@ -85,7 +85,7 @@ export default function Corporate() {
 
       {/* Audiences */}
       {c.audiences?.length > 0 && (
-        <section className="bg-cream py-24">
+        <section className="bg-cream py-12 md:py-24">
           <div className="container-x">
             <p className="eyebrow mb-4">{c.audiencesTitle || 'Who we run cohorts for'}</p>
             <span className="gold-rule-lg" />
@@ -105,7 +105,7 @@ export default function Corporate() {
       )}
 
       {/* CTA + form */}
-      <section id="corporate-form" className="bg-bone py-24">
+      <section id="corporate-form" className="bg-bone py-12 md:py-24">
         <div className="container-x grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-14">
           <div>
             <p className="eyebrow mb-4">Get in Touch</p>

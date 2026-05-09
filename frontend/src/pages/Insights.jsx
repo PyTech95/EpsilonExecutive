@@ -19,7 +19,7 @@ export default function Insights() {
         subtitle="Frameworks, field notes, and provocations from Epsilon faculty on applied AI, decision science, and the craft of leading through ambiguity."
       />
 
-      <section className="bg-cream py-20">
+      <section className="bg-cream py-10 md:py-20">
         <div className="container-x">
           {featured && (
             <Link to={`/insights/${featured.slug}`} className="group grid grid-cols-1 md:grid-cols-2 gap-10 mb-20">

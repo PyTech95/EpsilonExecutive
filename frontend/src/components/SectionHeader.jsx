@@ -27,15 +27,15 @@ export default function SectionHeader({
   return (
     <div className={`${isCenter ? 'text-center' : ''} ${className}`}>
       {chapter && (
-        <p className={`font-editorial italic ${chapterColor} text-[0.95rem] tracking-widest mb-2`}>
+        <p className={`font-editorial italic ${chapterColor} text-[0.95rem] tracking-widest mb-1 md:mb-2`}>
           — {chapter} —
         </p>
       )}
-      {eyebrow && <p className="eyebrow mb-4">{eyebrow}</p>}
+      {eyebrow && <p className="eyebrow mb-2 md:mb-4">{eyebrow}</p>}
       <div className={isCenter ? 'flex justify-center' : ''}>
         <span className="gold-rule-lg" />
       </div>
-      <h2 className={`font-display ${titleColor} text-[2rem] md:text-[3rem] lg:text-[3.4rem] leading-[1.05] mt-6 ${isCenter ? 'max-w-4xl mx-auto' : 'max-w-4xl'}`}>
+      <h2 className={`font-display ${titleColor} text-[2rem] md:text-[3rem] lg:text-[3.4rem] leading-[1.05] mt-3 md:mt-6 ${isCenter ? 'max-w-4xl mx-auto' : 'max-w-4xl'}`}>
         {accentFirst && accent && (
           <>
             <span className="italic font-editorial text-gold">{accent}</span>{' '}

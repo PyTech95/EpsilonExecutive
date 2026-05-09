@@ -25,7 +25,7 @@ function LeadFacultyBlock({ lead }) {
           {/* Portrait */}
           <div className="relative mx-auto lg:mx-0 w-full max-w-[420px] self-start">
             <div className="aspect-[4/5] overflow-hidden bg-navy">
-              <img src={lead.image} alt={lead.name} className="w-full h-full object-cover" />
+              <img src={lead.image} alt={lead.name} className="w-full h-full object-cover object-top" />
             </div>
             <div className="absolute right-[-10px] bottom-[-10px] md:right-[-14px] md:bottom-[-14px] bg-gold text-navy-deep px-6 py-4 max-w-[78%]">
               <p className="font-caps text-[0.6rem] tracking-[0.2em] text-navy-deep/80 mb-0.5">{lead.badge}</p>
@@ -116,7 +116,7 @@ function GuestCard({ g }) {
         <img
           src={g.image}
           alt={g.name}
-          className="w-full h-full object-cover grayscale-[15%] group-hover:grayscale-0 transition-all duration-500"
+          className="w-full h-full object-cover object-top grayscale-[15%] group-hover:grayscale-0 transition-all duration-500"
         />
       </div>
       <div className="p-5 md:p-6 flex flex-col flex-1">

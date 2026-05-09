@@ -141,7 +141,7 @@ export default function Navbar() {
         />
         
         {/* Drawer */}
-        <div className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm z-[100000] shadow-2xl overflow-y-auto" style={{ backgroundColor: '#EDE5D2' }}>
+        <div className="fixed top-0 right-0 bottom-0 w-[85%] max-w-sm z-[100000] shadow-2xl overflow-y-auto" style={{ backgroundColor: '#F5EFE0' }}>
           {/* Header */}
           <div className="p-6 flex items-center justify-between sticky top-0 z-10" style={{ backgroundColor: '#0E1F32' }}>
             <img src={logoUrl} alt="Epsilon" className="h-7" />
@@ -155,13 +155,13 @@ export default function Navbar() {
           </div>
 
           {/* Menu Content */}
-          <div className="p-6" style={{ backgroundColor: '#EDE5D2' }}>
+          <div className="p-6">
             {/* Programs Accordion */}
             <div className="mb-6">
               <button
                 type="button"
                 onClick={() => setProgOpen((v) => !v)}
-                className="w-full flex items-center justify-between py-3 border-b-2 border-navy/10 group bg-cream"
+                className="w-full flex items-center justify-between py-3 border-b-2 border-navy/10 group"
               >
                 <span className="font-caps text-[0.7rem] tracking-[0.2em] text-navy group-hover:text-gold transition-colors font-semibold">
                   PROGRAMS
@@ -173,7 +173,7 @@ export default function Navbar() {
               </button>
               
               {progOpen && (
-                <div className="mt-4 space-y-2 pl-2 bg-cream">
+                <div className="mt-4 space-y-2 pl-2">
                   {programs.map((p) => (
                     <Link
                       key={p.slug}
@@ -210,13 +210,13 @@ export default function Navbar() {
             </div>
 
             {/* Other Menu Items */}
-            <nav className="space-y-0 bg-cream">
+            <nav className="space-y-0">
               {menuItems.map((item, idx) => (
                 <Link 
                   key={idx} 
                   to={item.link} 
                   onClick={() => setMobileOpen(false)}
-                  className="block font-caps text-[0.7rem] tracking-[0.2em] text-navy hover:text-gold transition-colors py-4 border-b-2 border-navy/10 font-semibold bg-cream"
+                  className="block font-caps text-[0.7rem] tracking-[0.2em] text-navy hover:text-gold transition-colors py-4 border-b-2 border-navy/10 font-semibold"
                 >
                   {item.label.toUpperCase()}
                 </Link>
@@ -224,7 +224,7 @@ export default function Navbar() {
             </nav>
 
             {/* Action Buttons */}
-            <div className="flex flex-col gap-3 mt-8 pt-8 border-t-2 border-navy/10 bg-cream">
+            <div className="flex flex-col gap-3 mt-8 pt-8 border-t-2 border-navy/10">
               <Link 
                 to="/apply" 
                 onClick={() => setMobileOpen(false)}

@@ -143,7 +143,7 @@ function ContactForm({ p }) {
   };
 
   return (
-    <section className="bg-cream py-20 md:py-24">
+    <section className="bg-cream py-12 md:py-24">
       <div className="container-x grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-12 items-start">
         <div>
           <p className="eyebrow">{p.contactEyebrow || 'Contact'}</p>
@@ -271,7 +271,7 @@ export default function ProgramDetail() {
 
       {/* Programme Modules (accordion-style with full brochure content) */}
       {showCurriculum && (
-        <section className="bg-cream py-20 md:py-28" id="programme-modules">
+        <section className="bg-cream py-12 md:py-28" id="programme-modules">
           <div className="container-x">
             <p className="eyebrow mb-4">{p.curriculumEyebrow || 'Programme Modules'}</p>
             <span className="gold-rule-lg" />
@@ -353,7 +353,7 @@ export default function ProgramDetail() {
 
       {/* Certificate */}
       {showCertificate && (
-        <section className="bg-bone py-20 md:py-24">
+        <section className="bg-bone py-12 md:py-24">
           <div className="container-x grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-16 items-center">
             {/* Visual */}
             <div className="relative bg-bone min-h-[360px] aspect-[4/5] lg:aspect-auto lg:h-full overflow-hidden flex items-center justify-center order-2 lg:order-1 border border-navy/10">
@@ -422,7 +422,7 @@ export default function ProgramDetail() {
 
       {/* Outcomes */}
       {showOutcomes && (
-        <section className="bg-cream py-20 md:py-24">
+        <section className="bg-cream py-12 md:py-24">
           <div className="container-x grid grid-cols-1 md:grid-cols-2 gap-14">
             <div>
               <p className="eyebrow mb-4">{p.outcomesEyebrow || 'What you leave with'}</p>
@@ -447,7 +447,7 @@ export default function ProgramDetail() {
 
       {/* Modules — detailed cards (hidden by default for AI/ML; toggleable per program) */}
       {showModules && (
-        <section className="bg-cream py-20 md:py-28" id="modules">
+        <section className="bg-cream py-12 md:py-28" id="modules">
           <div className="container-x">
             <p className="eyebrow mb-4">{p.modulesEyebrow || 'Programme Modules'}</p>
             <span className="gold-rule-lg" />
@@ -460,7 +460,7 @@ export default function ProgramDetail() {
               {p.modulesDescription || 'A structured journey from data foundations to strategic AI leadership.'}
             </p>
 
-            <div className="mt-16 space-y-12">
+            <div className="mt-8 md:mt-16 space-y-12">
               {modules.map((m, idx) => (
                 <div key={m.n} 
                   className="bg-white border border-navy/10 shadow-sm hover:shadow-lg transition-all duration-500 overflow-hidden"
@@ -559,7 +559,7 @@ export default function ProgramDetail() {
 
       {/* Experience */}
       {showExperience && (
-        <section className="bg-navy-deep text-cream py-20 md:py-28 relative overflow-hidden">
+        <section className="bg-navy-deep text-cream py-12 md:py-28 relative overflow-hidden">
           <div className="absolute inset-0 starfield opacity-40 pointer-events-none" />
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[1100px] rounded-full glow-gold pointer-events-none" />
           <div className="relative container-x">
@@ -574,7 +574,7 @@ export default function ProgramDetail() {
               {p.experienceDescription || 'A holistic learning journey that goes beyond theory to build real professional capability.'}
             </p>
 
-            <div className="mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="mt-8 md:mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {experienceItems.map((it, i) => {
                 // Icon mapping based on common experience titles
                 let Icon = Laptop;
@@ -619,7 +619,7 @@ export default function ProgramDetail() {
 
       {/* FAQ */}
       {showFaq && (
-        <section className="bg-bone py-20 md:py-24">
+        <section className="bg-bone py-12 md:py-24">
           <div className="container-x max-w-4xl">
             <p className="eyebrow mb-4">{p.faqEyebrow || 'FAQ'}</p>
             <span className="gold-rule-lg" />
@@ -629,7 +629,7 @@ export default function ProgramDetail() {
               className="font-display text-navy text-[2rem] md:text-[2.8rem] leading-[1.05] mt-6"
             />
 
-            <div className="mt-12 border-t border-navy/15">
+            <div className="mt-8 md:mt-12 border-t border-navy/15">
               {faqs.map((f, i) => {
                 const open = openFaq === i;
                 return (
@@ -668,7 +668,7 @@ export default function ProgramDetail() {
       {showContact && <ContactForm p={p} />}
 
       {/* CTA */}
-      <section className="bg-navy-deep text-cream py-20 md:py-24 relative overflow-hidden">
+      <section className="bg-navy-deep text-cream py-12 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 starfield opacity-40" />
         <div className="container-x relative text-center">
           <Calendar size={26} className="text-gold mx-auto mb-4" />

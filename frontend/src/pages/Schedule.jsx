@@ -50,7 +50,7 @@ export default function Schedule() {
       </section>
 
       {/* Form */}
-      <section className="bg-cream py-20 md:py-24">
+      <section className="bg-cream py-12 md:py-24">
         <div className="container-x grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-12">
           <aside>
             <div className="relative aspect-[4/5] overflow-hidden bg-navy-deep mb-8">

@@ -28,7 +28,7 @@ export default function Contact() {
         subtitle={contact.subtext || 'Questions about a program, fit, fees, or partnerships? Drop us a line and a member of the team will write back personally.'}
       />
 
-      <section className="bg-cream py-24">
+      <section className="bg-cream py-12 md:py-24">
         <div className="container-x grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-14">
           <div>
             <div className="relative aspect-[4/5] overflow-hidden bg-navy-deep mb-9">

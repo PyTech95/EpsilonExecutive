@@ -25,7 +25,7 @@ export default function Programs() {
         subtitle="Each program is designed for working professionals who want to translate technical fluency into evidence-based business action."
       />
 
-      <section className="bg-cream py-16 md:py-24">
+      <section className="bg-cream py-10 md:py-24">
         <div className="container-x">
           <div className="flex flex-wrap items-center gap-3 mb-12">
             <span className="font-caps text-[0.65rem] text-navy/60 flex items-center gap-2 mr-2">

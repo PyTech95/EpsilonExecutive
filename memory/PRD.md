@@ -14,7 +14,24 @@ dynamic with a WordPress-style admin panel to edit content and view submissions.
 
 ## Implemented (Changelog)
 
-### 2026-02-XX (current session)
+### 2026-02-09 (current session — Mobile UI Polishing)
+- Mobile menu drawer: Removed redundant `bg-cream` classes that caused visible "white
+  boxes" against the `#EDE5D2` (bone) wrapper. Drawer wrapper unified to `#F5EFE0`
+  (cream) so all inner items render as a single uniform tile.
+- SectionHeader: Reduced chapter-eyebrow→title spacing on mobile (`mb-2 → mb-1`,
+  `mb-4 → mb-2`, `mt-6 → mt-3`) so the chapter line ("— Chapter II —") sits closer to
+  its title; desktop spacing preserved via `md:` breakpoints.
+- Faculty photos: Added `object-top` on Lead and Guest portraits (Faculty.jsx and
+  FacultyShowcase.jsx) so faces aren't cropped at the top of `aspect-[4/5]` frames.
+- Global mobile padding reduced ~50% across pages: About, Contact, Corporate,
+  Admissions, ProgramDetail, Apply, Programs, Schedule, Insights, Events,
+  InsightDetail. Pattern: `py-24 → py-12 md:py-24`, `py-28 → py-14 md:py-28`,
+  `py-20 → py-10 md:py-20`. ProgramDetail module/grid top margins reduced
+  (`mt-16 → mt-8 md:mt-16`, `mt-14 → mt-8 md:mt-14`, `mt-12 → mt-8 md:mt-12`).
+- Verified via mobile screenshots: home, mobile menu (open + Programs accordion),
+  Faculty (lead photo full head visible), ProgramDetail modules, home Chapter II.
+
+### 2026-02-XX (previous in-session)
 - Hidden the "More Programmes" 3-card grid on the Home page (Chapter I → flagship now
   flows directly into the Brochure section).
 - Guest faculty cards on Home (FacultyShowcase) and Faculty page now open a shadcn

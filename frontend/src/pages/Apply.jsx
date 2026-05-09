@@ -119,7 +119,7 @@ function DeadlineStrip({ program }) {
 /* ---------- Program overview narrative + 2 stat panels ---------- */
 function Overview({ program }) {
   return (
-    <section className="bg-bone py-20 md:py-28">
+    <section className="bg-bone py-12 md:py-28">
       <div className="container-x grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-14">
         <div>
           <p className="eyebrow mb-4">Program Overview</p>
@@ -155,7 +155,7 @@ function KeyTakeaways({ program }) {
   const outcomes = program.outcomes || [];
   if (!outcomes.length) return null;
   return (
-    <section className="bg-cream py-20 md:py-28">
+    <section className="bg-cream py-12 md:py-28">
       <div className="container-x">
         <div className="text-center max-w-2xl mx-auto">
           <p className="eyebrow">Key Takeaways</p>
@@ -191,7 +191,7 @@ function WhoFor({ program }) {
     'Founders & operators raising the evidence bar in their organisations',
   ];
   return (
-    <section className="bg-bone py-20 md:py-24">
+    <section className="bg-bone py-12 md:py-24">
       <div className="container-x grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-16 items-start">
         <div>
           <p className="eyebrow">Who is this designed for?</p>
@@ -229,7 +229,7 @@ function Highlights({ program }) {
   ].slice(0, 8);
 
   return (
-    <section className="bg-navy-deep text-cream py-20 md:py-28 relative overflow-hidden">
+    <section className="bg-navy-deep text-cream py-12 md:py-28 relative overflow-hidden">
       <div className="absolute inset-0 starfield opacity-40 pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1100px] h-[1100px] rounded-full glow-gold pointer-events-none" />
       <div className="container-x relative">
@@ -260,7 +260,7 @@ function Highlights({ program }) {
 /* ---------- Faculty teaser ---------- */
 function FacultyTeaser({ lead, guests }) {
   return (
-    <section className="bg-cream py-20 md:py-24">
+    <section className="bg-cream py-12 md:py-24">
       <div className="container-x">
         <div className="flex items-end justify-between flex-wrap gap-4">
           <div>
@@ -311,7 +311,7 @@ function FAQs({ program }) {
   const faqs = program.faqs || [];
   if (!faqs.length) return null;
   return (
-    <section className="bg-bone py-20 md:py-28">
+    <section className="bg-bone py-12 md:py-28">
       <div className="container-x max-w-4xl">
         <div className="text-center">
           <p className="eyebrow">Frequently Asked</p>
@@ -425,7 +425,7 @@ export default function Apply() {
       <FacultyTeaser lead={leadFaculty[0]} guests={guestLecturers} />
 
       {/* ---------- 9. THE FORM (kept as-is) ---------- */}
-      <section id="apply-form" className="bg-cream py-16 md:py-24 scroll-mt-32">
+      <section id="apply-form" className="bg-cream py-10 md:py-24 scroll-mt-32">
         <div className="container-x">
           <div className="text-center mb-12 max-w-2xl mx-auto">
             <p className="eyebrow">Apply</p>
@@ -577,7 +577,7 @@ export default function Apply() {
       <FAQs program={selectedProgram} />
 
       {/* ---------- 11. Final CTA ---------- */}
-      <section className="bg-navy-deep text-cream py-20 md:py-24 relative overflow-hidden border-t border-gold/10">
+      <section className="bg-navy-deep text-cream py-12 md:py-24 relative overflow-hidden border-t border-gold/10">
         <div className="absolute inset-0 starfield opacity-50" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full glow-gold pointer-events-none" />
         <div className="relative container-x text-center">

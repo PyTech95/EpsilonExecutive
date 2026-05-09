@@ -16,7 +16,7 @@ export default function Events() {
         subtitle="Free webinars, alumni panels, and hands-on workshops. The fastest way to feel how we teach before you apply."
       />
 
-      <section className="bg-cream py-20">
+      <section className="bg-cream py-10 md:py-20">
         <div className="container-x space-y-8">
           {events.map((e, i) => (
             <div key={e.id} className="grid grid-cols-1 md:grid-cols-[40%_60%] gap-0 bg-white border border-navy/10 overflow-hidden group hover:border-gold/50 transition-colors">

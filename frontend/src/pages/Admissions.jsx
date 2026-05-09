@@ -18,7 +18,7 @@ export default function Admissions() {
       />
 
       {/* Process */}
-      <section className="bg-cream py-24">
+      <section className="bg-cream py-12 md:py-24">
         <div className="container-x grid grid-cols-1 lg:grid-cols-[1fr_1.4fr] gap-14 items-start">
           <div className="lg:sticky lg:top-32">
             <div className="relative aspect-[4/5] overflow-hidden bg-navy-deep">
@@ -61,7 +61,7 @@ export default function Admissions() {
       </section>
 
       {/* Cohorts */}
-      <section className="bg-bone py-24">
+      <section className="bg-bone py-12 md:py-24">
         <div className="container-x">
           <div className="flex items-center gap-3 mb-4">
             <Calendar size={18} className="text-gold" />
@@ -83,7 +83,7 @@ export default function Admissions() {
       </section>
 
       {/* Fees & Investment */}
-      <section className="bg-cream py-24">
+      <section className="bg-cream py-12 md:py-24">
         <div className="container-x">
           <div className="flex items-center gap-3 mb-4">
             <Receipt size={18} className="text-gold" />
@@ -115,7 +115,7 @@ export default function Admissions() {
       </section>
 
       {/* Programs snapshot */}
-      <section className="bg-bone py-24">
+      <section className="bg-bone py-12 md:py-24">
         <div className="container-x">
           <p className="eyebrow mb-4">Programs</p>
           <span className="gold-rule-lg" />
@@ -135,7 +135,7 @@ export default function Admissions() {
         </div>
       </section>
 
-      <section className="bg-navy-deep text-cream py-24 relative overflow-hidden">
+      <section className="bg-navy-deep text-cream py-12 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 starfield opacity-40" />
         <div className="container-x relative text-center">
           <h2 className="font-display uppercase text-[2rem] md:text-[3rem] leading-[1.05] max-w-3xl mx-auto">

@@ -42,7 +42,7 @@ export default function InsightDetail() {
         </div>
       </section>
 
-      <section className="bg-cream py-20">
+      <section className="bg-cream py-10 md:py-20">
         <div className="container-x max-w-3xl">
           <p className="font-editorial italic text-navy/80 text-[1.35rem] leading-relaxed border-l-2 border-gold pl-6">
             {article.excerpt}
@@ -55,7 +55,7 @@ export default function InsightDetail() {
         </div>
       </section>
 
-      <section className="bg-bone py-20">
+      <section className="bg-bone py-10 md:py-20">
         <div className="container-x">
           <p className="eyebrow mb-4">More Reading</p>
           <span className="gold-rule-lg" />

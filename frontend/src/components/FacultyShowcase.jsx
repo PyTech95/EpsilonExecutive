@@ -38,7 +38,7 @@ export default function FacultyShowcase() {
               <img
                 src={lead.image}
                 alt={lead.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-top"
               />
             </div>
             {/* Gold badge bottom-right overlay */}
@@ -103,7 +103,7 @@ export default function FacultyShowcase() {
                   <img
                     src={g.image}
                     alt={g.name}
-                    className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 transition-all duration-500"
+                    className="w-full h-full object-cover object-top grayscale-[30%] group-hover:grayscale-0 transition-all duration-500"
                   />
                 </div>
                 <p className="font-editorial italic text-cream text-[1.1rem] md:text-[1.2rem] mt-6 leading-tight group-hover:text-gold transition-colors">
