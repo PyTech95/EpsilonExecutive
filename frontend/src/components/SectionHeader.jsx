@@ -27,11 +27,11 @@ export default function SectionHeader({
   return (
     <div className={`${isCenter ? 'text-center' : ''} ${className}`}>
       {chapter && (
-        <p className={`font-editorial italic ${chapterColor} text-[0.95rem] tracking-widest leading-tight -mb-1 md:mb-2`}>
+        <p className={`font-editorial italic ${chapterColor} text-[0.95rem] tracking-widest leading-tight mt-[30px] -mb-2 md:mt-0 md:mb-2`}>
           — {chapter} —
         </p>
       )}
-      {eyebrow && <p className="eyebrow mt-1 mb-1 md:mt-0 md:mb-4">{eyebrow}</p>}
+      {eyebrow && <p className="eyebrow mt-0 mb-1 md:mt-0 md:mb-4">{eyebrow}</p>}
       <div className={isCenter ? 'flex justify-center' : ''}>
         <span className="gold-rule-lg" />
       </div>
