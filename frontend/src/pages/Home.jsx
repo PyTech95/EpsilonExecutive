@@ -297,14 +297,16 @@ export default function Home() {
   const sections = home?.sections || {};
   const contact = home?.contact || {};
   const footer = home?.footer || {};
-  const heroImage = hero.heroImage || '/generated/hero-indian-online-learner.png';
+  const heroImage = hero.heroImage;
 
   return (
     <div>
       {/* 1. HERO */}
       <section className="relative overflow-hidden bg-navy-deep text-cream lg:min-h-[100vh]">
         <div className="absolute inset-0">
-          <img src={heroImage} alt="" className="absolute inset-0 w-full h-full object-cover opacity-25" />
+          {heroImage && (
+            <img src={heroImage} alt="" className="absolute inset-0 w-full h-full object-cover opacity-25" />
+          )}
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(8,19,31,0.55), rgba(14,31,50,0.88), rgba(8,19,31,1))' }} />
         </div>
         <NetworkBackground className="opacity-70" />
