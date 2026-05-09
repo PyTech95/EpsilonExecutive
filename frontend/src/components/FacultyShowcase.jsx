@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, X } from 'lucide-react';
 import { leadFaculty as mockLead, guestLecturers as mockGuests } from '../mock';
 import { useSiteContent } from '../context/SiteContent';
 import {
@@ -127,18 +127,18 @@ export default function FacultyShowcase() {
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent
           data-testid="faculty-bio-modal"
-          className="max-w-3xl bg-bone border border-gold/40 p-0 overflow-hidden text-navy"
+          className="max-w-3xl w-[95vw] max-h-[92vh] bg-bone border border-gold/40 p-0 overflow-hidden text-navy"
         >
           {selected && (
-            <div className="grid grid-cols-1 md:grid-cols-[260px_1fr]">
+            <div className="grid grid-cols-1 md:grid-cols-[260px_1fr] max-h-[92vh] overflow-y-auto md:overflow-hidden">
               {/* Portrait */}
               <div className="relative bg-navy-deep">
                 <img
                   src={selected.image}
                   alt={selected.name}
-                  className="w-full h-64 md:h-full object-cover"
+                  className="w-full aspect-[4/5] md:aspect-auto md:h-full object-cover object-top"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/70 to-transparent md:bg-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/70 to-transparent md:bg-none pointer-events-none" />
                 <div className="md:hidden absolute bottom-4 left-5 right-5">
                   <p className="font-caps text-[0.6rem] tracking-[0.22em] text-gold">{selected.expertise}</p>
                   <p className="font-display text-cream text-[1.4rem] leading-tight mt-1">{selected.name}</p>
@@ -146,7 +146,7 @@ export default function FacultyShowcase() {
               </div>
 
               {/* Bio */}
-              <div className="p-7 md:p-9 max-h-[80vh] overflow-y-auto">
+              <div className="p-7 md:p-9 md:max-h-[92vh] md:overflow-y-auto">
                 <DialogHeader className="text-left">
                   <p className="font-caps text-[0.6rem] tracking-[0.22em] text-gold hidden md:block">
                     {selected.expertise}
@@ -177,9 +177,29 @@ export default function FacultyShowcase() {
                     ))}
                   </div>
                 )}
+
+                {/* Bottom close button (mobile-friendly) */}
+                <button
+                  type="button"
+                  onClick={() => setOpen(false)}
+                  data-testid="faculty-modal-close-btn"
+                  className="mt-8 w-full md:w-auto inline-flex items-center justify-center gap-2 px-6 py-3 border-2 border-navy text-navy font-caps text-[0.7rem] tracking-[0.2em] font-semibold hover:bg-navy hover:text-cream transition-colors"
+                >
+                  CLOSE
+                </button>
               </div>
             </div>
           )}
+          {/* Floating circular close button — always visible top-right */}
+          <button
+            type="button"
+            onClick={() => setOpen(false)}
+            aria-label="Close"
+            data-testid="faculty-modal-x-btn"
+            className="absolute top-3 right-3 z-50 w-10 h-10 rounded-full bg-navy-deep/90 hover:bg-navy text-cream flex items-center justify-center shadow-lg backdrop-blur-sm border border-gold/30"
+          >
+            <X size={20} strokeWidth={2.5} />
+          </button>
         </DialogContent>
       </Dialog>
     </section>
