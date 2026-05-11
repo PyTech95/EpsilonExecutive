@@ -34,6 +34,7 @@ import {
   EventsEditor,
 } from './admin/SimpleEditors';
 import SubmissionsInbox from './admin/SubmissionsInbox';
+import EmailSettings from './admin/EmailSettings';
 import ChangePassword from './admin/ChangePassword';
 import SEOEditor from './admin/SEOEditor';
 import CorporateEditor from './admin/CorporateEditor';
@@ -64,6 +65,7 @@ function App() {
               <Route path="events" element={<EventsEditor />} />
               <Route path="seo" element={<SEOEditor />} />
               <Route path="submissions" element={<SubmissionsInbox />} />
+              <Route path="email-settings" element={<EmailSettings />} />
               <Route path="password" element={<ChangePassword />} />
             </Route>
 

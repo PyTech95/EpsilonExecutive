@@ -8,6 +8,11 @@ import os
 import logging
 import uuid
 import shutil
+import smtplib
+import ssl
+import asyncio
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Optional, List, Any, Dict
@@ -288,6 +293,11 @@ def make_submission_routes(path: str, collection: str, model):
         doc["createdAt"] = datetime.now(tz=timezone.utc).isoformat()
         doc["status"] = "new"
         await db[collection].insert_one(doc)
+        # Fire-and-forget email notification (does not block response)
+        asyncio.create_task(send_notification_email(
+            subject=f"New {path.capitalize()} Submission · Epsilon",
+            body_html=_format_submission_email(path.capitalize(), doc),
+        ))
         return {"ok": True, "id": doc["_id"]}
 
     @api.get(f"/submissions/{path}")
@@ -336,6 +346,136 @@ async def admin_stats(email: str = Depends(require_admin)):
             "corporate": await db.sub_corporate.count_documents({}),
         },
     }
+
+
+# ==================================================================
+# EMAIL SETTINGS + SMTP HELPER
+# ==================================================================
+EMAIL_SETTINGS_KEY = "email_settings"
+DEFAULT_EMAIL_SETTINGS = {
+    "enabled": False,
+    "smtpHost": "smtp.gmail.com",
+    "smtpPort": 587,
+    "senderEmail": "",
+    "appPassword": "",
+    "recipients": "",  # comma-separated
+    "fromName": "Epsilon Executive Education",
+}
+
+
+class EmailSettingsIn(BaseModel):
+    enabled: bool = False
+    smtpHost: str = "smtp.gmail.com"
+    smtpPort: int = 587
+    senderEmail: str = ""
+    appPassword: str = ""
+    recipients: str = ""
+    fromName: str = "Epsilon Executive Education"
+
+
+async def get_email_settings() -> Dict[str, Any]:
+    doc = await db.settings.find_one({"_id": EMAIL_SETTINGS_KEY})
+    if not doc:
+        return dict(DEFAULT_EMAIL_SETTINGS)
+    doc.pop("_id", None)
+    return {**DEFAULT_EMAIL_SETTINGS, **doc}
+
+
+def _send_smtp_sync(cfg: Dict[str, Any], to_addrs: List[str], subject: str, body_html: str) -> None:
+    msg = MIMEMultipart("alternative")
+    msg["Subject"] = subject
+    msg["From"] = f"{cfg.get('fromName', 'Epsilon')} <{cfg['senderEmail']}>"
+    msg["To"] = ", ".join(to_addrs)
+    msg.attach(MIMEText(body_html, "html"))
+
+    port = int(cfg.get("smtpPort", 587))
+    host = cfg.get("smtpHost", "smtp.gmail.com")
+    context = ssl.create_default_context()
+    if port == 465:
+        with smtplib.SMTP_SSL(host, port, context=context, timeout=20) as server:
+            server.login(cfg["senderEmail"], cfg["appPassword"])
+            server.sendmail(cfg["senderEmail"], to_addrs, msg.as_string())
+    else:
+        with smtplib.SMTP(host, port, timeout=20) as server:
+            server.ehlo()
+            server.starttls(context=context)
+            server.ehlo()
+            server.login(cfg["senderEmail"], cfg["appPassword"])
+            server.sendmail(cfg["senderEmail"], to_addrs, msg.as_string())
+
+
+async def send_notification_email(subject: str, body_html: str) -> Dict[str, Any]:
+    cfg = await get_email_settings()
+    if not cfg.get("enabled"):
+        return {"sent": False, "reason": "Notifications disabled"}
+    if not cfg.get("senderEmail") or not cfg.get("appPassword"):
+        return {"sent": False, "reason": "SMTP credentials missing"}
+    to_addrs = [e.strip() for e in (cfg.get("recipients") or "").split(",") if e.strip()]
+    if not to_addrs:
+        return {"sent": False, "reason": "No recipients configured"}
+    try:
+        await asyncio.to_thread(_send_smtp_sync, cfg, to_addrs, subject, body_html)
+        return {"sent": True, "to": to_addrs}
+    except Exception as e:
+        logging.getLogger("epsilon").exception("Email send failed")
+        return {"sent": False, "reason": str(e)}
+
+
+def _format_submission_email(form_type: str, doc: Dict[str, Any]) -> str:
+    rows = "".join(
+        f"<tr><td style='padding:6px 12px;border:1px solid #eee;background:#fafafa;font-family:Arial;font-size:13px;color:#555;text-transform:capitalize;'>{k}</td>"
+        f"<td style='padding:6px 12px;border:1px solid #eee;font-family:Arial;font-size:13px;color:#111;'>{v}</td></tr>"
+        for k, v in doc.items() if k not in ("_id", "status") and v not in (None, "")
+    )
+    return f"""
+    <div style="font-family:Arial,sans-serif;max-width:640px;margin:0 auto;padding:24px;background:#0b1733;color:#f5efe6;">
+      <h2 style="margin:0 0 8px;font-family:Georgia,serif;color:#c9a227;">New {form_type} Submission</h2>
+      <p style="margin:0 0 20px;color:#cfc6b4;font-size:13px;">Epsilon Executive Education · Admin Notification</p>
+    </div>
+    <div style="font-family:Arial,sans-serif;max-width:640px;margin:0 auto;padding:24px;background:#fff;">
+      <table style="border-collapse:collapse;width:100%;">{rows}</table>
+      <p style="margin-top:24px;font-size:12px;color:#888;">View all submissions in your admin panel.</p>
+    </div>
+    """
+
+
+@api.get("/admin/email-settings")
+async def admin_get_email_settings(email: str = Depends(require_admin)):
+    cfg = await get_email_settings()
+    # Mask password on read
+    if cfg.get("appPassword"):
+        cfg["appPasswordSet"] = True
+        cfg["appPassword"] = ""
+    else:
+        cfg["appPasswordSet"] = False
+    return cfg
+
+
+@api.put("/admin/email-settings")
+async def admin_update_email_settings(body: EmailSettingsIn, email: str = Depends(require_admin)):
+    existing = await db.settings.find_one({"_id": EMAIL_SETTINGS_KEY}) or {}
+    payload = body.dict()
+    # If appPassword blank, preserve existing one
+    if not payload.get("appPassword"):
+        payload["appPassword"] = existing.get("appPassword", "")
+    payload["updatedAt"] = datetime.now(tz=timezone.utc).isoformat()
+    await db.settings.update_one(
+        {"_id": EMAIL_SETTINGS_KEY},
+        {"$set": payload},
+        upsert=True,
+    )
+    return {"ok": True}
+
+
+@api.post("/admin/email-settings/test")
+async def admin_test_email(email: str = Depends(require_admin)):
+    result = await send_notification_email(
+        subject="Epsilon Admin · Test Email",
+        body_html=_format_submission_email("Test", {"message": "If you can read this, your SMTP setup is working.", "sentBy": email}),
+    )
+    if not result.get("sent"):
+        raise HTTPException(400, result.get("reason", "Failed to send"))
+    return result
 
 
 # ==================================================================

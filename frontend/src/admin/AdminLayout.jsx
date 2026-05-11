@@ -3,7 +3,7 @@ import { NavLink, Outlet, useNavigate, Navigate } from 'react-router-dom';
 import {
   LayoutDashboard, Home, BookOpen, Users, Calendar, MessageSquare,
   FileText, Inbox, LogOut, Lock, GraduationCap, Menu, Search,
-  Building2, FileEdit
+  Building2, FileEdit, Mail
 } from 'lucide-react';
 import { useAuth } from './AuthContext';
 
@@ -39,6 +39,7 @@ const navGroups = [
     label: 'Operations',
     items: [
       { to: '/admin/submissions', icon: Inbox, label: 'Submissions' },
+      { to: '/admin/email-settings', icon: Mail, label: 'Email Notifications' },
       { to: '/admin/password', icon: Lock, label: 'Password' },
     ],
   },

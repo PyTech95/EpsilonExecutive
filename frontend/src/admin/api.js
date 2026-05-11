@@ -55,4 +55,9 @@ export const api = {
   submitCorporate: (body) => axios.post(`${API}/submissions/corporate`, body).then((r) => r.data),
   listSubmissions: (kind) => axios.get(`${API}/submissions/${kind}`, { headers: authHeader() }).then((r) => r.data),
   removeSubmission: (kind, id) => axios.delete(`${API}/submissions/${kind}/${id}`, { headers: authHeader() }).then((r) => r.data),
+
+  // email settings
+  getEmailSettings: () => axios.get(`${API}/admin/email-settings`, { headers: authHeader() }).then((r) => r.data),
+  putEmailSettings: (data) => axios.put(`${API}/admin/email-settings`, data, { headers: authHeader() }).then((r) => r.data),
+  testEmail: () => axios.post(`${API}/admin/email-settings/test`, {}, { headers: authHeader() }).then((r) => r.data),
 };
