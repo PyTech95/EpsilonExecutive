@@ -14,7 +14,35 @@ dynamic with a WordPress-style admin panel to edit content and view submissions.
 
 ## Implemented (Changelog)
 
-### 2026-02-09 (current session — Mobile UI Polishing)
+### 2026-02-09 (current session — Squarespace-style Admin Expansion)
+- **NEW: Dedicated Corporate Page Editor** (`/admin/corporate`). Full visual editor
+  for `/corporate` with collapsible sections: Hero (eyebrow, title, subtitle,
+  primary/secondary CTA text, hero background image), Intro (eyebrow, title, body),
+  Why-cards array (add/edit/delete/reorder), Audiences array
+  (add/edit/delete/reorder; titles auto-populate the inquiry form's
+  "Cohort Interest" dropdown), and CTA copy. New file:
+  `/app/frontend/src/admin/CorporateEditor.jsx`.
+- **NEW: Tabbed Pages Editor** (`/admin/pages`). Single screen with 5 tabs covering
+  About / Admissions / Schedule / Contact / Apply. Each tab edits hero text,
+  body copy, images, and key arrays (admissions process steps, fees, schedule
+  "What to Expect" items, contact form topics). New file:
+  `/app/frontend/src/admin/PagesEditor.jsx`.
+- **Reorganized AdminLayout sidebar** into 4 grouped sections — Overview, Pages
+  (Home / About-Admissions-Apply / Corporate / Header & Footer / SEO),
+  Content (Programs, Faculty, Testimonials, Cohorts, Insights, Events),
+  Operations (Submissions, Password). Each item now has a `data-testid` for
+  test reliability.
+- **Public pages now consume editable content** with sensible fallbacks:
+  `About.jsx`, `Admissions.jsx`, `Schedule.jsx`, `Contact.jsx`, `Apply.jsx`, and
+  `Corporate.jsx` were updated to read from `home.<page>` namespaces in the
+  site_content singleton. Corporate hero now supports a background image.
+- **HomeEditor** Corporate section replaced with a link to the new dedicated
+  editor (no functionality lost — `whyItems`/`audiences` are now fully editable
+  via the UI instead of requiring DB access).
+- All new editors use module-scope `F` and `Section`/`Block` components to
+  prevent the cursor-jump bug previously fixed in HomeEditor/HeaderFooterEditor.
+
+### 2026-02-09 (earlier — Admin Credentials, SEO, Favicon, Mobile UI)
 - Mobile menu drawer: Removed redundant `bg-cream` classes that caused visible "white
   boxes" against the `#EDE5D2` (bone) wrapper. Drawer wrapper unified to `#F5EFE0`
   (cream) so all inner items render as a single uniform tile.

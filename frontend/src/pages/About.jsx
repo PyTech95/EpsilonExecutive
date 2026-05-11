@@ -2,17 +2,23 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import PageHero from '../components/PageHero';
-import { beliefs, LOGO_URL } from '../mock';
+import { beliefs as mockBeliefs, LOGO_URL } from '../mock';
 import { useSiteContent } from '../context/SiteContent';
 
 export default function About() {
   const ctx = useSiteContent();
+  const a = ctx?.home?.about || {};
+  const hero = a.hero || {};
+  const phil = a.philosophy || {};
+  const cta = a.cta || {};
+  const beliefs = ctx?.beliefs?.length ? ctx.beliefs : mockBeliefs;
+
   return (
     <div>
       <PageHero
-        eyebrow="About Epsilon"
-        title="A school for the people who decide."
-        subtitle="Epsilon Executive Education exists to bridge the gap between technical possibility and credible business action. We design programs that produce work-ready capability, not just course completion."
+        eyebrow={hero.eyebrow || 'About Epsilon'}
+        title={hero.title || 'A school for the people who decide.'}
+        subtitle={hero.subtitle || 'Epsilon Executive Education exists to bridge the gap between technical possibility and credible business action. We design programs that produce work-ready capability, not just course completion.'}
       />
 
       {/* Philosophy */}
@@ -31,17 +37,18 @@ export default function About() {
             <span className="absolute bottom-4 right-4 w-9 h-9 border-b border-r border-gold/70" />
           </div>
           <div className="order-1 lg:order-2">
-            <p className="eyebrow mb-4">Our Philosophy</p>
+            <p className="eyebrow mb-4">{phil.eyebrow || 'Our Philosophy'}</p>
             <span className="gold-rule-lg" />
             <h2 className="font-display text-navy text-[2rem] md:text-[3rem] leading-[1.05] mt-6">
-              Turning technical fluency into <span className="italic font-editorial text-gold">strategic value.</span>
+              {phil.title || 'Turning technical fluency into'}{' '}
+              <span className="italic font-editorial text-gold">{phil.titleItalic || 'strategic value.'}</span>
             </h2>
             <div className="space-y-6 mt-8">
               <p className="font-editorial text-navy/85 text-[1.2rem] leading-relaxed">
-                Knowing about AI is not the same as deciding with it. Reading a model report is not the same as defending a recommendation to a board. Our programs are built around that gap &mdash; the difference between knowing and deciding.
+                {phil.paragraph1 || 'Knowing about AI is not the same as deciding with it. Reading a model report is not the same as defending a recommendation to a board. Our programs are built around that gap — the difference between knowing and deciding.'}
               </p>
               <p className="font-editorial text-navy/85 text-[1.2rem] leading-relaxed">
-                We pair practitioner-educators with senior cohorts, hold them to a high bar of evidence, and end every program with a portfolio-grade capstone &mdash; an artefact that proves capability, not attendance.
+                {phil.paragraph2 || 'We pair practitioner-educators with senior cohorts, hold them to a high bar of evidence, and end every program with a portfolio-grade capstone — an artefact that proves capability, not attendance.'}
               </p>
             </div>
           </div>
@@ -51,7 +58,7 @@ export default function About() {
       {/* Beliefs — white cards */}
       <section className="bg-bone py-12 md:py-24">
         <div className="container-x">
-          <p className="eyebrow mb-4">What we believe</p>
+          <p className="eyebrow mb-4">{a.beliefsEyebrow || 'What we believe'}</p>
           <span className="gold-rule-lg" />
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
             {beliefs.map((b) => (
@@ -70,13 +77,15 @@ export default function About() {
         <div className="absolute inset-0 starfield opacity-50" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full glow-gold" />
         <div className="relative container-x text-center">
-          <img src={LOGO_URL} alt="Epsilon" className="mx-auto mb-8 h-[85px] w-auto object-contain" />
+          <img src={ctx?.logoUrl || LOGO_URL} alt="Epsilon" className="mx-auto mb-8 h-[85px] w-auto object-contain" />
           <h2 className="font-display uppercase text-[2rem] md:text-[3rem] leading-[1.05] max-w-3xl mx-auto">
-            Build the judgement your <span className="italic font-editorial text-gold normal-case">next decade</span> demands.
+            {cta.title || 'Build the judgement your'}{' '}
+            <span className="italic font-editorial text-gold normal-case">{cta.titleItalic || 'next decade'}</span>{' '}
+            {cta.titleSuffix || 'demands.'}
           </h2>
           <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Link to="/programs" className="btn-gold">Explore Programs <ArrowRight size={16} /></Link>
-            <Link to="/contact" className="btn-outline-gold">Talk to Us</Link>
+            <Link to={cta.primaryHref || '/programs'} className="btn-gold">{cta.primaryText || 'Explore Programs'} <ArrowRight size={16} /></Link>
+            <Link to={cta.secondaryHref || '/contact'} className="btn-outline-gold">{cta.secondaryText || 'Talk to Us'}</Link>
           </div>
         </div>
       </section>

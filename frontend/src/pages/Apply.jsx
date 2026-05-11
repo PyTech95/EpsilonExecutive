@@ -99,11 +99,11 @@ function InfoStrip({ program }) {
 }
 
 /* ---------- Deadline strip (gold band) ---------- */
-function DeadlineStrip({ program }) {
+function DeadlineStrip({ program, label }) {
   return (
     <section className="bg-gold text-navy-deep">
       <div className="container-x flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 py-4">
-        <p className="font-caps text-[0.65rem] tracking-[0.28em]">Application Deadline</p>
+        <p className="font-caps text-[0.65rem] tracking-[0.28em]">{label || 'Application Deadline'}</p>
         <p className="font-display text-[1rem] md:text-[1.15rem] leading-tight">
           {program.nextCohort || 'Cohort 04 · 15 March 2026'} ·{' '}
           <span className="font-editorial italic">applications reviewed personally</span>
@@ -344,6 +344,8 @@ export default function Apply() {
   const leadFaculty = ctx?.leadFaculty?.length ? ctx.leadFaculty : [];
   const guestLecturers = ctx?.guestLecturers?.length ? ctx.guestLecturers : [];
   const heroImage = ctx?.home?.siteImages?.applyHero || ctx?.home?.hero?.heroImage || '/generated/hero-indian-online-learner.png';
+  const ap = ctx?.home?.apply || {};
+  const apHero = ap.hero || {};
 
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -390,11 +392,11 @@ export default function Apply() {
             <p className="eyebrow mb-4 md:mb-5">Apply · {selectedProgram.subtitle}</p>
             <span className="gold-rule-lg" />
             <h1 className="font-display uppercase text-[1.9rem] sm:text-[2.4rem] md:text-[4rem] leading-[1.05] mt-6 md:mt-7 max-w-4xl">
-              Begin your<br />
-              <span className="font-editorial italic normal-case text-gold">conversation with Epsilon.</span>
+              {apHero.titleLine1 || 'Begin your'}<br />
+              <span className="font-editorial italic normal-case text-gold">{apHero.titleItalic || 'conversation with Epsilon.'}</span>
             </h1>
             <p className="font-editorial text-cream/80 text-[1.02rem] md:text-[1.25rem] leading-relaxed mt-6 md:mt-8 max-w-2xl">
-              Applications are reviewed personally by our admissions team. Tell us about you and what you want to learn — we will reach out to discuss fit, expectations, and next steps.
+              {apHero.subtitle || 'Applications are reviewed personally by our admissions team. Tell us about you and what you want to learn — we will reach out to discuss fit, expectations, and next steps.'}
             </p>
           </div>
           <a href="#apply-form" className="hidden lg:inline-flex items-center gap-2 font-caps text-[0.65rem] tracking-[0.28em] text-gold border border-gold/40 px-6 py-4 hover:bg-gold/10 transition-colors self-start mt-2">
@@ -407,7 +409,7 @@ export default function Apply() {
       <InfoStrip program={selectedProgram} />
 
       {/* ---------- 3. Deadline gold band ---------- */}
-      <DeadlineStrip program={selectedProgram} />
+      <DeadlineStrip program={selectedProgram} label={ap.deadlineLabel} />
 
       {/* ---------- 4. Program Overview ---------- */}
       <Overview program={selectedProgram} />
@@ -428,13 +430,13 @@ export default function Apply() {
       <section id="apply-form" className="bg-cream py-10 md:py-24 scroll-mt-32">
         <div className="container-x">
           <div className="text-center mb-12 max-w-2xl mx-auto">
-            <p className="eyebrow">Apply</p>
+            <p className="eyebrow">{ap.formEyebrow || 'Apply'}</p>
             <span className="gold-rule mx-auto" />
             <h2 className="font-display text-navy text-[2rem] md:text-[2.6rem] leading-[1.08] mt-7">
-              Start your application.
+              {ap.formTitle || 'Start your application.'}
             </h2>
             <p className="font-editorial text-navy/75 text-[1.1rem] leading-relaxed mt-4">
-              A short form — about ninety seconds. We read every submission personally.
+              {ap.formSubtitle || 'A short form — about ninety seconds. We read every submission personally.'}
             </p>
           </div>
 
@@ -581,7 +583,7 @@ export default function Apply() {
         <div className="absolute inset-0 starfield opacity-50" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full glow-gold pointer-events-none" />
         <div className="relative container-x text-center">
-          <p className="eyebrow">Take the next step</p>
+          <p className="eyebrow">{ap.finalCtaEyebrow || 'Take the next step'}</p>
           <h2 className="font-display uppercase text-[2rem] md:text-[3rem] leading-[1.05] max-w-3xl mx-auto mt-5">
             Build the judgement your <span className="italic font-editorial text-gold normal-case">next decade demands.</span>
           </h2>

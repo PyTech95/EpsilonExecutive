@@ -2,23 +2,46 @@ import React from 'react';
 import { NavLink, Outlet, useNavigate, Navigate } from 'react-router-dom';
 import {
   LayoutDashboard, Home, BookOpen, Users, Calendar, MessageSquare,
-  FileText, Inbox, LogOut, Lock, GraduationCap, Menu, Search
+  FileText, Inbox, LogOut, Lock, GraduationCap, Menu, Search,
+  Building2, FileEdit
 } from 'lucide-react';
 import { useAuth } from './AuthContext';
 
-const navItems = [
-  { to: '/admin', icon: LayoutDashboard, label: 'Dashboard', end: true },
-  { to: '/admin/home', icon: Home, label: 'Home Page' },
-  { to: '/admin/header-footer', icon: Menu, label: 'Header & Footer' },
-  { to: '/admin/programs', icon: BookOpen, label: 'Programs' },
-  { to: '/admin/faculty', icon: Users, label: 'Faculty' },
-  { to: '/admin/testimonials', icon: MessageSquare, label: 'Testimonials' },
-  { to: '/admin/cohorts', icon: GraduationCap, label: 'Cohorts' },
-  { to: '/admin/insights', icon: FileText, label: 'Insights' },
-  { to: '/admin/events', icon: Calendar, label: 'Events' },
-  { to: '/admin/seo', icon: Search, label: 'SEO & Meta' },
-  { to: '/admin/submissions', icon: Inbox, label: 'Submissions' },
-  { to: '/admin/password', icon: Lock, label: 'Password' },
+const navGroups = [
+  {
+    label: 'Overview',
+    items: [
+      { to: '/admin', icon: LayoutDashboard, label: 'Dashboard', end: true },
+    ],
+  },
+  {
+    label: 'Pages',
+    items: [
+      { to: '/admin/home', icon: Home, label: 'Home Page' },
+      { to: '/admin/pages', icon: FileEdit, label: 'About / Admissions / Apply' },
+      { to: '/admin/corporate', icon: Building2, label: 'Corporate Page' },
+      { to: '/admin/header-footer', icon: Menu, label: 'Header & Footer' },
+      { to: '/admin/seo', icon: Search, label: 'SEO & Meta' },
+    ],
+  },
+  {
+    label: 'Content',
+    items: [
+      { to: '/admin/programs', icon: BookOpen, label: 'Programs' },
+      { to: '/admin/faculty', icon: Users, label: 'Faculty' },
+      { to: '/admin/testimonials', icon: MessageSquare, label: 'Testimonials' },
+      { to: '/admin/cohorts', icon: GraduationCap, label: 'Cohorts' },
+      { to: '/admin/insights', icon: FileText, label: 'Insights' },
+      { to: '/admin/events', icon: Calendar, label: 'Events' },
+    ],
+  },
+  {
+    label: 'Operations',
+    items: [
+      { to: '/admin/submissions', icon: Inbox, label: 'Submissions' },
+      { to: '/admin/password', icon: Lock, label: 'Password' },
+    ],
+  },
 ];
 
 export default function AdminLayout() {
@@ -37,20 +60,26 @@ export default function AdminLayout() {
           <p className="text-xs text-cream/60 mt-2 truncate">{user.email}</p>
         </div>
 
-        <nav className="flex-1 py-4">
-          {navItems.map((n) => (
-            <NavLink
-              key={n.to}
-              to={n.to}
-              end={n.end}
-              className={({ isActive }) =>
-                `flex items-center gap-3 px-6 py-3 text-sm transition-colors ${
-                  isActive ? 'bg-navy text-gold border-l-2 border-gold' : 'text-cream/80 hover:bg-navy hover:text-gold'
-                }`
-              }
-            >
-              <n.icon size={16} /> {n.label}
-            </NavLink>
+        <nav className="flex-1 py-4 overflow-y-auto">
+          {navGroups.map((group) => (
+            <div key={group.label} className="mb-4">
+              <p className="px-6 mb-1.5 font-caps text-[0.55rem] tracking-[0.22em] text-gold/60">{group.label}</p>
+              {group.items.map((n) => (
+                <NavLink
+                  key={n.to}
+                  to={n.to}
+                  end={n.end}
+                  data-testid={`nav-${n.label.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}`}
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 px-6 py-2.5 text-sm transition-colors ${
+                      isActive ? 'bg-navy text-gold border-l-2 border-gold' : 'text-cream/80 hover:bg-navy hover:text-gold'
+                    }`
+                  }
+                >
+                  <n.icon size={16} /> {n.label}
+                </NavLink>
+              ))}
+            </div>
           ))}
         </nav>
 

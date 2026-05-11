@@ -5,11 +5,13 @@ import PageHero from '../components/PageHero';
 import { api } from '../admin/api';
 import { useSiteContent } from '../context/SiteContent';
 
-const TOPICS = ['General Inquiry','Admissions Question','Program Fit','Corporate / Cohort Partnerships','Press & Media'];
+const DEFAULT_TOPICS = ['General Inquiry','Admissions Question','Program Fit','Corporate / Cohort Partnerships','Press & Media'];
 
 export default function Contact() {
   const ctx = useSiteContent();
   const contact = ctx?.home?.contact || {};
+  const heroData = contact.hero || {};
+  const TOPICS = (contact.topics?.length ? contact.topics : DEFAULT_TOPICS);
   const [sent, setSent] = useState(false);
   const [form, setForm] = useState({ name: '', email: '', topic: TOPICS[0], message: '' });
 
@@ -23,8 +25,8 @@ export default function Contact() {
   return (
     <div>
       <PageHero
-        eyebrow="Contact"
-        title="Talk to admissions."
+        eyebrow={heroData.eyebrow || 'Contact'}
+        title={heroData.title || 'Talk to admissions.'}
         subtitle={contact.subtext || 'Questions about a program, fit, fees, or partnerships? Drop us a line and a member of the team will write back personally.'}
       />
 

@@ -10,6 +10,15 @@ const TZS = ['Asia/Kolkata (IST)', 'Asia/Singapore (SGT)', 'Asia/Dubai (GST)', '
 export default function Schedule() {
   const ctx = useSiteContent();
   const programs = ctx?.programs || [];
+  const sch = ctx?.home?.schedule || {};
+  const hero = sch.hero || {};
+  const cap = sch.imageCaption || {};
+  const expectItems = sch.expectItems?.length ? sch.expectItems : [
+    { title: '25–30 minutes', body: 'A focused conversation, not a sales call.' },
+    { title: 'Video, by default', body: 'Zoom or Google Meet — your choice.' },
+    { title: 'Confirmed within 24h', body: 'We will send a calendar invite by email.' },
+  ];
+  const expectIcons = [Clock, Globe, Calendar];
   const interests = ['Program Fit Discussion', 'Admissions Conversation', 'Corporate / Cohort Partnership', 'General Inquiry'];
 
   const today = new Date();
@@ -35,16 +44,16 @@ export default function Schedule() {
         <div className="absolute inset-0 starfield opacity-40" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full glow-gold pointer-events-none" />
         <div className="container-x relative max-w-4xl">
-          <p className="eyebrow mb-5">Schedule a Call</p>
+          <p className="eyebrow mb-5">{hero.eyebrow || 'Schedule a Call'}</p>
           <span className="gold-rule-lg" />
           <h1 className="font-display uppercase text-[2.4rem] md:text-[4rem] leading-[1.04] mt-7">
-            Talk to admissions
+            {hero.title || 'Talk to admissions'}
           </h1>
           <h2 className="font-editorial italic text-gold text-[1.8rem] md:text-[2.6rem] leading-[1.05] mt-2">
-            on your time.
+            {hero.titleItalic || 'on your time.'}
           </h2>
           <p className="font-editorial text-cream/85 text-[1.15rem] md:text-[1.3rem] leading-relaxed mt-7 max-w-2xl">
-            Pick a time that works for you. We will send a calendar invite within one working day with the meeting link.
+            {hero.subtitle || 'Pick a time that works for you. We will send a calendar invite within one working day with the meeting link.'}
           </p>
         </div>
       </section>
@@ -63,16 +72,22 @@ export default function Schedule() {
               <span className="absolute top-3 left-3 w-7 h-7 border-t border-l border-gold/70" />
               <span className="absolute bottom-3 right-3 w-7 h-7 border-b border-r border-gold/70" />
               <div className="absolute bottom-5 left-5 right-5 text-cream">
-                <p className="font-caps text-[0.55rem] tracking-[0.22em] text-gold">A personal call</p>
-                <p className="font-display text-[1.05rem] leading-tight mt-1">Not a sales funnel.</p>
+                <p className="font-caps text-[0.55rem] tracking-[0.22em] text-gold">{cap.line1 || 'A personal call'}</p>
+                <p className="font-display text-[1.05rem] leading-tight mt-1">{cap.line2 || 'Not a sales funnel.'}</p>
               </div>
             </div>
-            <p className="eyebrow mb-4">What to Expect</p>
+            <p className="eyebrow mb-4">{sch.expectEyebrow || 'What to Expect'}</p>
             <span className="gold-rule" />
             <ul className="mt-6 space-y-5 font-editorial text-navy/80 text-[1.05rem]">
-              <li className="flex gap-3"><Clock size={16} className="text-gold mt-1 flex-shrink-0" /><span><b className="font-display text-navy">25–30 minutes</b><br />A focused conversation, not a sales call.</span></li>
-              <li className="flex gap-3"><Globe size={16} className="text-gold mt-1 flex-shrink-0" /><span><b className="font-display text-navy">Video, by default</b><br />Zoom or Google Meet — your choice.</span></li>
-              <li className="flex gap-3"><Calendar size={16} className="text-gold mt-1 flex-shrink-0" /><span><b className="font-display text-navy">Confirmed within 24h</b><br />We will send a calendar invite by email.</span></li>
+              {expectItems.map((it, i) => {
+                const Icon = expectIcons[i % expectIcons.length];
+                return (
+                  <li key={i} className="flex gap-3">
+                    <Icon size={16} className="text-gold mt-1 flex-shrink-0" />
+                    <span><b className="font-display text-navy">{it.title}</b><br />{it.body}</span>
+                  </li>
+                );
+              })}
             </ul>
           </aside>
 

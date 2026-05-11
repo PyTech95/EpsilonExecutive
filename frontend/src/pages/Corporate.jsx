@@ -108,7 +108,7 @@ export default function Corporate() {
       <section id="corporate-form" className="bg-bone py-12 md:py-24">
         <div className="container-x grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-14">
           <div>
-            <p className="eyebrow mb-4">Get in Touch</p>
+            <p className="eyebrow mb-4">{c.ctaEyebrow || 'Get in Touch'}</p>
             <span className="gold-rule-lg" />
             <h2 className="font-display text-navy text-[2rem] md:text-[3rem] leading-[1.05] mt-6">
               {c.ctaTitle || 'Talk to us about a private cohort.'}

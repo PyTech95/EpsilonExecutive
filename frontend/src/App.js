@@ -36,6 +36,8 @@ import {
 import SubmissionsInbox from './admin/SubmissionsInbox';
 import ChangePassword from './admin/ChangePassword';
 import SEOEditor from './admin/SEOEditor';
+import CorporateEditor from './admin/CorporateEditor';
+import PagesEditor from './admin/PagesEditor';
 
 // Site content provider for public pages
 import { SiteContentProvider } from './context/SiteContent';
@@ -51,6 +53,8 @@ function App() {
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<Dashboard />} />
               <Route path="home" element={<HomeEditor />} />
+              <Route path="pages" element={<PagesEditor />} />
+              <Route path="corporate" element={<CorporateEditor />} />
               <Route path="header-footer" element={<HeaderFooterEditor />} />
               <Route path="programs" element={<ProgramsEditor />} />
               <Route path="faculty" element={<FacultyEditor />} />
