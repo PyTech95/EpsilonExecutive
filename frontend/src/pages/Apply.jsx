@@ -102,7 +102,7 @@ function InfoStrip({ program }) {
 function DeadlineStrip({ program, label }) {
   return (
     <section className="bg-gold text-navy-deep">
-      <div className="container-x flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 py-4">
+      <div className="container-x flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 py-5 sm:py-4">
         <p className="font-caps text-[0.65rem] tracking-[0.28em]">{label || 'Application Deadline'}</p>
         <p className="font-display text-[1rem] md:text-[1.15rem] leading-tight">
           {program.nextCohort || 'Cohort 04 · 15 March 2026'} ·{' '}

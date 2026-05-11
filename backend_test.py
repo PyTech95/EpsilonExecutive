@@ -8,7 +8,7 @@ import sys
 from typing import Dict, Any, Optional
 
 # Base URL from frontend .env
-BASE_URL = "https://epsilon-portal-v1.preview.emergentagent.com/api"
+BASE_URL = "https://squarespace-clone.preview.emergentagent.com/api"
 
 # Test credentials
 ADMIN_EMAIL = "admin@epsilon-edu.in"
