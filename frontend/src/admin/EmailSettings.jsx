@@ -1,32 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { Mail, Eye, EyeOff, Send, Save, ExternalLink, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Mail, Send, Save, CheckCircle2, AlertCircle } from 'lucide-react';
 import { api } from './api';
 
-const DEFAULTS = {
-  enabled: false,
-  smtpHost: 'smtp.gmail.com',
-  smtpPort: 587,
-  senderEmail: '',
-  appPassword: '',
-  recipients: '',
-  fromName: 'Epsilon Executive Education',
-};
-
 export default function EmailSettings() {
-  const [cfg, setCfg] = useState(DEFAULTS);
-  const [passwordSet, setPasswordSet] = useState(false);
-  const [showPass, setShowPass] = useState(false);
+  const [enabled, setEnabled] = useState(false);
+  const [recipients, setRecipients] = useState('');
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [testing, setTesting] = useState(false);
-  const [toast, setToast] = useState(null); // { type, msg }
+  const [toast, setToast] = useState(null);
+  const [fullCfg, setFullCfg] = useState(null);
 
   useEffect(() => {
     api.getEmailSettings()
       .then((d) => {
-        const { appPasswordSet, ...rest } = d;
-        setCfg({ ...DEFAULTS, ...rest });
-        setPasswordSet(!!appPasswordSet);
+        setEnabled(!!d.enabled);
+        setRecipients(d.recipients || '');
+        setFullCfg(d);
       })
       .finally(() => setLoading(false));
   }, []);
@@ -36,15 +26,19 @@ export default function EmailSettings() {
     setTimeout(() => setToast(null), 4000);
   };
 
-  const onChange = (k, v) => setCfg((c) => ({ ...c, [k]: v }));
-
   const onSave = async () => {
     setSaving(true);
     try {
-      await api.putEmailSettings(cfg);
-      if (cfg.appPassword) setPasswordSet(true);
-      setCfg((c) => ({ ...c, appPassword: '' }));
-      flash('success', 'Email settings saved.');
+      await api.putEmailSettings({
+        enabled,
+        recipients,
+        smtpHost: fullCfg?.smtpHost || 'smtp.gmail.com',
+        smtpPort: fullCfg?.smtpPort || 587,
+        senderEmail: fullCfg?.senderEmail || '',
+        appPassword: '', // empty preserves existing in backend
+        fromName: fullCfg?.fromName || 'Epsilon Executive Education',
+      });
+      flash('success', 'Email notifications updated.');
     } catch (e) {
       flash('error', e?.response?.data?.detail || 'Failed to save');
     } finally {
@@ -74,18 +68,8 @@ export default function EmailSettings() {
           <h1 className="font-display text-navy text-[2rem]">Email Notifications</h1>
         </div>
         <p className="font-editorial text-navy/70 mt-2 max-w-2xl">
-          Automatically receive every form submission (Apply, Contact, Brochure, Schedule, Corporate) on your email.
-          Configure your Gmail account below — use a Google <strong>App Password</strong>, not your regular login password.
+          Receive every form submission (Apply, Contact, Brochure, Schedule, Corporate) on the email addresses below.
         </p>
-        <a
-          href="https://myaccount.google.com/apppasswords"
-          target="_blank"
-          rel="noreferrer"
-          className="inline-flex items-center gap-1.5 mt-3 font-caps text-[0.65rem] tracking-[0.24em] text-gold hover:underline"
-          data-testid="email-settings-help-link"
-        >
-          How to generate a Google App Password <ExternalLink size={12} />
-        </a>
       </header>
 
       {toast && (
@@ -106,87 +90,29 @@ export default function EmailSettings() {
         <label className="flex items-center gap-3 cursor-pointer select-none">
           <input
             type="checkbox"
-            checked={cfg.enabled}
-            onChange={(e) => onChange('enabled', e.target.checked)}
+            checked={enabled}
+            onChange={(e) => setEnabled(e.target.checked)}
             className="w-4 h-4 accent-gold"
             data-testid="email-enabled-toggle"
           />
           <span className="font-display text-navy text-[1.1rem]">Enable email notifications</span>
         </label>
 
-        <Field label="Sender Gmail address" hint="The Gmail account that will send notifications.">
-          <input
-            type="email"
-            value={cfg.senderEmail}
-            onChange={(e) => onChange('senderEmail', e.target.value)}
-            placeholder="you@gmail.com"
-            className="w-full border border-navy/15 px-3 py-2.5 font-sans text-sm focus:border-gold outline-none"
-            data-testid="email-sender-input"
-          />
-        </Field>
-
-        <Field
-          label="Google App Password"
-          hint={passwordSet ? 'A password is currently saved. Leave blank to keep it. Enter a new one to replace it.' : '16-character app password from your Google account.'}
-        >
-          <div className="relative">
-            <input
-              type={showPass ? 'text' : 'password'}
-              value={cfg.appPassword}
-              onChange={(e) => onChange('appPassword', e.target.value)}
-              placeholder={passwordSet ? '••••••••••••••••' : 'xxxx xxxx xxxx xxxx'}
-              className="w-full border border-navy/15 px-3 py-2.5 pr-10 font-sans text-sm focus:border-gold outline-none"
-              autoComplete="new-password"
-              data-testid="email-password-input"
-            />
-            <button
-              type="button"
-              onClick={() => setShowPass((s) => !s)}
-              className="absolute right-2 top-1/2 -translate-y-1/2 text-navy/60 hover:text-navy"
-              data-testid="email-password-toggle"
-            >
-              {showPass ? <EyeOff size={16} /> : <Eye size={16} />}
-            </button>
-          </div>
-        </Field>
-
-        <Field label="Recipient email IDs" hint="Where to send the notifications. Separate multiple emails with commas.">
+        <div>
+          <label className="block font-caps text-[0.6rem] tracking-[0.24em] text-navy/75 mb-2">
+            Recipient email IDs
+          </label>
           <textarea
-            rows={2}
-            value={cfg.recipients}
-            onChange={(e) => onChange('recipients', e.target.value)}
-            placeholder="admin@epsilon.com, sales@epsilon.com"
+            rows={3}
+            value={recipients}
+            onChange={(e) => setRecipients(e.target.value)}
+            placeholder="admissions@epsilonexec.com, sales@epsilonexec.com"
             className="w-full border border-navy/15 px-3 py-2.5 font-sans text-sm focus:border-gold outline-none resize-none"
             data-testid="email-recipients-input"
           />
-        </Field>
-
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-          <Field label="From name">
-            <input
-              value={cfg.fromName}
-              onChange={(e) => onChange('fromName', e.target.value)}
-              className="w-full border border-navy/15 px-3 py-2.5 font-sans text-sm focus:border-gold outline-none"
-              data-testid="email-fromname-input"
-            />
-          </Field>
-          <Field label="SMTP host">
-            <input
-              value={cfg.smtpHost}
-              onChange={(e) => onChange('smtpHost', e.target.value)}
-              className="w-full border border-navy/15 px-3 py-2.5 font-sans text-sm focus:border-gold outline-none"
-              data-testid="email-host-input"
-            />
-          </Field>
-          <Field label="SMTP port">
-            <input
-              type="number"
-              value={cfg.smtpPort}
-              onChange={(e) => onChange('smtpPort', parseInt(e.target.value, 10) || 587)}
-              className="w-full border border-navy/15 px-3 py-2.5 font-sans text-sm focus:border-gold outline-none"
-              data-testid="email-port-input"
-            />
-          </Field>
+          <p className="font-sans text-xs text-navy/55 mt-1.5">
+            Where notifications are sent. Separate multiple emails with commas.
+          </p>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-3 pt-2 border-t border-navy/10">
@@ -214,20 +140,9 @@ export default function EmailSettings() {
         <ul className="list-disc pl-5 space-y-1.5">
           <li>Every new submission (Apply, Contact, Brochure, Schedule, Corporate, Subscribe) triggers an email to the recipients above.</li>
           <li>The email contains all submitted fields, formatted as a readable summary.</li>
-          <li>Use a dedicated Gmail account if possible. Generate an App Password from your Google account &rsaquo; Security &rsaquo; 2-Step Verification &rsaquo; App passwords.</li>
-          <li>If a send fails (wrong password, network), the submission is still saved — your data is never lost.</li>
+          <li>If a send fails, the submission is still saved — your data is never lost.</li>
         </ul>
       </div>
-    </div>
-  );
-}
-
-function Field({ label, hint, children }) {
-  return (
-    <div>
-      <label className="block font-caps text-[0.6rem] tracking-[0.24em] text-navy/75 mb-2">{label}</label>
-      {children}
-      {hint && <p className="font-sans text-xs text-navy/55 mt-1.5">{hint}</p>}
     </div>
   );
 }
