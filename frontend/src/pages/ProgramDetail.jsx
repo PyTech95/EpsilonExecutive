@@ -19,7 +19,7 @@ function TitleWithAccent({ title, accent, className }) {
       {accent && (
         <>
           {title ? ' ' : ''}
-          <span className="italic font-editorial text-gold">{accent}</span>
+          <span className="italic font-editorial theme-hero-accent">{accent}</span>
         </>
       )}
     </h2>
@@ -45,7 +45,7 @@ function ModuleAccordion({ module }) {
             <p className="font-caps text-[0.6rem] md:text-[0.65rem] tracking-[0.28em] text-gold/90 mb-2">
               Module {module.num} · {module.weeks}
             </p>
-            <h3 className="font-display text-cream/60 text-[1.4rem] md:text-[2rem] leading-tight mb-2">
+            <h3 className="font-display theme-module-title text-[1.4rem] md:text-[2rem] leading-tight mb-2">
               {module.title}
             </h3>
             <p className="font-editorial text-cream/75 text-[0.95rem] md:text-[1.05rem] leading-relaxed">
@@ -244,8 +244,8 @@ export default function ProgramDetail() {
         <div className="absolute inset-0 starfield opacity-30" />
         <div className="relative container-x">
           <p className="eyebrow mb-3 md:mb-4">{p.weeks} weeks · {p.levelLabel}</p>
-          <h1 className="font-display text-[1.9rem] sm:text-[2.4rem] md:text-[4rem] leading-[1.05] max-w-4xl">{p.title}</h1>
-          <p className="font-editorial italic text-gold text-[1.1rem] sm:text-[1.3rem] md:text-[1.6rem] mt-4 md:mt-5">{p.tagline}</p>
+          <h1 className="font-display theme-program-title text-[1.9rem] sm:text-[2.4rem] md:text-[4rem] leading-[1.05] max-w-4xl">{p.title}</h1>
+          <p className="font-editorial italic theme-hero-accent text-[1.1rem] sm:text-[1.3rem] md:text-[1.6rem] mt-4 md:mt-5">{p.tagline}</p>
           <p className="font-editorial text-cream/80 text-[1.02rem] md:text-[1.2rem] leading-relaxed mt-5 md:mt-6 max-w-3xl">{p.long}</p>
 
           <div className="mt-7 md:mt-10 flex flex-wrap gap-3 md:gap-4">

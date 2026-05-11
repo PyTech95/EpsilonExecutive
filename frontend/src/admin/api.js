@@ -60,4 +60,8 @@ export const api = {
   getEmailSettings: () => axios.get(`${API}/admin/email-settings`, { headers: authHeader() }).then((r) => r.data),
   putEmailSettings: (data) => axios.put(`${API}/admin/email-settings`, data, { headers: authHeader() }).then((r) => r.data),
   testEmail: () => axios.post(`${API}/admin/email-settings/test`, {}, { headers: authHeader() }).then((r) => r.data),
+
+  // theme colors
+  getThemeColors: () => axios.get(`${API}/theme-colors`).then((r) => r.data),
+  putThemeColors: (data) => axios.put(`${API}/admin/theme-colors`, data, { headers: authHeader() }).then((r) => r.data),
 };

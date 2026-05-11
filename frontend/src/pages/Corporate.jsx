@@ -32,7 +32,7 @@ export default function Corporate() {
         <div className="container-x relative">
           <p className="eyebrow mb-5">{c.eyebrow || 'Corporate Education'}</p>
           <span className="gold-rule-lg" />
-          <h1 className="font-display uppercase text-[2.4rem] md:text-[4.2rem] leading-[1.04] mt-7 max-w-4xl">
+          <h1 className="font-display uppercase theme-hero-title text-[2.4rem] md:text-[4.2rem] leading-[1.04] mt-7 max-w-4xl">
             {c.heroTitle || 'Built for your team. Run for your business.'}
           </h1>
           <p className="font-editorial text-cream/85 text-[1.2rem] md:text-[1.4rem] leading-relaxed mt-7 max-w-3xl">

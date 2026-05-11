@@ -317,10 +317,10 @@ export default function Home() {
           <p className="eyebrow mb-5 md:mb-7 fade-up">
             <Sparkles size={12} className="inline mr-2 -mt-1 text-gold" /> {hero.eyebrow || 'The AI Era of Executive Education'}
           </p>
-          <h1 className="font-display uppercase text-[2.1rem] sm:text-[2.9rem] md:text-[4.3rem] lg:text-[5.1rem] leading-[1.02] tracking-tight max-w-6xl fade-up">
+          <h1 className="font-display uppercase theme-hero-title text-[2.1rem] sm:text-[2.9rem] md:text-[4.3rem] lg:text-[5.1rem] leading-[1.02] tracking-tight max-w-6xl fade-up">
             {hero.titleLine1 || 'Turning technical fluency'}
           </h1>
-          <h2 className="font-editorial italic text-gold text-[2.2rem] md:text-[4rem] lg:text-[4.8rem] leading-[1.05] mt-2 fade-up">
+          <h2 className="font-editorial italic theme-hero-accent text-[2.2rem] md:text-[4rem] lg:text-[4.8rem] leading-[1.05] mt-2 fade-up">
             {hero.titleLine2 || 'into strategic value.'}
           </h2>
           <p className="font-editorial text-[1.25rem] md:text-[1.55rem] leading-relaxed text-cream/85 mt-5 md:mt-9 max-w-2xl fade-up">

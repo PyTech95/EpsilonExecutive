@@ -391,9 +391,9 @@ export default function Apply() {
           <div>
             <p className="eyebrow mb-4 md:mb-5">Apply · {selectedProgram.subtitle}</p>
             <span className="gold-rule-lg" />
-            <h1 className="font-display uppercase text-[1.9rem] sm:text-[2.4rem] md:text-[4rem] leading-[1.05] mt-6 md:mt-7 max-w-4xl">
+            <h1 className="font-display uppercase theme-hero-title text-[1.9rem] sm:text-[2.4rem] md:text-[4rem] leading-[1.05] mt-6 md:mt-7 max-w-4xl">
               {apHero.titleLine1 || 'Begin your'}<br />
-              <span className="font-editorial italic normal-case text-gold">{apHero.titleItalic || 'conversation with Epsilon.'}</span>
+              <span className="font-editorial italic normal-case theme-hero-accent">{apHero.titleItalic || 'conversation with Epsilon.'}</span>
             </h1>
             <p className="font-editorial text-cream/80 text-[1.02rem] md:text-[1.25rem] leading-relaxed mt-6 md:mt-8 max-w-2xl">
               {apHero.subtitle || 'Applications are reviewed personally by our admissions team. Tell us about you and what you want to learn — we will reach out to discuss fit, expectations, and next steps.'}

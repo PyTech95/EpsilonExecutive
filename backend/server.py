@@ -479,6 +479,49 @@ async def admin_test_email(email: str = Depends(require_admin)):
 
 
 # ==================================================================
+# THEME COLORS (admin-managed, public read)
+# ==================================================================
+THEME_COLORS_KEY = "theme_colors"
+DEFAULT_THEME_COLORS = {
+    "heroTitle": "#0b1733",        # page hero main title
+    "heroAccent": "#c9a227",       # italic accent
+    "programTitle": "#0b1733",     # programme detail title
+    "moduleTitle": "#0b1733",      # module/section titles inside programs
+    "navBrand": "#f5efe6",         # navbar text / brand
+}
+
+
+class ThemeColorsIn(BaseModel):
+    heroTitle: str = "#0b1733"
+    heroAccent: str = "#c9a227"
+    programTitle: str = "#0b1733"
+    moduleTitle: str = "#0b1733"
+    navBrand: str = "#f5efe6"
+
+
+@api.get("/theme-colors")
+async def get_theme_colors():
+    doc = await db.settings.find_one({"_id": THEME_COLORS_KEY})
+    if not doc:
+        return dict(DEFAULT_THEME_COLORS)
+    doc.pop("_id", None)
+    doc.pop("updatedAt", None)
+    return {**DEFAULT_THEME_COLORS, **doc}
+
+
+@api.put("/admin/theme-colors")
+async def update_theme_colors(body: ThemeColorsIn, email: str = Depends(require_admin)):
+    payload = body.dict()
+    payload["updatedAt"] = datetime.now(tz=timezone.utc).isoformat()
+    await db.settings.update_one(
+        {"_id": THEME_COLORS_KEY},
+        {"$set": payload},
+        upsert=True,
+    )
+    return {"ok": True}
+
+
+# ==================================================================
 # IMAGE UPLOAD (admin only)
 # ==================================================================
 @api.post("/admin/upload")

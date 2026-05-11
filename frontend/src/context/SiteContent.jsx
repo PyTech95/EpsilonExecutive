@@ -24,13 +24,14 @@ export function SiteContentProvider({ children }) {
     logoUrl: mock.LOGO_URL,
     navbar: null,
     footer: null,
+    themeColors: null,
   });
 
   useEffect(() => {
     let cancel = false;
     (async () => {
       try {
-        const [home, beliefs, programs, cohorts, testimonials, leadFaculty, guestLecturers, insights, events] =
+        const [home, beliefs, programs, cohorts, testimonials, leadFaculty, guestLecturers, insights, events, themeColors] =
           await Promise.all([
             api.getHome().catch(() => null),
             api.getBeliefs().catch(() => mock.beliefs),
@@ -41,6 +42,7 @@ export function SiteContentProvider({ children }) {
             api.list('guest-lecturers').catch(() => mock.guestLecturers),
             api.list('insights').catch(() => mock.insights),
             api.list('events').catch(() => mock.events),
+            api.getThemeColors().catch(() => null),
           ]);
         if (cancel) return;
         setState({
@@ -57,6 +59,7 @@ export function SiteContentProvider({ children }) {
           logoUrl: home?.logoUrl || mock.LOGO_URL,
           navbar: home?.navbar || null,
           footer: home?.footer || null,
+          themeColors: themeColors || null,
         });
       } catch {
         setState((s) => ({ ...s, loaded: true }));
@@ -64,6 +67,18 @@ export function SiteContentProvider({ children }) {
     })();
     return () => { cancel = true; };
   }, []);
+
+  // Apply theme colors as CSS variables on <html>
+  useEffect(() => {
+    const t = state.themeColors;
+    if (!t) return;
+    const r = document.documentElement;
+    if (t.heroTitle) r.style.setProperty('--epsilon-hero-title', t.heroTitle);
+    if (t.heroAccent) r.style.setProperty('--epsilon-hero-accent', t.heroAccent);
+    if (t.programTitle) r.style.setProperty('--epsilon-program-title', t.programTitle);
+    if (t.moduleTitle) r.style.setProperty('--epsilon-module-title', t.moduleTitle);
+    if (t.navBrand) r.style.setProperty('--epsilon-nav-brand', t.navBrand);
+  }, [state.themeColors]);
 
   // Sync admin-set favicon to <head> as soon as it's available
   useEffect(() => {

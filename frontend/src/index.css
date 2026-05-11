@@ -81,6 +81,13 @@ body {
 .border-gold { border-color: var(--gold); }
 .border-navy { border-color: var(--navy); }
 
+/* Theme-color overrides driven by admin (Theme Colors page) */
+.theme-hero-title { color: var(--epsilon-hero-title, var(--navy)); }
+.theme-hero-accent { color: var(--epsilon-hero-accent, var(--gold)); }
+.theme-program-title { color: var(--epsilon-program-title, var(--navy)); }
+.theme-module-title { color: var(--epsilon-module-title, var(--navy)); }
+.theme-nav-brand { color: var(--epsilon-nav-brand, var(--cream)); }
+
 /* Prevent horizontal scroll */
 #root {
   overflow-x: hidden;

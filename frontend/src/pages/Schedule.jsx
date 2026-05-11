@@ -46,10 +46,10 @@ export default function Schedule() {
         <div className="container-x relative max-w-4xl">
           <p className="eyebrow mb-5">{hero.eyebrow || 'Schedule a Call'}</p>
           <span className="gold-rule-lg" />
-          <h1 className="font-display uppercase text-[2.4rem] md:text-[4rem] leading-[1.04] mt-7">
+          <h1 className="font-display uppercase theme-hero-title text-[2.4rem] md:text-[4rem] leading-[1.04] mt-7">
             {hero.title || 'Talk to admissions'}
           </h1>
-          <h2 className="font-editorial italic text-gold text-[1.8rem] md:text-[2.6rem] leading-[1.05] mt-2">
+          <h2 className="font-editorial italic theme-hero-accent text-[1.8rem] md:text-[2.6rem] leading-[1.05] mt-2">
             {hero.titleItalic || 'on your time.'}
           </h2>
           <p className="font-editorial text-cream/85 text-[1.15rem] md:text-[1.3rem] leading-relaxed mt-7 max-w-2xl">

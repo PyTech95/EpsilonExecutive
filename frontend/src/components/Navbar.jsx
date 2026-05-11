@@ -45,7 +45,7 @@ export default function Navbar() {
   const transparent = onHome && !scrolled;
 
   const baseNav = 'font-caps text-[0.7rem] font-semibold tracking-[0.2em] transition-colors';
-  const navColor = 'text-cream hover:text-gold';
+  const navColor = 'theme-nav-brand hover:text-gold';
 
   return (
     <>

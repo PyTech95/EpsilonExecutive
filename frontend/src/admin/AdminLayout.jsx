@@ -3,7 +3,7 @@ import { NavLink, Outlet, useNavigate, Navigate } from 'react-router-dom';
 import {
   LayoutDashboard, Home, BookOpen, Users, Calendar, MessageSquare,
   FileText, Inbox, LogOut, Lock, GraduationCap, Menu, Search,
-  Building2, FileEdit, Mail
+  Building2, FileEdit, Mail, Palette
 } from 'lucide-react';
 import { useAuth } from './AuthContext';
 
@@ -21,6 +21,7 @@ const navGroups = [
       { to: '/admin/pages', icon: FileEdit, label: 'About / Admissions / Apply' },
       { to: '/admin/corporate', icon: Building2, label: 'Corporate Page' },
       { to: '/admin/header-footer', icon: Menu, label: 'Header & Footer' },
+      { to: '/admin/theme-colors', icon: Palette, label: 'Theme Colors' },
       { to: '/admin/seo', icon: Search, label: 'SEO & Meta' },
     ],
   },
