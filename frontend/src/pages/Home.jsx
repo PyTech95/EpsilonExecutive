@@ -447,20 +447,22 @@ export default function Home() {
             <Link to="/about" className="link-gold inline-flex">Read more <ArrowUpRight size={13} /></Link>
           </div>
 
-          <div className="mt-12 md:mt-20">
-            <SectionOrnament tone="light" />
-            <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] text-center mt-6 mb-6 md:mb-10">What we believe</p>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {beliefs.map((b) => (
-                <div key={b._id || b.n} className="bg-white p-10 lift-card border border-transparent hover:border-gold/40">
-                  <p className="font-display text-gold text-[3rem] leading-none" data-cms-path={`beliefs.${b._id || b.n}.n`}>{b.n}</p>
-                  <div className="w-10 h-px bg-gold/40 mt-3 mb-5" />
-                  <h3 className="font-display text-navy text-[1.4rem] leading-tight" data-cms-path={`beliefs.${b._id || b.n}.title`}>{b.title}</h3>
-                  <p className="font-editorial text-navy/75 text-base leading-relaxed mt-4" data-cms-path={`beliefs.${b._id || b.n}.body`}>{b.body}</p>
-                </div>
-              ))}
+          {beliefs.length > 0 && (
+            <div data-cms-section="home-beliefs" className="mt-12 md:mt-20">
+              <SectionOrnament tone="light" />
+              <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] text-center mt-6 mb-6 md:mb-10" data-cms-path="sections.beliefsEyebrow">What we believe</p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {beliefs.map((b) => (
+                  <div key={b._id || b.n} className="bg-white p-10 lift-card border border-transparent hover:border-gold/40">
+                    <p className="font-display text-gold text-[3rem] leading-none" data-cms-path={`beliefs.${b._id || b.n}.n`}>{b.n}</p>
+                    <div className="w-10 h-px bg-gold/40 mt-3 mb-5" />
+                    <h3 className="font-display text-navy text-[1.4rem] leading-tight" data-cms-path={`beliefs.${b._id || b.n}.title`}>{b.title}</h3>
+                    <p className="font-editorial text-navy/75 text-base leading-relaxed mt-4" data-cms-path={`beliefs.${b._id || b.n}.body`}>{b.body}</p>
+                  </div>
+                ))}
+              </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
 
