@@ -65,9 +65,9 @@ export const api = {
   getThemeColors: () => axios.get(`${API}/theme-colors`).then((r) => r.data),
   putThemeColors: (data) => axios.put(`${API}/admin/theme-colors`, data, { headers: authHeader() }).then((r) => r.data),
 
-  // live editor — granular home patch + element styles
+  // live editor — granular content patch (auto-routes by path prefix) + element styles
   patchHome: (path, value) =>
-    axios.patch(`${API}/admin/content/home`, { path, value }, { headers: authHeader() }).then((r) => r.data),
+    axios.patch(`${API}/admin/content`, { path, value }, { headers: authHeader() }).then((r) => r.data),
   getElementStyles: () => axios.get(`${API}/content/element-styles`).then((r) => r.data),
   putElementStyle: (path, style) =>
     axios.put(`${API}/admin/element-styles`, { path, style }, { headers: authHeader() }).then((r) => r.data),

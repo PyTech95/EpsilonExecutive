@@ -49,13 +49,13 @@ export default function Corporate() {
       <section className="bg-cream py-24">
         <div className="container-x grid grid-cols-1 md:grid-cols-2 gap-14 items-start">
           <div>
-            <p className="eyebrow mb-4">Why Epsilon for Corporate</p>
+            <p className="eyebrow mb-4" data-cms-path="corporate.introEyebrow">Why Epsilon for Corporate</p>
             <span className="gold-rule-lg" />
-            <h2 className="font-display text-navy text-[2rem] md:text-[2.8rem] leading-[1.05] mt-6">
+            <h2 className="font-display text-navy text-[2rem] md:text-[2.8rem] leading-[1.05] mt-6" data-cms-path="corporate.introTitle">
               Bespoke programs <span className="italic font-editorial text-gold">that ship.</span>
             </h2>
           </div>
-          <p className="font-editorial text-navy/85 text-[1.2rem] leading-relaxed">
+          <p className="font-editorial text-navy/85 text-[1.2rem] leading-relaxed" data-cms-path="corporate.intro">
             {c.intro || 'We design and deliver private cohorts for companies that want their senior leadership to think clearly about AI, data, and modern decision systems. Programs are bespoke, evidence-anchored, and led by practitioner-educators.'}
           </p>
         </div>
@@ -65,7 +65,7 @@ export default function Corporate() {
       {c.whyItems?.length > 0 && (
         <section className="bg-bone py-12 md:py-24">
           <div className="container-x">
-            <p className="eyebrow mb-4">{c.whyTitle || 'Why companies partner with Epsilon'}</p>
+            <p className="eyebrow mb-4" data-cms-path="corporate.whyTitle">{c.whyTitle || 'Why companies partner with Epsilon'}</p>
             <span className="gold-rule-lg" />
             <div className="mt-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {c.whyItems.map((it, i) => {
@@ -73,8 +73,8 @@ export default function Corporate() {
                 return (
                   <div key={it.title} className="bg-white p-8 lift-card border border-transparent hover:border-gold/40">
                     <Icon size={22} className="text-gold mb-5" />
-                    <h3 className="font-display text-navy text-[1.25rem] leading-tight">{it.title}</h3>
-                    <p className="font-editorial text-navy/75 leading-relaxed mt-3">{it.body}</p>
+                    <h3 className="font-display text-navy text-[1.25rem] leading-tight" data-cms-path={`corporate.whyItems.${i}.title`}>{it.title}</h3>
+                    <p className="font-editorial text-navy/75 leading-relaxed mt-3" data-cms-path={`corporate.whyItems.${i}.body`}>{it.body}</p>
                   </div>
                 );
               })}
@@ -87,16 +87,16 @@ export default function Corporate() {
       {c.audiences?.length > 0 && (
         <section className="bg-cream py-12 md:py-24">
           <div className="container-x">
-            <p className="eyebrow mb-4">{c.audiencesTitle || 'Who we run cohorts for'}</p>
+            <p className="eyebrow mb-4" data-cms-path="corporate.audiencesTitle">{c.audiencesTitle || 'Who we run cohorts for'}</p>
             <span className="gold-rule-lg" />
             <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
-              {c.audiences.map((a) => (
+              {c.audiences.map((a, i) => (
                 <div key={a.title} className="bg-navy-deep text-cream p-9 relative overflow-hidden lift-card group">
                   <div className="absolute -top-16 -right-16 w-44 h-44 rounded-full opacity-25 group-hover:opacity-40 transition-opacity"
                        style={{ background: 'radial-gradient(circle, rgba(194,152,76,0.5) 0%, transparent 70%)' }} />
-                  <h3 className="font-display text-cream text-[1.5rem] leading-tight relative">{a.title}</h3>
+                  <h3 className="font-display text-cream text-[1.5rem] leading-tight relative" data-cms-path={`corporate.audiences.${i}.title`}>{a.title}</h3>
                   <div className="w-10 h-px bg-gold/50 my-4 relative" />
-                  <p className="font-editorial text-cream/80 leading-relaxed relative">{a.body}</p>
+                  <p className="font-editorial text-cream/80 leading-relaxed relative" data-cms-path={`corporate.audiences.${i}.body`}>{a.body}</p>
                 </div>
               ))}
             </div>
@@ -108,12 +108,12 @@ export default function Corporate() {
       <section id="corporate-form" className="bg-bone py-12 md:py-24">
         <div className="container-x grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-14">
           <div>
-            <p className="eyebrow mb-4">{c.ctaEyebrow || 'Get in Touch'}</p>
+            <p className="eyebrow mb-4" data-cms-path="corporate.ctaEyebrow">{c.ctaEyebrow || 'Get in Touch'}</p>
             <span className="gold-rule-lg" />
-            <h2 className="font-display text-navy text-[2rem] md:text-[3rem] leading-[1.05] mt-6">
+            <h2 className="font-display text-navy text-[2rem] md:text-[3rem] leading-[1.05] mt-6" data-cms-path="corporate.ctaTitle">
               {c.ctaTitle || 'Talk to us about a private cohort.'}
             </h2>
-            <p className="font-editorial text-navy/80 text-[1.2rem] leading-relaxed mt-6 max-w-md">
+            <p className="font-editorial text-navy/80 text-[1.2rem] leading-relaxed mt-6 max-w-md" data-cms-path="corporate.ctaSubtitle">
               {c.ctaSubtitle || 'Tell us about your team and what you want them to be able to do. We will design a program around it.'}
             </p>
             <div className="mt-8 flex gap-3 items-center">

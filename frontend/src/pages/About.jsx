@@ -38,17 +38,17 @@ export default function About() {
             <span className="absolute bottom-4 right-4 w-9 h-9 border-b border-r border-gold/70" />
           </div>
           <div className="order-1 lg:order-2">
-            <p className="eyebrow mb-4">{phil.eyebrow || 'Our Philosophy'}</p>
+            <p className="eyebrow mb-4" data-cms-path="about.philosophy.eyebrow">{phil.eyebrow || 'Our Philosophy'}</p>
             <span className="gold-rule-lg" />
-            <h2 className="font-display text-navy text-[2rem] md:text-[3rem] leading-[1.05] mt-6">
+            <h2 className="font-display text-navy text-[2rem] md:text-[3rem] leading-[1.05] mt-6" data-cms-path="about.philosophy.title">
               {phil.title || 'Turning technical fluency into'}{' '}
-              <span className="italic font-editorial theme-hero-accent">{phil.titleItalic || 'strategic value.'}</span>
+              <span className="italic font-editorial theme-hero-accent" data-cms-path="about.philosophy.titleItalic">{phil.titleItalic || 'strategic value.'}</span>
             </h2>
             <div className="space-y-6 mt-8">
-              <p className="font-editorial text-navy/85 text-[1.2rem] leading-relaxed">
+              <p className="font-editorial text-navy/85 text-[1.2rem] leading-relaxed" data-cms-path="about.philosophy.paragraph1">
                 {phil.paragraph1 || 'Knowing about AI is not the same as deciding with it. Reading a model report is not the same as defending a recommendation to a board. Our programs are built around that gap — the difference between knowing and deciding.'}
               </p>
-              <p className="font-editorial text-navy/85 text-[1.2rem] leading-relaxed">
+              <p className="font-editorial text-navy/85 text-[1.2rem] leading-relaxed" data-cms-path="about.philosophy.paragraph2">
                 {phil.paragraph2 || 'We pair practitioner-educators with senior cohorts, hold them to a high bar of evidence, and end every program with a portfolio-grade capstone — an artefact that proves capability, not attendance.'}
               </p>
             </div>
@@ -59,14 +59,14 @@ export default function About() {
       {/* Beliefs — white cards */}
       <section className="bg-bone py-12 md:py-24">
         <div className="container-x">
-          <p className="eyebrow mb-4">{a.beliefsEyebrow || 'What we believe'}</p>
+          <p className="eyebrow mb-4" data-cms-path="about.beliefsEyebrow">{a.beliefsEyebrow || 'What we believe'}</p>
           <span className="gold-rule-lg" />
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
             {beliefs.map((b) => (
               <div key={b.n} className="bg-white p-10 hover:shadow-lg transition-shadow">
-                <p className="font-display text-gold text-[2.5rem] leading-none">{b.n}</p>
-                <h3 className="font-display text-navy text-[1.5rem] leading-tight mt-6">{b.title}</h3>
-                <p className="font-editorial text-navy/75 text-lg leading-relaxed mt-5">{b.body}</p>
+                <p className="font-display text-gold text-[2.5rem] leading-none" data-cms-path={`beliefs.${b._id || b.n}.n`}>{b.n}</p>
+                <h3 className="font-display text-navy text-[1.5rem] leading-tight mt-6" data-cms-path={`beliefs.${b._id || b.n}.title`}>{b.title}</h3>
+                <p className="font-editorial text-navy/75 text-lg leading-relaxed mt-5" data-cms-path={`beliefs.${b._id || b.n}.body`}>{b.body}</p>
               </div>
             ))}
           </div>
@@ -79,9 +79,9 @@ export default function About() {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full glow-gold" />
         <div className="relative container-x text-center">
           <img src={ctx?.logoUrl || LOGO_URL} alt="Epsilon" className="mx-auto mb-8 h-[85px] w-auto object-contain" />
-          <h2 className="font-display uppercase text-[2rem] md:text-[3rem] leading-[1.05] max-w-3xl mx-auto">
+          <h2 className="font-display uppercase text-[2rem] md:text-[3rem] leading-[1.05] max-w-3xl mx-auto" data-cms-path="about.cta.title">
             {cta.title || 'Build the judgement your'}{' '}
-            <span className="italic font-editorial text-gold normal-case">{cta.titleItalic || 'next decade'}</span>{' '}
+            <span className="italic font-editorial text-gold normal-case" data-cms-path="about.cta.titleItalic">{cta.titleItalic || 'next decade'}</span>{' '}
             {cta.titleSuffix || 'demands.'}
           </h2>
           <div className="mt-10 flex flex-wrap justify-center gap-4">

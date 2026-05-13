@@ -103,7 +103,7 @@ function DeadlineStrip({ program, label }) {
   return (
     <section className="bg-gold text-navy-deep">
       <div className="container-x flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 py-8 sm:py-4">
-        <p className="font-caps text-[0.65rem] tracking-[0.28em]">{label || 'Application Deadline'}</p>
+        <p className="font-caps text-[0.65rem] tracking-[0.28em]" data-cms-path="apply.deadlineLabel">{label || 'Application Deadline'}</p>
         <p className="font-display text-[1rem] md:text-[1.15rem] leading-tight">
           {program.nextCohort || 'Cohort 04 · 15 March 2026'} ·{' '}
           <span className="font-editorial italic">applications reviewed personally</span>
@@ -122,9 +122,9 @@ function Overview({ program }) {
     <section className="bg-bone py-12 md:py-28">
       <div className="container-x grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-14">
         <div>
-          <p className="eyebrow mb-4">Program Overview</p>
+          <p className="eyebrow mb-4" data-cms-path="apply.overview.eyebrow">Program Overview</p>
           <span className="gold-rule" />
-          <h2 className="font-display text-navy text-[2rem] md:text-[2.6rem] leading-[1.08] mt-7">
+          <h2 className="font-display text-navy text-[2rem] md:text-[2.6rem] leading-[1.08] mt-7" data-cms-path="apply.overview.title">
             {program.tagline}
           </h2>
           <p className="font-editorial text-navy/85 text-[1.15rem] md:text-[1.22rem] leading-[1.75] mt-7 max-w-2xl">
@@ -158,9 +158,9 @@ function KeyTakeaways({ program }) {
     <section className="bg-cream py-12 md:py-28">
       <div className="container-x">
         <div className="text-center max-w-2xl mx-auto">
-          <p className="eyebrow">Key Takeaways</p>
+          <p className="eyebrow" data-cms-path="apply.takeaways.eyebrow">Key Takeaways</p>
           <span className="gold-rule mx-auto" />
-          <h2 className="font-display text-navy text-[2rem] md:text-[2.6rem] leading-[1.08] mt-7">
+          <h2 className="font-display text-navy text-[2rem] md:text-[2.6rem] leading-[1.08] mt-7" data-cms-path="apply.takeaways.title">
             What you walk away with.
           </h2>
         </div>
@@ -194,9 +194,9 @@ function WhoFor({ program }) {
     <section className="bg-bone py-12 md:py-24">
       <div className="container-x grid grid-cols-1 lg:grid-cols-[1fr_1.2fr] gap-12 lg:gap-16 items-start">
         <div>
-          <p className="eyebrow">Who is this designed for?</p>
+          <p className="eyebrow" data-cms-path="apply.who.eyebrow">Who is this designed for?</p>
           <span className="gold-rule" />
-          <h2 className="font-display text-navy text-[1.9rem] md:text-[2.4rem] leading-[1.08] mt-6">
+          <h2 className="font-display text-navy text-[1.9rem] md:text-[2.4rem] leading-[1.08] mt-6" data-cms-path="apply.who.title">
             Built for the people who <span className="italic font-editorial text-gold">decide.</span>
           </h2>
         </div>
@@ -264,9 +264,9 @@ function FacultyTeaser({ lead, guests }) {
       <div className="container-x">
         <div className="flex items-end justify-between flex-wrap gap-4">
           <div>
-            <p className="eyebrow">Meet the Faculty</p>
+            <p className="eyebrow" data-cms-path="apply.facultyTeaser.eyebrow">Meet the Faculty</p>
             <span className="gold-rule" />
-            <h2 className="font-display text-navy text-[1.9rem] md:text-[2.4rem] leading-tight mt-6 max-w-xl">
+            <h2 className="font-display text-navy text-[1.9rem] md:text-[2.4rem] leading-tight mt-6 max-w-xl" data-cms-path="apply.facultyTeaser.title">
               Practitioner-educators who <span className="italic font-editorial text-gold">do the work.</span>
             </h2>
           </div>
@@ -314,9 +314,9 @@ function FAQs({ program }) {
     <section className="bg-bone py-12 md:py-28">
       <div className="container-x max-w-4xl">
         <div className="text-center">
-          <p className="eyebrow">Frequently Asked</p>
+          <p className="eyebrow" data-cms-path="apply.faq.eyebrow">Frequently Asked</p>
           <span className="gold-rule mx-auto" />
-          <h2 className="font-display text-navy text-[2rem] md:text-[2.6rem] leading-[1.08] mt-7">
+          <h2 className="font-display text-navy text-[2rem] md:text-[2.6rem] leading-[1.08] mt-7" data-cms-path="apply.faq.title">
             Answers before you ask.
           </h2>
         </div>

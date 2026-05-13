@@ -7,6 +7,9 @@ import React from 'react';
  * - Gold rule divider
  * - Large display title (optionally with italic gold accent)
  * - Optional subtitle in editorial serif
+ *
+ * Pass `pathPrefix` (e.g. "sections.brochure") to make the eyebrow/title/
+ * accent/subtitle editable through the live frontend editor.
  */
 export default function SectionHeader({
   chapter,
@@ -18,38 +21,40 @@ export default function SectionHeader({
   align = 'left',  // 'left' | 'center'
   tone = 'light',  // 'light' (cream bg) | 'dark' (navy bg)
   className = '',
+  pathPrefix,
 }) {
   const titleColor = tone === 'dark' ? 'text-cream' : 'text-navy';
   const subColor = tone === 'dark' ? 'text-cream/75' : 'text-navy/75';
   const chapterColor = tone === 'dark' ? 'text-cream/40' : 'text-navy/35';
   const isCenter = align === 'center';
+  const p = (k) => (pathPrefix ? `${pathPrefix}.${k}` : undefined);
 
   return (
     <div className={`${isCenter ? 'text-center' : ''} ${className}`}>
       {chapter && (
-        <p className={`font-editorial italic ${chapterColor} text-[0.95rem] tracking-widest leading-tight mt-[30px] mb-[30px] md:mt-0 md:mb-2`}>
+        <p className={`font-editorial italic ${chapterColor} text-[0.95rem] tracking-widest leading-tight mt-[30px] mb-[30px] md:mt-0 md:mb-2`} data-cms-path={p('chapter')}>
           — {chapter} —
         </p>
       )}
-      {eyebrow && <p className="eyebrow mt-0 mb-1 md:mt-0 md:mb-4">{eyebrow}</p>}
+      {eyebrow && <p className="eyebrow mt-0 mb-1 md:mt-0 md:mb-4" data-cms-path={p('eyebrow')}>{eyebrow}</p>}
       <div className={isCenter ? 'flex justify-center' : ''}>
         <span className="gold-rule-lg" />
       </div>
-      <h2 className={`font-display ${titleColor} text-[2rem] md:text-[3rem] lg:text-[3.4rem] leading-[1.05] mt-1 md:mt-6 ${isCenter ? 'max-w-4xl mx-auto' : 'max-w-4xl'}`}>
+      <h2 className={`font-display ${titleColor} text-[2rem] md:text-[3rem] lg:text-[3.4rem] leading-[1.05] mt-1 md:mt-6 ${isCenter ? 'max-w-4xl mx-auto' : 'max-w-4xl'}`} data-cms-path={p('title')}>
         {accentFirst && accent && (
           <>
-            <span className="italic font-editorial text-gold">{accent}</span>{' '}
+            <span className="italic font-editorial text-gold" data-cms-path={p('accent')}>{accent}</span>{' '}
           </>
         )}
         {title}
         {!accentFirst && accent && (
           <>
-            {' '}<span className="italic font-editorial text-gold">{accent}</span>
+            {' '}<span className="italic font-editorial text-gold" data-cms-path={p('accent')}>{accent}</span>
           </>
         )}
       </h2>
       {subtitle && (
-        <p className={`font-editorial ${subColor} text-[1.15rem] md:text-[1.3rem] leading-relaxed mt-3 md:mt-6 ${isCenter ? 'max-w-2xl mx-auto' : 'max-w-3xl'}`}>
+        <p className={`font-editorial ${subColor} text-[1.15rem] md:text-[1.3rem] leading-relaxed mt-3 md:mt-6 ${isCenter ? 'max-w-2xl mx-auto' : 'max-w-3xl'}`} data-cms-path={p('subtitle')}>
           {subtitle}
         </p>
       )}

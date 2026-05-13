@@ -44,11 +44,11 @@ export default function Footer() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
           {/* Column 1: Programs */}
           <div>
-            <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-5">{programsCol.title}</p>
+            <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-5" data-cms-path="footer.programsColumn.title">{programsCol.title}</p>
             <ul className="space-y-3 font-sans text-[0.95rem]">
               {programsCol.links.map((link, i) => (
                 <li key={i}>
-                  <Link to={link.url} className="text-cream/85 hover:text-gold transition-colors">
+                  <Link to={link.url} className="text-cream/85 hover:text-gold transition-colors" data-cms-path={`footer.programsColumn.links.${i}.label`}>
                     {link.label}
                   </Link>
                 </li>
@@ -66,11 +66,11 @@ export default function Footer() {
 
           {/* Column 2: Discover */}
           <div>
-            <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-5">{discoverCol.title}</p>
+            <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-5" data-cms-path="footer.discoverColumn.title">{discoverCol.title}</p>
             <ul className="space-y-3 font-sans text-[0.95rem]">
               {discoverCol.links.map((link, i) => (
                 <li key={i}>
-                  <Link to={link.url} className="text-cream/85 hover:text-gold transition-colors">
+                  <Link to={link.url} className="text-cream/85 hover:text-gold transition-colors" data-cms-path={`footer.discoverColumn.links.${i}.label`}>
                     {link.label}
                   </Link>
                 </li>
@@ -80,7 +80,7 @@ export default function Footer() {
 
           {/* Column 3: Get in Touch */}
           <div>
-            <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-5">{getTouchCol.title}</p>
+            <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-5" data-cms-path="footer.getTouchColumn.title">{getTouchCol.title}</p>
             <ul className="space-y-3 font-sans text-[0.95rem]">
               {getTouchCol.links.map((link, i) => (
                 <li key={i}>
@@ -90,11 +90,12 @@ export default function Footer() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-cream/85 hover:text-gold transition-colors"
+                      data-cms-path={`footer.getTouchColumn.links.${i}.label`}
                     >
                       {link.label}
                     </a>
                   ) : (
-                    <Link to={link.url} className="text-cream/85 hover:text-gold transition-colors">
+                    <Link to={link.url} className="text-cream/85 hover:text-gold transition-colors" data-cms-path={`footer.getTouchColumn.links.${i}.label`}>
                       {link.label}
                     </Link>
                   )}
@@ -122,17 +123,18 @@ export default function Footer() {
                 <a
                   href={`mailto:${contact.email || 'admissions@epsilonexec.com'}`}
                   className="text-cream/85 hover:text-gold transition-colors break-all"
+                  data-cms-path="contact.email"
                 >
                   {contact.email || 'admissions@epsilonexec.com'}
                 </a>
               </li>
               <li className="flex gap-3">
                 <Phone size={16} className="text-gold mt-1 flex-shrink-0" />
-                <span className="text-cream/85">{contact.phone || '+91 · on request'}</span>
+                <span className="text-cream/85" data-cms-path="contact.phone">{contact.phone || '+91 · on request'}</span>
               </li>
               <li className="flex gap-3">
                 <MapPin size={16} className="text-gold mt-1 flex-shrink-0" />
-                <span className="text-cream/85">{contact.address || 'Live online · cohorts based in India'}</span>
+                <span className="text-cream/85" data-cms-path="contact.address">{contact.address || 'Live online · cohorts based in India'}</span>
               </li>
             </ul>
           </div>
@@ -140,7 +142,7 @@ export default function Footer() {
 
         {/* Bottom bar */}
         <div className="mt-12 pt-7 border-t border-cream/10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <p className="font-caps text-[0.6rem] text-cream/70 tracking-[0.22em]">
+          <p className="font-caps text-[0.6rem] text-cream/70 tracking-[0.22em]" data-cms-path="footer.copyright">
             {copyright}
           </p>
           <div className="flex gap-6">
@@ -149,6 +151,7 @@ export default function Footer() {
                 key={i}
                 to={link.url}
                 className="font-caps text-[0.6rem] text-cream/70 tracking-[0.22em] hover:text-gold transition-colors"
+                data-cms-path={`footer.bottomLinks.${i}.label`}
               >
                 {link.label}
               </Link>

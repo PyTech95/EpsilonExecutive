@@ -52,21 +52,21 @@ export default function Admissions() {
               <span className="absolute bottom-4 left-4 w-9 h-9 border-b border-l border-gold/70" />
               <span className="absolute bottom-4 right-4 w-9 h-9 border-b border-r border-gold/70" />
               <div className="absolute bottom-6 left-6 right-6 text-cream">
-                <p className="font-caps text-[0.6rem] tracking-[0.22em] text-gold">{cap.line1 || 'A 25-min conversation'}</p>
-                <p className="font-display text-[1.3rem] leading-tight mt-2">{cap.line2 || 'Reviewed by a person, not an algorithm.'}</p>
+                <p className="font-caps text-[0.6rem] tracking-[0.22em] text-gold" data-cms-path="admissions.imageCaption.line1">{cap.line1 || 'A 25-min conversation'}</p>
+                <p className="font-display text-[1.3rem] leading-tight mt-2" data-cms-path="admissions.imageCaption.line2">{cap.line2 || 'Reviewed by a person, not an algorithm.'}</p>
               </div>
             </div>
           </div>
 
           <div>
-            <p className="eyebrow mb-4">{adm.processEyebrow || 'The Process'}</p>
+            <p className="eyebrow mb-4" data-cms-path="admissions.processEyebrow">{adm.processEyebrow || 'The Process'}</p>
             <span className="gold-rule-lg" />
             <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-0">
               {steps.map((s, i) => (
                 <div key={s.n + i} className={`p-7 border-t border-navy/15 ${i % 2 !== 0 ? 'md:border-l' : ''} ${i >= 2 ? 'md:border-t' : ''}`}>
-                  <p className="font-display text-gold text-[2.2rem] leading-none">{s.n}</p>
-                  <h3 className="font-display text-navy text-[1.25rem] mt-3">{s.title || s.t}</h3>
-                  <p className="font-editorial text-navy/75 leading-relaxed mt-3">{s.body || s.b}</p>
+                  <p className="font-display text-gold text-[2.2rem] leading-none" data-cms-path={`admissions.steps.${i}.n`}>{s.n}</p>
+                  <h3 className="font-display text-navy text-[1.25rem] mt-3" data-cms-path={`admissions.steps.${i}.title`}>{s.title || s.t}</h3>
+                  <p className="font-editorial text-navy/75 leading-relaxed mt-3" data-cms-path={`admissions.steps.${i}.body`}>{s.body || s.b}</p>
                 </div>
               ))}
             </div>
@@ -79,7 +79,7 @@ export default function Admissions() {
         <div className="container-x">
           <div className="flex items-center gap-3 mb-4">
             <Calendar size={18} className="text-gold" />
-            <p className="eyebrow">{adm.cohortsEyebrow || 'Upcoming Cohorts'}</p>
+            <p className="eyebrow" data-cms-path="admissions.cohortsEyebrow">{adm.cohortsEyebrow || 'Upcoming Cohorts'}</p>
           </div>
           <span className="gold-rule-lg" />
           <div className="mt-10 bg-white border border-navy/10">
@@ -101,19 +101,19 @@ export default function Admissions() {
         <div className="container-x">
           <div className="flex items-center gap-3 mb-4">
             <Receipt size={18} className="text-gold" />
-            <p className="eyebrow">{adm.feesEyebrow || 'Fees & Investment'}</p>
+            <p className="eyebrow" data-cms-path="admissions.feesEyebrow">{adm.feesEyebrow || 'Fees & Investment'}</p>
           </div>
           <span className="gold-rule-lg" />
-          <h2 className="font-display text-navy text-[2rem] md:text-[3rem] leading-[1.05] mt-6 max-w-3xl">
+          <h2 className="font-display text-navy text-[2rem] md:text-[3rem] leading-[1.05] mt-6 max-w-3xl" data-cms-path="admissions.feesTitle">
             {adm.feesTitle || 'A clear, transparent investment.'}
           </h2>
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6">
             {fees.map((f, i) => (
               <div key={i} className="bg-white p-9 hover:shadow-lg transition-shadow">
-                <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em]">{f.label}</p>
-                <p className="font-display text-navy text-[2.4rem] mt-4">{f.amount}</p>
-                <p className="font-editorial text-navy/75 mt-4 leading-relaxed">{f.note}</p>
+                <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em]" data-cms-path={`admissions.fees.${i}.label`}>{f.label}</p>
+                <p className="font-display text-navy text-[2.4rem] mt-4" data-cms-path={`admissions.fees.${i}.amount`}>{f.amount}</p>
+                <p className="font-editorial text-navy/75 mt-4 leading-relaxed" data-cms-path={`admissions.fees.${i}.note`}>{f.note}</p>
               </div>
             ))}
           </div>
@@ -123,7 +123,7 @@ export default function Admissions() {
       {/* Programs snapshot */}
       <section className="bg-bone py-12 md:py-24">
         <div className="container-x">
-          <p className="eyebrow mb-4">{adm.programsEyebrow || 'Programs'}</p>
+          <p className="eyebrow mb-4" data-cms-path="admissions.programsEyebrow">{adm.programsEyebrow || 'Programs'}</p>
           <span className="gold-rule-lg" />
           <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
             {programs.map(p => (
@@ -144,8 +144,8 @@ export default function Admissions() {
       <section className="bg-navy-deep text-cream py-12 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0 starfield opacity-40" />
         <div className="container-x relative text-center">
-          <h2 className="font-display uppercase text-[2rem] md:text-[3rem] leading-[1.05] max-w-3xl mx-auto">
-            {cta.title || 'Start your'} <span className="italic font-editorial text-gold normal-case">{cta.titleItalic || 'admissions conversation.'}</span>
+          <h2 className="font-display uppercase text-[2rem] md:text-[3rem] leading-[1.05] max-w-3xl mx-auto" data-cms-path="admissions.cta.title">
+            {cta.title || 'Start your'} <span className="italic font-editorial text-gold normal-case" data-cms-path="admissions.cta.titleItalic">{cta.titleItalic || 'admissions conversation.'}</span>
           </h2>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link to="/apply" className="btn-gold">Apply Now <ArrowRight size={16} /></Link>

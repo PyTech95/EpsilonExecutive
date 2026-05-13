@@ -39,6 +39,8 @@ export default function Contact() {
                 src={ctx?.home?.siteImages?.contactSidebar || "/generated/online-class-collaboration.png"}
                 alt="Senior professional in conversation with admissions"
                 className="w-full h-full object-cover"
+                data-cms-path="siteImages.contactSidebar"
+                data-cms-type="image"
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-navy-deep/30 to-transparent" />
               <span className="absolute top-3 left-3 w-8 h-8 border-t border-l border-gold/70" />
@@ -49,21 +51,21 @@ export default function Contact() {
               <Mail size={18} className="text-gold mt-1" />
               <div>
                 <p className="font-caps text-[0.65rem] text-navy/60">Email</p>
-                <p className="font-display text-navy mt-1">{contact.email || 'admissions@epsilonexec.com'}</p>
+                <p className="font-display text-navy mt-1" data-cms-path="contact.email">{contact.email || 'admissions@epsilonexec.com'}</p>
               </div>
             </div>
             <div className="flex gap-4">
               <Phone size={18} className="text-gold mt-1" />
               <div>
                 <p className="font-caps text-[0.65rem] text-navy/60">Phone</p>
-                <p className="font-display text-navy mt-1">{contact.phone || '+91 · on request'}</p>
+                <p className="font-display text-navy mt-1" data-cms-path="contact.phone">{contact.phone || '+91 · on request'}</p>
               </div>
             </div>
             <div className="flex gap-4">
               <MapPin size={18} className="text-gold mt-1" />
               <div>
                 <p className="font-caps text-[0.65rem] text-navy/60">Where</p>
-                <p className="font-display text-navy mt-1">{contact.address || 'Live online · cohorts based in India'}</p>
+                <p className="font-display text-navy mt-1" data-cms-path="contact.address">{contact.address || 'Live online · cohorts based in India'}</p>
               </div>
             </div>
           </div>

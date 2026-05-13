@@ -233,6 +233,56 @@ async def patch_home(body: HomePatchIn, email: str = Depends(require_admin)):
     return {"ok": True}
 
 
+# Mapping of CMS path prefix -> Mongo collection for the unified patch endpoint.
+_CMS_COLLECTION_MAP = {
+    "beliefs": "beliefs",
+    "testimonials": "testimonials",
+    "programs": "programs",
+    "cohorts": "cohorts",
+    "lead-faculty": "lead_faculty",
+    "guest-lecturers": "guest_lecturers",
+    "insights": "insights",
+    "events": "events",
+}
+
+
+@api.patch("/admin/content")
+async def patch_content(body: HomePatchIn, email: str = Depends(require_admin)):
+    """Unified granular content update.
+    Routes by first path segment:
+      - "beliefs.<id>.<field>" / "testimonials.<id>.<field>" / etc.  -> collection doc
+      - anything else -> site_content.home doc at the full dot-path
+    """
+    if not body.path:
+        raise HTTPException(400, "path is required")
+    parts = body.path.split(".")
+    head = parts[0]
+    collection = _CMS_COLLECTION_MAP.get(head)
+    if collection and len(parts) >= 3:
+        item_id = parts[1]
+        field = ".".join(parts[2:])
+        res = await db[collection].update_one(
+            {"_id": item_id},
+            {"$set": {field: body.value}},
+        )
+        if res.matched_count == 0:
+            # fall back to slug lookup
+            res2 = await db[collection].update_one(
+                {"slug": item_id},
+                {"$set": {field: body.value}},
+            )
+            if res2.matched_count == 0:
+                raise HTTPException(404, f"{collection} item not found: {item_id}")
+        return {"ok": True, "target": collection, "id": item_id, "field": field}
+    # default: write into home content
+    await db.site_content.update_one(
+        {"_id": "home"},
+        {"$set": {body.path: body.value}},
+        upsert=True,
+    )
+    return {"ok": True, "target": "home"}
+
+
 # ==================================================================
 # LIVE EDITOR — element-level styles (text color/size/weight/align, bg)
 # Stored as a single settings doc keyed by cms-path.

@@ -96,19 +96,20 @@ const ui = {
 };
 
 function computeBarPosition(rect) {
-  // Position toolbar below the active element if there's room; above otherwise.
+  // rect.top/left are document coordinates; convert to viewport for position:fixed.
   const TB_HEIGHT = 280;
   const margin = 12;
   const viewportH = window.innerHeight;
   const viewportW = window.innerWidth;
-  const absTop = rect.top + rect.height - window.scrollY;
-  const spaceBelow = viewportH - absTop;
+  const vpTop = rect.top - window.scrollY;
+  const vpLeft = rect.left - window.scrollX;
+  const elBottomVP = vpTop + rect.height;
+  const spaceBelow = viewportH - elBottomVP;
   const placeBelow = spaceBelow >= TB_HEIGHT;
-  const top = placeBelow ? (rect.top + rect.height + margin) : (rect.top - TB_HEIGHT - margin);
-  const left = Math.min(
-    Math.max(rect.left, 12 + window.scrollX),
-    window.scrollX + viewportW - 432
-  );
+  let top = placeBelow ? (elBottomVP + margin) : (vpTop - TB_HEIGHT - margin);
+  // clamp inside viewport with 12px gutters
+  top = Math.max(12, Math.min(top, viewportH - TB_HEIGHT - 12));
+  let left = Math.max(12, Math.min(vpLeft, viewportW - 420));
   return { top, left };
 }
 
