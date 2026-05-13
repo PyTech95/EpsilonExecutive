@@ -65,12 +65,12 @@ function BrochureDownload({ programs, brochure, visualImage }) {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full glow-gold" />
             <div className="relative text-center">
               <FileText size={92} className="text-gold mx-auto mb-6" />
-              <p className="eyebrow mb-3">{brochure?.eyebrow || 'Program Brochure'}</p>
-              <h3 className="font-display text-cream text-[1.8rem] md:text-[2.4rem] leading-[1.1] max-w-sm mx-auto">
+              <p className="eyebrow mb-3" data-cms-path="brochure.eyebrow">{brochure?.eyebrow || 'Program Brochure'}</p>
+              <h3 className="font-display text-cream text-[1.8rem] md:text-[2.4rem] leading-[1.1] max-w-sm mx-auto" data-cms-path="brochure.title">
                 {(brochure?.title || 'Everything you need to decide.').split(' ').slice(0, -1).join(' ')}{' '}
                 <span className="italic font-editorial text-gold">{(brochure?.title || 'decide.').split(' ').slice(-1)}</span>
               </h3>
-              <p className="font-sans text-cream/75 text-sm mt-5 max-w-xs mx-auto">
+              <p className="font-sans text-cream/75 text-sm mt-5 max-w-xs mx-auto" data-cms-path="brochure.description">
                 {brochure?.description || '28-page PDF · Program overview, modules, fees, capstone, faculty and admissions.'}
               </p>
             </div>
@@ -209,15 +209,15 @@ function AdmissionsContact({ sections, contact }) {
           <div className="mt-10 flex flex-col sm:grid sm:grid-cols-3 gap-4 text-sm">
             <div className="flex gap-3 items-start">
               <Mail size={16} className="text-gold mt-1 flex-shrink-0" />
-              <span className="text-navy/85 break-all">{contact?.email || 'admissions@epsilonexec.com'}</span>
+              <span className="text-navy/85 break-all" data-cms-path="contact.email">{contact?.email || 'admissions@epsilonexec.com'}</span>
             </div>
             <div className="flex gap-3 items-start">
               <Phone size={16} className="text-gold mt-1 flex-shrink-0" />
-              <span className="text-navy/85">{contact?.phone || '+91 · on request'}</span>
+              <span className="text-navy/85" data-cms-path="contact.phone">{contact?.phone || '+91 · on request'}</span>
             </div>
             <div className="flex gap-3 items-start">
               <MapPin size={16} className="text-gold mt-1 flex-shrink-0" />
-              <span className="text-navy/85">{contact?.address || 'Live online · India'}</span>
+              <span className="text-navy/85" data-cms-path="contact.address">{contact?.address || 'Live online · India'}</span>
             </div>
           </div>
         </div>
@@ -306,7 +306,7 @@ export default function Home() {
       <section className="relative overflow-hidden bg-navy-deep text-cream lg:min-h-[100vh]">
         <div className="absolute inset-0">
           {heroImage && (
-            <img src={heroImage} alt="" className="absolute inset-0 w-full h-full object-cover opacity-25" />
+            <img src={heroImage} alt="" className="absolute inset-0 w-full h-full object-cover opacity-25" data-cms-path="hero.heroImage" data-cms-type="image" />
           )}
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(8,19,31,0.55), rgba(14,31,50,0.88), rgba(8,19,31,1))' }} />
         </div>
@@ -314,16 +314,16 @@ export default function Home() {
         <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[1200px] rounded-full glow-gold pointer-events-none" />
 
         <div className="relative container-x !pt-[140px] sm:!pt-[180px] md:!pt-[200px] pb-10 md:pb-[50px]">
-          <p className="eyebrow mb-5 md:mb-7 fade-up">
+          <p className="eyebrow mb-5 md:mb-7 fade-up" data-cms-path="hero.eyebrow">
             <Sparkles size={12} className="inline mr-2 -mt-1 text-gold" /> {hero.eyebrow || 'The AI Era of Executive Education'}
           </p>
-          <h1 className="font-display uppercase theme-hero-title text-[2.1rem] sm:text-[2.9rem] md:text-[4.3rem] lg:text-[5.1rem] leading-[1.02] tracking-tight max-w-6xl fade-up">
+          <h1 className="font-display uppercase theme-hero-title text-[2.1rem] sm:text-[2.9rem] md:text-[4.3rem] lg:text-[5.1rem] leading-[1.02] tracking-tight max-w-6xl fade-up" data-cms-path="hero.titleLine1">
             {hero.titleLine1 || 'Turning technical fluency'}
           </h1>
-          <h2 className="font-editorial italic theme-hero-accent text-[2.2rem] md:text-[4rem] lg:text-[4.8rem] leading-[1.05] mt-2 fade-up">
+          <h2 className="font-editorial italic theme-hero-accent text-[2.2rem] md:text-[4rem] lg:text-[4.8rem] leading-[1.05] mt-2 fade-up" data-cms-path="hero.titleLine2">
             {hero.titleLine2 || 'into strategic value.'}
           </h2>
-          <p className="font-editorial text-[1.25rem] md:text-[1.55rem] leading-relaxed text-cream/85 mt-5 md:mt-9 max-w-2xl fade-up">
+          <p className="font-editorial text-[1.25rem] md:text-[1.55rem] leading-relaxed text-cream/85 mt-5 md:mt-9 max-w-2xl fade-up" data-cms-path="hero.subtitle">
             {hero.subtitle || 'Live online cohorts for working professionals who want to translate AI, data, and modern decision systems into evidence-based action — not theatre.'}
           </p>
           <div className="mt-7 md:mt-12 flex flex-wrap items-center gap-4 fade-up">
@@ -434,8 +434,8 @@ export default function Home() {
           />
 
           <div className="mt-8 md:mt-14 grid grid-cols-1 md:grid-cols-2 gap-14 items-start max-w-5xl mx-auto">
-            <p className="font-editorial text-navy/85 text-[1.2rem] leading-relaxed">{about.paragraph1}</p>
-            <p className="font-editorial text-navy/85 text-[1.2rem] leading-relaxed">{about.paragraph2}</p>
+            <p className="font-editorial text-navy/85 text-[1.2rem] leading-relaxed" data-cms-path="about.paragraph1">{about.paragraph1}</p>
+            <p className="font-editorial text-navy/85 text-[1.2rem] leading-relaxed" data-cms-path="about.paragraph2">{about.paragraph2}</p>
           </div>
           <div className="text-center mt-10">
             <Link to="/about" className="link-gold inline-flex">Read more <ArrowUpRight size={13} /></Link>
@@ -502,11 +502,11 @@ export default function Home() {
             data-testid="cta-square-logo"
             className="mx-auto mb-8 h-[150px] md:h-[180px] w-auto object-contain"
           />
-          <p className="eyebrow">{cta.eyebrow || 'Take the next step'}</p>
-          <h2 className="font-display uppercase text-[2rem] md:text-[3.4rem] leading-[1.05] max-w-4xl mx-auto mt-3 md:mt-5">
+          <p className="eyebrow" data-cms-path="cta.eyebrow">{cta.eyebrow || 'Take the next step'}</p>
+          <h2 className="font-display uppercase text-[2rem] md:text-[3.4rem] leading-[1.05] max-w-4xl mx-auto mt-3 md:mt-5" data-cms-path="cta.title">
             {(cta.title || 'Build the judgement your next decade demands.')}
           </h2>
-          <p className="font-editorial text-cream/80 text-[1.2rem] leading-relaxed mt-4 md:mt-7 max-w-xl mx-auto">
+          <p className="font-editorial text-cream/80 text-[1.2rem] leading-relaxed mt-4 md:mt-7 max-w-xl mx-auto" data-cms-path="cta.subtitle">
             {cta.subtitle || 'Apply, talk to admissions, or sign in to your learning environment.'}
           </p>
           <div className="mt-7 md:mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto">

@@ -44,15 +44,15 @@ export default function Schedule() {
         <div className="absolute inset-0 starfield opacity-40" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full glow-gold pointer-events-none" />
         <div className="container-x relative max-w-4xl">
-          <p className="eyebrow mb-5">{hero.eyebrow || 'Schedule a Call'}</p>
+          <p className="eyebrow mb-5" data-cms-path="schedule.hero.eyebrow">{hero.eyebrow || 'Schedule a Call'}</p>
           <span className="gold-rule-lg" />
-          <h1 className="font-display uppercase theme-hero-title text-[2.4rem] md:text-[4rem] leading-[1.04] mt-7">
+          <h1 className="font-display uppercase theme-hero-title text-[2.4rem] md:text-[4rem] leading-[1.04] mt-7" data-cms-path="schedule.hero.title">
             {hero.title || 'Talk to admissions'}
           </h1>
-          <h2 className="font-editorial italic theme-hero-accent text-[1.8rem] md:text-[2.6rem] leading-[1.05] mt-2">
+          <h2 className="font-editorial italic theme-hero-accent text-[1.8rem] md:text-[2.6rem] leading-[1.05] mt-2" data-cms-path="schedule.hero.titleItalic">
             {hero.titleItalic || 'on your time.'}
           </h2>
-          <p className="font-editorial text-cream/85 text-[1.15rem] md:text-[1.3rem] leading-relaxed mt-7 max-w-2xl">
+          <p className="font-editorial text-cream/85 text-[1.15rem] md:text-[1.3rem] leading-relaxed mt-7 max-w-2xl" data-cms-path="schedule.hero.subtitle">
             {hero.subtitle || 'Pick a time that works for you. We will send a calendar invite within one working day with the meeting link.'}
           </p>
         </div>

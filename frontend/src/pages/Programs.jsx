@@ -14,15 +14,17 @@ const FILTERS = [
 export default function Programs() {
   const ctx = useSiteContent();
   const programs = ctx?.programs?.length ? ctx.programs : [];
+  const ph = ctx?.home?.pages?.programs?.hero || {};
   const [filter, setFilter] = useState('all');
   const list = programs.filter((p) => filter === 'all' || p.level === filter);
 
   return (
     <div>
       <PageHero
-        eyebrow="Programs"
-        title="Cohorts that produce work-ready capability."
-        subtitle="Each program is designed for working professionals who want to translate technical fluency into evidence-based business action."
+        eyebrow={ph.eyebrow || 'Programs'}
+        title={ph.title || 'Cohorts that produce work-ready capability.'}
+        subtitle={ph.subtitle || 'Each program is designed for working professionals who want to translate technical fluency into evidence-based business action.'}
+        pathPrefix="pages.programs.hero"
       />
 
       <section className="bg-cream py-10 md:py-24">

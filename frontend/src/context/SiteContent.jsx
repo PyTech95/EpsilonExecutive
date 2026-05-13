@@ -29,7 +29,7 @@ export function SiteContentProvider({ children }) {
 
   useEffect(() => {
     let cancel = false;
-    (async () => {
+    const fetchAll = async () => {
       try {
         const [home, beliefs, programs, cohorts, testimonials, leadFaculty, guestLecturers, insights, events, themeColors] =
           await Promise.all([
@@ -64,8 +64,15 @@ export function SiteContentProvider({ children }) {
       } catch {
         setState((s) => ({ ...s, loaded: true }));
       }
-    })();
-    return () => { cancel = true; };
+    };
+    fetchAll();
+    // Re-fetch when live editor reports content changes
+    const onChange = () => { fetchAll(); };
+    window.addEventListener('epsilon:content-changed', onChange);
+    return () => {
+      cancel = true;
+      window.removeEventListener('epsilon:content-changed', onChange);
+    };
   }, []);
 
   // Apply theme colors as CSS variables on <html>

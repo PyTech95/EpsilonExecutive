@@ -10,13 +10,15 @@ export default function Insights() {
   const insights = ctx?.insights?.length ? ctx.insights : [];
   const featured = insights.find((i) => i.featured);
   const rest = insights.filter((i) => !i.featured);
+  const ph = ctx?.home?.pages?.insights?.hero || {};
 
   return (
     <div>
       <PageHero
-        eyebrow="Insights"
-        title="Essays for the people who decide."
-        subtitle="Frameworks, field notes, and provocations from Epsilon faculty on applied AI, decision science, and the craft of leading through ambiguity."
+        eyebrow={ph.eyebrow || 'Insights'}
+        title={ph.title || 'Essays for the people who decide.'}
+        subtitle={ph.subtitle || 'Frameworks, field notes, and provocations from Epsilon faculty on applied AI, decision science, and the craft of leading through ambiguity.'}
+        pathPrefix="pages.insights.hero"
       />
 
       <section className="bg-cream py-10 md:py-20">

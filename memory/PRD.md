@@ -14,7 +14,29 @@ dynamic with a WordPress-style admin panel to edit content and view submissions.
 
 ## Implemented (Changelog)
 
-### 2026-02-09 (current session — Squarespace-style Admin Expansion)
+### 2026-02-13 (current session — Frontend Live Editor)
+- **NEW: Squarespace-style live frontend editor.** Logged-in admins now see an "Edit Site" floating pill on every public page. Clicking it (or appending `?edit=true` to any URL) enables an inline editor:
+  - Click any tagged element to open a floating toolbar with:
+    - Inline text editing (textarea + Save text)
+    - Image upload / URL replace for tagged `<img>` elements
+    - Style controls: text color, background color, font size presets, font weight presets, text alignment
+    - Per-element Save & Reset
+  - Saved text edits PATCH the `site_content.home` document at the exact dot-path (e.g. `hero.titleLine1`), refreshing the site content cache live.
+  - Saved styles are stored in `settings.element_styles` keyed by `data-cms-path`. A global `<style>` tag injects rules via `[data-cms-path="…"]` attribute selectors with `!important`, so they apply regardless of underlying tailwind classes.
+  - Pages tagged with `data-cms-path` for Live Editor: Home (hero, brochure, about, CTA, contact details), About, Admissions, Contact, Programs, Events, Insights, Faculty, Apply, Corporate, Schedule.
+  - New files:
+    - `/app/frontend/src/liveEditor/EditModeContext.jsx`
+    - `/app/frontend/src/liveEditor/LiveEditor.jsx`
+    - `/app/frontend/src/liveEditor/EditToolbar.jsx`
+    - `/app/frontend/src/liveEditor/EditModeButton.jsx`
+    - `/app/frontend/src/liveEditor/StyleInjector.jsx`
+  - Backend additions in `/app/backend/server.py`:
+    - `PATCH /api/admin/content/home` — granular dot-path update for any home content field.
+    - `GET /api/content/element-styles` — public read of saved per-element styles map.
+    - `PUT /api/admin/element-styles` — upsert/clear a path's style (flat dict; dots in key are preserved via read-modify-write).
+  - End-to-end tested: text edit persists across reload; style edits (color, weight) apply via injected CSS after reload.
+
+### 2026-02-09 (Squarespace-style Admin Expansion)
 - **NEW: Dedicated Corporate Page Editor** (`/admin/corporate`). Full visual editor
   for `/corporate` with collapsible sections: Hero (eyebrow, title, subtitle,
   primary/secondary CTA text, hero background image), Intro (eyebrow, title, body),

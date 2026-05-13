@@ -28,6 +28,7 @@ export default function Contact() {
         eyebrow={heroData.eyebrow || 'Contact'}
         title={heroData.title || 'Talk to admissions.'}
         subtitle={contact.subtext || 'Questions about a program, fit, fees, or partnerships? Drop us a line and a member of the team will write back personally.'}
+        pathPrefix="contact.hero"
       />
 
       <section className="bg-cream py-12 md:py-24">

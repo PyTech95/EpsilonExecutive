@@ -213,6 +213,70 @@ async def put_home(body: Dict[str, Any], email: str = Depends(require_admin)):
     return {"ok": True}
 
 
+class HomePatchIn(BaseModel):
+    path: str  # dot-path, e.g. "hero.titleLine1"
+    value: Any
+
+
+@api.patch("/admin/content/home")
+async def patch_home(body: HomePatchIn, email: str = Depends(require_admin)):
+    """Granular update of a single dot-path within the home content doc.
+    Used by the live frontend editor for per-element saves.
+    """
+    if not body.path:
+        raise HTTPException(400, "path is required")
+    await db.site_content.update_one(
+        {"_id": "home"},
+        {"$set": {body.path: body.value}},
+        upsert=True,
+    )
+    return {"ok": True}
+
+
+# ==================================================================
+# LIVE EDITOR — element-level styles (text color/size/weight/align, bg)
+# Stored as a single settings doc keyed by cms-path.
+# ==================================================================
+ELEMENT_STYLES_KEY = "element_styles"
+
+
+@api.get("/content/element-styles")
+async def get_element_styles():
+    doc = await db.settings.find_one({"_id": ELEMENT_STYLES_KEY})
+    if not doc:
+        return {}
+    doc.pop("_id", None)
+    doc.pop("updatedAt", None)
+    return doc.get("styles", {})
+
+
+class ElementStyleIn(BaseModel):
+    path: str
+    style: Optional[Dict[str, Any]] = None  # None or {} deletes the entry
+
+
+@api.put("/admin/element-styles")
+async def put_element_style(body: ElementStyleIn, email: str = Depends(require_admin)):
+    if not body.path:
+        raise HTTPException(400, "path is required")
+    style = body.style or {}
+    # Strip falsy values so unset properties don't override theme defaults
+    style = {k: v for k, v in style.items() if v not in (None, "", False)}
+    # Read-modify-write to keep cms-path keys flat (Mongo $set treats dots as nesting).
+    doc = await db.settings.find_one({"_id": ELEMENT_STYLES_KEY}) or {}
+    styles_map = doc.get("styles", {}) or {}
+    if not style:
+        styles_map.pop(body.path, None)
+    else:
+        styles_map[body.path] = style
+    await db.settings.update_one(
+        {"_id": ELEMENT_STYLES_KEY},
+        {"$set": {"styles": styles_map, "updatedAt": datetime.now(tz=timezone.utc).isoformat()}},
+        upsert=True,
+    )
+    return {"ok": True, "path": body.path, "style": style}
+
+
 @api.get("/content/beliefs")
 async def list_beliefs():
     docs = await db.beliefs.find().sort("order", 1).to_list(100)

@@ -8,12 +8,14 @@ import { useSiteContent } from '../context/SiteContent';
 export default function Events() {
   const ctx = useSiteContent();
   const events = ctx?.events?.length ? ctx.events : [];
+  const ph = ctx?.home?.pages?.events?.hero || {};
   return (
     <div>
       <PageHero
-        eyebrow="Events"
-        title="Live with us. Before you commit."
-        subtitle="Free webinars, alumni panels, and hands-on workshops. The fastest way to feel how we teach before you apply."
+        eyebrow={ph.eyebrow || 'Events'}
+        title={ph.title || 'Live with us. Before you commit.'}
+        subtitle={ph.subtitle || 'Free webinars, alumni panels, and hands-on workshops. The fastest way to feel how we teach before you apply.'}
+        pathPrefix="pages.events.hero"
       />
 
       <section className="bg-cream py-10 md:py-20">

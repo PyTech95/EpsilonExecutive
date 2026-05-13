@@ -30,12 +30,12 @@ export default function Corporate() {
         <div className="absolute inset-0 starfield opacity-40" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full glow-gold pointer-events-none" />
         <div className="container-x relative">
-          <p className="eyebrow mb-5">{c.eyebrow || 'Corporate Education'}</p>
+          <p className="eyebrow mb-5" data-cms-path="corporate.eyebrow">{c.eyebrow || 'Corporate Education'}</p>
           <span className="gold-rule-lg" />
-          <h1 className="font-display uppercase theme-hero-title text-[2.4rem] md:text-[4.2rem] leading-[1.04] mt-7 max-w-4xl">
+          <h1 className="font-display uppercase theme-hero-title text-[2.4rem] md:text-[4.2rem] leading-[1.04] mt-7 max-w-4xl" data-cms-path="corporate.heroTitle">
             {c.heroTitle || 'Built for your team. Run for your business.'}
           </h1>
-          <p className="font-editorial text-cream/85 text-[1.2rem] md:text-[1.4rem] leading-relaxed mt-7 max-w-3xl">
+          <p className="font-editorial text-cream/85 text-[1.2rem] md:text-[1.4rem] leading-relaxed mt-7 max-w-3xl" data-cms-path="corporate.heroSubtitle">
             {c.heroSubtitle || 'Custom cohorts that turn your senior team into evidence-based decision-makers.'}
           </p>
           <div className="mt-10 flex flex-wrap gap-4">

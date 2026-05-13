@@ -33,6 +33,7 @@ export default function Admissions() {
         eyebrow={hero.eyebrow || 'Admissions'}
         title={hero.title || 'A personal conversation. Not a funnel.'}
         subtitle={hero.subtitle || 'Every applicant speaks with an admissions lead before a seat is offered. We use that conversation to discuss fit, expectations, and whether the next cohort is the right one for you.'}
+        pathPrefix="admissions.hero"
       />
 
       {/* Process */}

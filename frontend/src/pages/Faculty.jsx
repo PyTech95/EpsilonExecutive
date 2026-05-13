@@ -149,13 +149,15 @@ export default function Faculty() {
   const leadFaculty = ctx?.leadFaculty?.length ? ctx.leadFaculty : [];
   const guestLecturers = ctx?.guestLecturers?.length ? ctx.guestLecturers : [];
   const lead = leadFaculty[0];
+  const ph = ctx?.home?.pages?.faculty?.hero || {};
 
   return (
     <div>
       <PageHero
-        eyebrow="Faculty"
-        title="People who do the work — teaching how to do it well."
-        subtitle="Our faculty are senior practitioners and educators — advisors, founders, and researchers who bring real problems into the classroom and rigorous frameworks back out."
+        eyebrow={ph.eyebrow || 'Faculty'}
+        title={ph.title || 'People who do the work — teaching how to do it well.'}
+        subtitle={ph.subtitle || 'Our faculty are senior practitioners and educators — advisors, founders, and researchers who bring real problems into the classroom and rigorous frameworks back out.'}
+        pathPrefix="pages.faculty.hero"
       />
 
       {/* Lead Faculty */}

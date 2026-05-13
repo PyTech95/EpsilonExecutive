@@ -19,6 +19,7 @@ export default function About() {
         eyebrow={hero.eyebrow || 'About Epsilon'}
         title={hero.title || 'A school for the people who decide.'}
         subtitle={hero.subtitle || 'Epsilon Executive Education exists to bridge the gap between technical possibility and credible business action. We design programs that produce work-ready capability, not just course completion.'}
+        pathPrefix="about.hero"
       />
 
       {/* Philosophy */}
