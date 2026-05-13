@@ -48,7 +48,7 @@ export function SiteContentProvider({ children }) {
         setState({
           loaded: true,
           home: home && Object.keys(home).length ? home : null,
-          beliefs: beliefs?.length ? beliefs : mock.beliefs,
+          beliefs: Array.isArray(beliefs) ? beliefs : mock.beliefs,
           programs: programs?.length ? programs : mock.programs,
           cohorts: cohorts?.length ? cohorts : mock.cohorts,
           testimonials: testimonials?.length ? testimonials : mock.testimonials,
