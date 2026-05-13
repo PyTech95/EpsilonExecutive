@@ -67,6 +67,21 @@ export default function HomeEditor() {
     setBeliefs(copy);
   };
 
+  const removeBelief = (i) => {
+    if (!window.confirm('Delete this belief card?')) return;
+    setBeliefs(beliefs.filter((_, idx) => idx !== i));
+  };
+
+  const addBelief = () => {
+    const n = String(beliefs.length + 1).padStart(2, '0');
+    setBeliefs([...beliefs, { _id: `b_${Date.now()}`, n, title: '', body: '' }]);
+  };
+
+  const clearAllBeliefs = () => {
+    if (!window.confirm('Remove all belief cards? You can add them back later.')) return;
+    setBeliefs([]);
+  };
+
   const save = async () => {
     setSaving(true);
     try {
@@ -140,13 +155,47 @@ export default function HomeEditor() {
       </Section>
 
       <Section title="What we believe (3 cards)">
+        <div className="flex items-center justify-end gap-2 mb-4">
+          <button
+            type="button"
+            onClick={addBelief}
+            data-testid="add-belief-btn"
+            className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-caps tracking-[0.12em] text-navy border border-navy/20 hover:border-gold hover:text-gold transition-colors"
+          >
+            <Plus size={12} /> Add card
+          </button>
+          {beliefs.length > 0 && (
+            <button
+              type="button"
+              onClick={clearAllBeliefs}
+              data-testid="clear-beliefs-btn"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-caps tracking-[0.12em] text-red-700 border border-red-200 hover:bg-red-50 transition-colors"
+            >
+              <Trash2 size={12} /> Delete all
+            </button>
+          )}
+        </div>
+        {beliefs.length === 0 && (
+          <p className="text-sm font-editorial text-navy/55 italic py-6 text-center border border-dashed border-navy/15">
+            No belief cards. Click <span className="not-italic font-caps text-[0.65rem] text-gold tracking-[0.18em]">Add card</span> to create one.
+          </p>
+        )}
         {beliefs.map((b, i) => (
-          <div key={b._id || i} className="grid grid-cols-[70px_1fr] gap-3 mb-4">
+          <div key={b._id || i} className="grid grid-cols-[70px_1fr_40px] gap-3 mb-4 items-start">
             <F label="#" value={b.n} onChange={(v) => updateBelief(i, 'n', v)} />
             <div className="space-y-3">
               <F label="Title" value={b.title} onChange={(v) => updateBelief(i, 'title', v)} />
               <F label="Body" textarea value={b.body} onChange={(v) => updateBelief(i, 'body', v)} />
             </div>
+            <button
+              type="button"
+              onClick={() => removeBelief(i)}
+              data-testid={`delete-belief-${i}`}
+              title="Delete this card"
+              className="mt-6 inline-flex items-center justify-center w-9 h-9 text-red-600 border border-red-200 hover:bg-red-50 transition-colors"
+            >
+              <Trash2 size={14} />
+            </button>
           </div>
         ))}
       </Section>
