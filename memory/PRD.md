@@ -14,7 +14,14 @@ dynamic with a WordPress-style admin panel to edit content and view submissions.
 
 ## Implemented (Changelog)
 
-### 2026-02-13 (current session — Frontend Live Editor)
+### 2026-02-15 (current session — Live Editor persistence + Admissions process bug fixes)
+- **FIX: Live Editor text changes now persist after refresh.** Root cause was a path mismatch — `<SectionHeader pathPrefix="sections.admissions">` saved edits to `sections.admissions.eyebrow` while `Home.jsx` read from `sections.admissionsEyebrow` (flat key). After refresh the page read the old value.
+  - Added optional explicit path props to `SectionHeader.jsx`: `eyebrowPath`, `titlePath`, `subtitlePath`, `accentPath`, `chapterPath`.
+  - Updated `Home.jsx` SectionHeader calls (Brochure, Admissions, Flagship, Testimonials) to save to the same paths the page reads from.
+- **FIX: Admissions process steps on the homepage now read from `home.admissions.steps`.** They were previously hardcoded inline in `Home.jsx`, so admin backend edits never reflected. Each step's number/title/body now also has a `data-cms-path` for live editing.
+- Files changed: `frontend/src/components/SectionHeader.jsx`, `frontend/src/pages/Home.jsx`.
+
+### 2026-02-13 (Frontend Live Editor)
 - **NEW: Squarespace-style live frontend editor.** Logged-in admins now see an "Edit Site" floating pill on every public page. Clicking it (or appending `?edit=true` to any URL) enables an inline editor:
   - Click any tagged element to open a floating toolbar with:
     - Inline text editing (textarea + Save text)

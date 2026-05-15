@@ -1,0 +1,180 @@
+diff --git a/frontend/src/components/SectionHeader.jsx b/frontend/src/components/SectionHeader.jsx
+index e9229b4..f84cecd 100644
+--- a/frontend/src/components/SectionHeader.jsx
++++ b/frontend/src/components/SectionHeader.jsx
+@@ -22,39 +22,46 @@ export default function SectionHeader({
+   tone = 'light',  // 'light' (cream bg) | 'dark' (navy bg)
+   className = '',
+   pathPrefix,
++  // Optional explicit overrides so the live editor saves to the exact path
++  // that this section's data is read from (avoids prefix/flat-key mismatches).
++  chapterPath,
++  eyebrowPath,
++  titlePath,
++  accentPath,
++  subtitlePath,
+ }) {
+   const titleColor = tone === 'dark' ? 'text-cream' : 'text-navy';
+   const subColor = tone === 'dark' ? 'text-cream/75' : 'text-navy/75';
+   const chapterColor = tone === 'dark' ? 'text-cream/40' : 'text-navy/35';
+   const isCenter = align === 'center';
+-  const p = (k) => (pathPrefix ? `${pathPrefix}.${k}` : undefined);
++  const p = (k, override) => (override !== undefined ? override : (pathPrefix ? `${pathPrefix}.${k}` : undefined));
+ 
+   return (
+     <div className={`${isCenter ? 'text-center' : ''} ${className}`}>
+       {chapter && (
+-        <p className={`font-editorial italic ${chapterColor} text-[0.95rem] tracking-widest leading-tight mt-[30px] mb-[30px] md:mt-0 md:mb-2`} data-cms-path={p('chapter')}>
++        <p className={`font-editorial italic ${chapterColor} text-[0.95rem] tracking-widest leading-tight mt-[30px] mb-[30px] md:mt-0 md:mb-2`} data-cms-path={p('chapter', chapterPath)}>
+           — {chapter} —
+         </p>
+       )}
+-      {eyebrow && <p className="eyebrow mt-0 mb-1 md:mt-0 md:mb-4" data-cms-path={p('eyebrow')}>{eyebrow}</p>}
++      {eyebrow && <p className="eyebrow mt-0 mb-1 md:mt-0 md:mb-4" data-cms-path={p('eyebrow', eyebrowPath)}>{eyebrow}</p>}
+       <div className={isCenter ? 'flex justify-center' : ''}>
+         <span className="gold-rule-lg" />
+       </div>
+-      <h2 className={`font-display ${titleColor} text-[2rem] md:text-[3rem] lg:text-[3.4rem] leading-[1.05] mt-1 md:mt-6 ${isCenter ? 'max-w-4xl mx-auto' : 'max-w-4xl'}`} data-cms-path={p('title')}>
++      <h2 className={`font-display ${titleColor} text-[2rem] md:text-[3rem] lg:text-[3.4rem] leading-[1.05] mt-1 md:mt-6 ${isCenter ? 'max-w-4xl mx-auto' : 'max-w-4xl'}`} data-cms-path={p('title', titlePath)}>
+         {accentFirst && accent && (
+           <>
+-            <span className="italic font-editorial text-gold" data-cms-path={p('accent')}>{accent}</span>{' '}
++            <span className="italic font-editorial text-gold" data-cms-path={p('accent', accentPath)}>{accent}</span>{' '}
+           </>
+         )}
+         {title}
+         {!accentFirst && accent && (
+           <>
+-            {' '}<span className="italic font-editorial text-gold" data-cms-path={p('accent')}>{accent}</span>
++            {' '}<span className="italic font-editorial text-gold" data-cms-path={p('accent', accentPath)}>{accent}</span>
+           </>
+         )}
+       </h2>
+       {subtitle && (
+-        <p className={`font-editorial ${subColor} text-[1.15rem] md:text-[1.3rem] leading-relaxed mt-3 md:mt-6 ${isCenter ? 'max-w-2xl mx-auto' : 'max-w-3xl'}`} data-cms-path={p('subtitle')}>
++        <p className={`font-editorial ${subColor} text-[1.15rem] md:text-[1.3rem] leading-relaxed mt-3 md:mt-6 ${isCenter ? 'max-w-2xl mx-auto' : 'max-w-3xl'}`} data-cms-path={p('subtitle', subtitlePath)}>
+           {subtitle}
+         </p>
+       )}
+diff --git a/frontend/src/pages/Home.jsx b/frontend/src/pages/Home.jsx
+index ecea856..0ab3c0b 100644
+--- a/frontend/src/pages/Home.jsx
++++ b/frontend/src/pages/Home.jsx
+@@ -51,7 +51,8 @@ function BrochureDownload({ programs, brochure, visualImage }) {
+           title="The whole program,"
+           accent="on a single PDF."
+           subtitle={brochure?.description || '28-page PDF · Program overview, modules, fees, capstone, faculty and admissions.'}
+-          pathPrefix="sections.brochure"
++          eyebrowPath="brochure.eyebrow"
++          subtitlePath="brochure.description"
+         />
+         <div className="mt-8 md:mt-14 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
+         {/* Left: visual */}
+@@ -166,7 +167,7 @@ function BrochureDownload({ programs, brochure, visualImage }) {
+ }
+ 
+ /* ---------- Admissions + Contact inline ---------- */
+-function AdmissionsContact({ sections, contact }) {
++function AdmissionsContact({ sections, contact, admissions }) {
+   const [form, setForm] = useState({ name: '', email: '', topic: 'Admissions Question', message: '' });
+   const [sent, setSent] = useState(false);
+ 
+@@ -183,28 +184,31 @@ function AdmissionsContact({ sections, contact }) {
+         <SectionHeader
+           chapter="Chapter IV"
+           eyebrow={sections?.admissionsEyebrow || 'Admissions'}
+-          title="A personal conversation."
+-          accent="Not a funnel."
++          title={sections?.admissionsTitle || 'A personal conversation. Not a funnel.'}
+           subtitle={sections?.admissionsSubtitle || 'Every applicant speaks with an admissions lead before a seat is offered. Start with a message — we will write back personally.'}
+-          pathPrefix="sections.admissions"
++          eyebrowPath="sections.admissionsEyebrow"
++          titlePath="sections.admissionsTitle"
++          subtitlePath="sections.admissionsSubtitle"
+         />
+ 
+         <div className="mt-8 md:mt-16 grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-14 lg:gap-16">
+         {/* Admissions process */}
+         <div>
+-          <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-5">The Process</p>
++          <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-5" data-cms-path="admissions.processEyebrow">
++            {admissions?.processEyebrow || 'The Process'}
++          </p>
+           <div className="space-y-6 max-w-md">
+-            {[
+-              { n: '01', t: 'Application', b: 'Tell us about your work and what you want to learn.' },
+-              { n: '02', t: 'Conversation', b: 'A personal call to discuss fit and expectations.' },
+-              { n: '03', t: 'Decision', b: 'A seat is offered based on fit, not first-come-first-served.' },
+-              { n: '04', t: 'Onboarding', b: 'Pre-work, cohort introductions, and access to Moodle.' },
+-            ].map((s) => (
+-              <div key={s.n} className="flex gap-5 border-b border-navy/10 pb-5 last:border-0 group">
+-                <p className="font-display text-gold text-[1.8rem] leading-none flex-shrink-0 group-hover:scale-110 transition-transform origin-left">{s.n}</p>
++            {((admissions?.steps && admissions.steps.length > 0) ? admissions.steps : [
++              { n: '01', title: 'Application', body: 'Tell us about your work and what you want to learn.' },
++              { n: '02', title: 'Conversation', body: 'A personal call to discuss fit and expectations.' },
++              { n: '03', title: 'Decision', body: 'A seat is offered based on fit, not first-come-first-served.' },
++              { n: '04', title: 'Onboarding', body: 'Pre-work, cohort introductions, and access to Moodle.' },
++            ]).map((s, i) => (
++              <div key={s.n || i} className="flex gap-5 border-b border-navy/10 pb-5 last:border-0 group">
++                <p className="font-display text-gold text-[1.8rem] leading-none flex-shrink-0 group-hover:scale-110 transition-transform origin-left" data-cms-path={`admissions.steps.${i}.n`}>{s.n}</p>
+                 <div>
+-                  <h4 className="font-display text-navy text-[1.1rem] leading-tight">{s.t}</h4>
+-                  <p className="font-editorial text-navy/70 text-base leading-relaxed mt-1">{s.b}</p>
++                  <h4 className="font-display text-navy text-[1.1rem] leading-tight" data-cms-path={`admissions.steps.${i}.title`}>{s.title || s.t}</h4>
++                  <p className="font-editorial text-navy/70 text-base leading-relaxed mt-1" data-cms-path={`admissions.steps.${i}.body`}>{s.body || s.b}</p>
+                 </div>
+               </div>
+             ))}
+@@ -302,6 +306,7 @@ export default function Home() {
+   const sections = home?.sections || {};
+   const contact = home?.contact || {};
+   const footer = home?.footer || {};
++  const admissions = home?.admissions || {};
+   const heroImage = hero.heroImage;
+ 
+   return (
+@@ -356,7 +361,7 @@ export default function Home() {
+             title={featured.subtitle || 'Professional Certificate'}
+             accent="designed for the AI era."
+             subtitle="Twelve weeks. Evidence-based. Defended before senior peers. An artefact that travels with you."
+-            pathPrefix="sections.flagship"
++            eyebrowPath="sections.flagshipEyebrow"
+           />
+ 
+           <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
+@@ -415,9 +420,9 @@ export default function Home() {
+         <div className="container-x pt-10 md:pt-20">
+           <SectionHeader
+             chapter="Chapter III"
+-            eyebrow="Faculty"
+-            title="Practitioner-educators who"
+-            accent="do the work."
++            eyebrow={sections?.faculty?.eyebrow || 'Faculty'}
++            title={sections?.faculty?.title || 'Practitioner-educators who'}
++            accent={sections?.faculty?.accent || 'do the work.'}
+             tone="dark"
+             pathPrefix="sections.faculty"
+           />
+@@ -426,7 +431,7 @@ export default function Home() {
+       <FacultyShowcase />
+ 
+       {/* 5. ADMISSIONS + CONTACT */}
+-      <AdmissionsContact sections={sections} contact={contact} />
++      <AdmissionsContact sections={sections} contact={contact} admissions={admissions} />
+ 
+       {/* 6. ABOUT */}
+       <section data-cms-section="home-about" className="bg-bone py-12 md:py-16 relative">
+@@ -474,10 +479,11 @@ export default function Home() {
+           <SectionHeader
+             chapter="Chapter VI"
+             eyebrow={sections.testimonialsEyebrow || 'In Their Words'}
+-            title="The judgement shows up"
+-            accent="in their work."
++            title={sections.testimonialsTitle || 'The judgement shows up in their work.'}
+             align="center"
+             tone="dark"
++            eyebrowPath="sections.testimonialsEyebrow"
++            titlePath="sections.testimonialsTitle"
+           />
+           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+             {testimonials.map((t) => (
