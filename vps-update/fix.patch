@@ -1,180 +1,188 @@
-diff --git a/frontend/src/components/SectionHeader.jsx b/frontend/src/components/SectionHeader.jsx
-index e9229b4..f84cecd 100644
---- a/frontend/src/components/SectionHeader.jsx
-+++ b/frontend/src/components/SectionHeader.jsx
-@@ -22,39 +22,46 @@ export default function SectionHeader({
-   tone = 'light',  // 'light' (cream bg) | 'dark' (navy bg)
-   className = '',
-   pathPrefix,
-+  // Optional explicit overrides so the live editor saves to the exact path
-+  // that this section's data is read from (avoids prefix/flat-key mismatches).
-+  chapterPath,
-+  eyebrowPath,
-+  titlePath,
-+  accentPath,
-+  subtitlePath,
- }) {
-   const titleColor = tone === 'dark' ? 'text-cream' : 'text-navy';
-   const subColor = tone === 'dark' ? 'text-cream/75' : 'text-navy/75';
-   const chapterColor = tone === 'dark' ? 'text-cream/40' : 'text-navy/35';
-   const isCenter = align === 'center';
--  const p = (k) => (pathPrefix ? `${pathPrefix}.${k}` : undefined);
-+  const p = (k, override) => (override !== undefined ? override : (pathPrefix ? `${pathPrefix}.${k}` : undefined));
+diff --git a/frontend/src/pages/About.jsx b/frontend/src/pages/About.jsx
+index 7a3acda..e71f354 100644
+--- a/frontend/src/pages/About.jsx
++++ b/frontend/src/pages/About.jsx
+@@ -1,16 +1,48 @@
+ import React from 'react';
+ import { Link } from 'react-router-dom';
+-import { ArrowRight } from 'lucide-react';
++import {
++  ArrowRight, Box, Megaphone, Briefcase, LineChart, Database, Users,
++  Radio, ClipboardList, MessageSquare, Award,
++} from 'lucide-react';
+ import PageHero from '../components/PageHero';
+ import { beliefs as mockBeliefs, LOGO_URL } from '../mock';
+ import { useSiteContent } from '../context/SiteContent';
+ 
++const DEFAULT_AUDIENCES = [
++  { icon: 'box', label: 'Associate Product Managers & Junior Product Professionals' },
++  { icon: 'megaphone', label: 'Marketing, Sales & Growth Professionals' },
++  { icon: 'briefcase', label: 'Business Analysts & Operations Professionals' },
++  { icon: 'lineChart', label: 'Research Associates & Financial Analysts' },
++  { icon: 'database', label: 'Data Analysts, Reporting Analysts & BI Analysts' },
++  { icon: 'users', label: 'Team Leads & Senior Individual Contributors' },
++];
++
++const AUDIENCE_ICONS = {
++  box: Box, megaphone: Megaphone, briefcase: Briefcase,
++  lineChart: LineChart, database: Database, users: Users,
++};
++
++const DEFAULT_TEACHING = [
++  { title: 'Live instruction', body: 'Classes are taught live online, not delivered as a passive video library.', icon: 'radio' },
++  { title: 'Applied assignments', body: 'Learners practise model evaluation, AI workflow design and structured technical communication.', icon: 'clipboard' },
++  { title: 'Faculty feedback', body: 'Work is reviewed against evidence, clarity, feasibility and professional relevance.', icon: 'message' },
++  { title: 'Capstone defence', body: 'Every program ends with a portfolio of work that can be shown to employers, clients or internal stakeholders.', icon: 'award' },
++];
++
++const TEACHING_ICONS = {
++  radio: Radio, clipboard: ClipboardList, message: MessageSquare, award: Award,
++};
++
+ export default function About() {
+   const ctx = useSiteContent();
+   const a = ctx?.home?.about || {};
+   const hero = a.hero || {};
+   const phil = a.philosophy || {};
+   const cta = a.cta || {};
++  const why = a.why || {};
++  const teach = a.teach || {};
++  const audiences = (why.audiences && why.audiences.length > 0) ? why.audiences : DEFAULT_AUDIENCES;
++  const teachingBlocks = (teach.blocks && teach.blocks.length > 0) ? teach.blocks : DEFAULT_TEACHING;
+   const beliefs = ctx?.beliefs?.length ? ctx.beliefs : mockBeliefs;
  
    return (
-     <div className={`${isCenter ? 'text-center' : ''} ${className}`}>
-       {chapter && (
--        <p className={`font-editorial italic ${chapterColor} text-[0.95rem] tracking-widest leading-tight mt-[30px] mb-[30px] md:mt-0 md:mb-2`} data-cms-path={p('chapter')}>
-+        <p className={`font-editorial italic ${chapterColor} text-[0.95rem] tracking-widest leading-tight mt-[30px] mb-[30px] md:mt-0 md:mb-2`} data-cms-path={p('chapter', chapterPath)}>
-           — {chapter} —
-         </p>
-       )}
--      {eyebrow && <p className="eyebrow mt-0 mb-1 md:mt-0 md:mb-4" data-cms-path={p('eyebrow')}>{eyebrow}</p>}
-+      {eyebrow && <p className="eyebrow mt-0 mb-1 md:mt-0 md:mb-4" data-cms-path={p('eyebrow', eyebrowPath)}>{eyebrow}</p>}
-       <div className={isCenter ? 'flex justify-center' : ''}>
-         <span className="gold-rule-lg" />
-       </div>
--      <h2 className={`font-display ${titleColor} text-[2rem] md:text-[3rem] lg:text-[3.4rem] leading-[1.05] mt-1 md:mt-6 ${isCenter ? 'max-w-4xl mx-auto' : 'max-w-4xl'}`} data-cms-path={p('title')}>
-+      <h2 className={`font-display ${titleColor} text-[2rem] md:text-[3rem] lg:text-[3.4rem] leading-[1.05] mt-1 md:mt-6 ${isCenter ? 'max-w-4xl mx-auto' : 'max-w-4xl'}`} data-cms-path={p('title', titlePath)}>
-         {accentFirst && accent && (
-           <>
--            <span className="italic font-editorial text-gold" data-cms-path={p('accent')}>{accent}</span>{' '}
-+            <span className="italic font-editorial text-gold" data-cms-path={p('accent', accentPath)}>{accent}</span>{' '}
-           </>
-         )}
-         {title}
-         {!accentFirst && accent && (
-           <>
--            {' '}<span className="italic font-editorial text-gold" data-cms-path={p('accent')}>{accent}</span>
-+            {' '}<span className="italic font-editorial text-gold" data-cms-path={p('accent', accentPath)}>{accent}</span>
-           </>
-         )}
-       </h2>
-       {subtitle && (
--        <p className={`font-editorial ${subColor} text-[1.15rem] md:text-[1.3rem] leading-relaxed mt-3 md:mt-6 ${isCenter ? 'max-w-2xl mx-auto' : 'max-w-3xl'}`} data-cms-path={p('subtitle')}>
-+        <p className={`font-editorial ${subColor} text-[1.15rem] md:text-[1.3rem] leading-relaxed mt-3 md:mt-6 ${isCenter ? 'max-w-2xl mx-auto' : 'max-w-3xl'}`} data-cms-path={p('subtitle', subtitlePath)}>
-           {subtitle}
-         </p>
-       )}
+@@ -22,6 +54,66 @@ export default function About() {
+         pathPrefix="about.hero"
+       />
+ 
++      {/* Why Epsilon Exists */}
++      <section data-cms-section="about-why" className="bg-bone py-16 md:py-24">
++        <div className="container-x">
++          <p className="eyebrow mb-4" data-cms-path="about.why.eyebrow">{why.eyebrow || 'Why we exist'}</p>
++          <span className="gold-rule-lg" />
++          <h2 className="font-display text-navy text-[2rem] md:text-[3rem] leading-[1.05] mt-6 max-w-3xl" data-cms-path="about.why.title">
++            {why.title || 'Why Epsilon Exists'}
++          </h2>
++
++          <div className="mt-8 md:mt-10 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 max-w-6xl">
++            <p className="font-editorial text-navy/85 text-[1.15rem] leading-relaxed" data-cms-path="about.why.paragraph1">
++              {why.paragraph1 || 'AI education has split into two weak extremes. At one end are superficial courses that teach tools without judgement. At the other are highly theoretical graduate programs that do not prepare professionals to defend decisions inside real organisations.'}
++            </p>
++            <div className="space-y-5">
++              <p className="font-editorial italic text-gold text-[1.3rem] leading-relaxed" data-cms-path="about.why.paragraph2">
++                {why.paragraph2 || 'Epsilon was built for that gap.'}
++              </p>
++              <p className="font-editorial text-navy/85 text-[1.15rem] leading-relaxed" data-cms-path="about.why.paragraph3">
++                {why.paragraph3 || 'Here, professionals learn to read AI systems critically, design disciplined workflows, and explain recommendations to the people who approve budgets, manage risk, and set strategy.'}
++              </p>
++              <p className="font-editorial text-navy/85 text-[1.15rem] leading-relaxed" data-cms-path="about.why.paragraph4">
++                {why.paragraph4 || 'Our focus is practical, but never shallow. Every course is built around a well-rounded AI education that helps professionals think clearly, work with confidence, and make AI useful inside real organisations.'}
++              </p>
++            </div>
++          </div>
++
++          <div className="mt-14 md:mt-20">
++            <p className="font-editorial text-navy/85 text-[1.15rem] leading-relaxed max-w-4xl" data-cms-path="about.why.audiencesIntro">
++              {why.audiencesIntro || 'Our learners come from many career paths:'}
++            </p>
++
++            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
++              {audiences.map((aud, i) => {
++                const Icon = AUDIENCE_ICONS[aud.icon] || Box;
++                return (
++                  <div
++                    key={i}
++                    className="group flex items-start gap-4 bg-white border border-navy/10 p-5 hover:border-gold/60 transition-colors"
++                  >
++                    <span className="flex-shrink-0 inline-flex items-center justify-center w-10 h-10 border border-gold/40 text-gold group-hover:bg-gold group-hover:text-navy-deep transition-colors">
++                      <Icon size={18} strokeWidth={1.5} />
++                    </span>
++                    <p
++                      className="font-caps text-[0.72rem] text-navy/85 tracking-[0.12em] leading-snug pt-1.5"
++                      data-cms-path={`about.why.audiences.${i}.label`}
++                    >
++                      {aud.label}
++                    </p>
++                  </div>
++                );
++              })}
++            </div>
++
++            <p className="font-editorial text-navy/85 text-[1.15rem] leading-relaxed max-w-4xl mt-10" data-cms-path="about.why.closing">
++              {why.closing || 'and many others whose work now requires stronger technical judgement. And they come to Epsilon to understand AI clearly enough to lead teams, challenge assumptions, improve workflows, and make better decisions.'}
++            </p>
++          </div>
++        </div>
++      </section>
++
+       {/* Philosophy */}
+       <section data-cms-section="about-philosophy" className="bg-cream py-24">
+         <div className="container-x grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-14 items-center">
+@@ -56,6 +148,44 @@ export default function About() {
+         </div>
+       </section>
+ 
++      {/* How we teach */}
++      <section data-cms-section="about-teach" className="bg-cream py-16 md:py-24 border-t border-navy/5">
++        <div className="container-x">
++          <p className="eyebrow mb-4" data-cms-path="about.teach.eyebrow">{teach.eyebrow || 'How we teach'}</p>
++          <span className="gold-rule-lg" />
++          <h2 className="font-display text-navy text-[2rem] md:text-[3rem] leading-[1.05] mt-6 max-w-3xl" data-cms-path="about.teach.title">
++            {teach.title || 'How learning works at Epsilon.'}
++          </h2>
++          <p className="font-editorial text-navy/85 text-[1.2rem] leading-relaxed mt-8 max-w-3xl" data-cms-path="about.teach.intro">
++            {teach.intro || 'Our programs are live, cohort-based and assignment-driven. Learners work through concepts, apply them to practical AI and machine learning problems, receive feedback and defend their final work before faculty and senior peers.'}
++          </p>
++
++          <div className="mt-12 md:mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
++            {teachingBlocks.map((b, i) => {
++              const Icon = TEACHING_ICONS[b.icon] || Radio;
++              return (
++                <div
++                  key={i}
++                  className="relative bg-white p-7 border border-navy/10 hover:border-gold/60 transition-colors lift-card"
++                >
++                  <span className="absolute top-0 left-0 w-12 h-px bg-gold/60" />
++                  <span className="inline-flex items-center justify-center w-11 h-11 border border-gold/40 text-gold mb-5">
++                    <Icon size={18} strokeWidth={1.5} />
++                  </span>
++                  <p className="font-caps text-[0.62rem] text-gold tracking-[0.2em] mb-2">{String(i + 1).padStart(2, '0')}</p>
++                  <h3 className="font-display text-navy text-[1.25rem] leading-tight" data-cms-path={`about.teach.blocks.${i}.title`}>
++                    {b.title}
++                  </h3>
++                  <p className="font-editorial text-navy/75 text-base leading-relaxed mt-3" data-cms-path={`about.teach.blocks.${i}.body`}>
++                    {b.body}
++                  </p>
++                </div>
++              );
++            })}
++          </div>
++        </div>
++      </section>
++
+       {/* Beliefs — white cards */}
+       <section data-cms-section="about-beliefs" className="bg-bone py-12 md:py-24">
+         <div className="container-x">
 diff --git a/frontend/src/pages/Home.jsx b/frontend/src/pages/Home.jsx
-index ecea856..0ab3c0b 100644
+index 0ab3c0b..9c8617e 100644
 --- a/frontend/src/pages/Home.jsx
 +++ b/frontend/src/pages/Home.jsx
-@@ -51,7 +51,8 @@ function BrochureDownload({ programs, brochure, visualImage }) {
-           title="The whole program,"
-           accent="on a single PDF."
-           subtitle={brochure?.description || '28-page PDF · Program overview, modules, fees, capstone, faculty and admissions.'}
--          pathPrefix="sections.brochure"
-+          eyebrowPath="brochure.eyebrow"
-+          subtitlePath="brochure.description"
-         />
-         <div className="mt-8 md:mt-14 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-stretch">
-         {/* Left: visual */}
-@@ -166,7 +167,7 @@ function BrochureDownload({ programs, brochure, visualImage }) {
- }
- 
- /* ---------- Admissions + Contact inline ---------- */
--function AdmissionsContact({ sections, contact }) {
-+function AdmissionsContact({ sections, contact, admissions }) {
-   const [form, setForm] = useState({ name: '', email: '', topic: 'Admissions Question', message: '' });
-   const [sent, setSent] = useState(false);
- 
-@@ -183,28 +184,31 @@ function AdmissionsContact({ sections, contact }) {
-         <SectionHeader
-           chapter="Chapter IV"
-           eyebrow={sections?.admissionsEyebrow || 'Admissions'}
--          title="A personal conversation."
--          accent="Not a funnel."
-+          title={sections?.admissionsTitle || 'A personal conversation. Not a funnel.'}
-           subtitle={sections?.admissionsSubtitle || 'Every applicant speaks with an admissions lead before a seat is offered. Start with a message — we will write back personally.'}
--          pathPrefix="sections.admissions"
-+          eyebrowPath="sections.admissionsEyebrow"
-+          titlePath="sections.admissionsTitle"
-+          subtitlePath="sections.admissionsSubtitle"
-         />
- 
-         <div className="mt-8 md:mt-16 grid grid-cols-1 lg:grid-cols-[1fr_1.1fr] gap-14 lg:gap-16">
-         {/* Admissions process */}
-         <div>
--          <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-5">The Process</p>
-+          <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-5" data-cms-path="admissions.processEyebrow">
-+            {admissions?.processEyebrow || 'The Process'}
-+          </p>
-           <div className="space-y-6 max-w-md">
--            {[
--              { n: '01', t: 'Application', b: 'Tell us about your work and what you want to learn.' },
--              { n: '02', t: 'Conversation', b: 'A personal call to discuss fit and expectations.' },
--              { n: '03', t: 'Decision', b: 'A seat is offered based on fit, not first-come-first-served.' },
--              { n: '04', t: 'Onboarding', b: 'Pre-work, cohort introductions, and access to Moodle.' },
--            ].map((s) => (
--              <div key={s.n} className="flex gap-5 border-b border-navy/10 pb-5 last:border-0 group">
--                <p className="font-display text-gold text-[1.8rem] leading-none flex-shrink-0 group-hover:scale-110 transition-transform origin-left">{s.n}</p>
-+            {((admissions?.steps && admissions.steps.length > 0) ? admissions.steps : [
-+              { n: '01', title: 'Application', body: 'Tell us about your work and what you want to learn.' },
-+              { n: '02', title: 'Conversation', body: 'A personal call to discuss fit and expectations.' },
-+              { n: '03', title: 'Decision', body: 'A seat is offered based on fit, not first-come-first-served.' },
-+              { n: '04', title: 'Onboarding', body: 'Pre-work, cohort introductions, and access to Moodle.' },
-+            ]).map((s, i) => (
-+              <div key={s.n || i} className="flex gap-5 border-b border-navy/10 pb-5 last:border-0 group">
-+                <p className="font-display text-gold text-[1.8rem] leading-none flex-shrink-0 group-hover:scale-110 transition-transform origin-left" data-cms-path={`admissions.steps.${i}.n`}>{s.n}</p>
-                 <div>
--                  <h4 className="font-display text-navy text-[1.1rem] leading-tight">{s.t}</h4>
--                  <p className="font-editorial text-navy/70 text-base leading-relaxed mt-1">{s.b}</p>
-+                  <h4 className="font-display text-navy text-[1.1rem] leading-tight" data-cms-path={`admissions.steps.${i}.title`}>{s.title || s.t}</h4>
-+                  <p className="font-editorial text-navy/70 text-base leading-relaxed mt-1" data-cms-path={`admissions.steps.${i}.body`}>{s.body || s.b}</p>
-                 </div>
+@@ -108,12 +108,12 @@ function BrochureDownload({ programs, brochure, visualImage }) {
+           ) : (
+             <form onSubmit={onSubmit} className="space-y-6">
+               <div>
+-                <p className="eyebrow mb-2">Download the Brochure</p>
+-                <h3 className="font-display text-navy text-[1.7rem] md:text-[2.1rem] leading-tight">
+-                  Tell us who you are.
++                <p className="eyebrow mb-2" data-cms-path="brochure.formEyebrow">{brochure?.formEyebrow || 'Download the Brochure'}</p>
++                <h3 className="font-display text-navy text-[1.7rem] md:text-[2.1rem] leading-tight" data-cms-path="brochure.formTitle">
++                  {brochure?.formTitle || 'Tell us who you are.'}
+                 </h3>
+-                <p className="font-editorial text-navy/70 mt-3">
+-                  Your copy of the program brochure will start downloading immediately.
++                <p className="font-editorial text-navy/70 mt-3" data-cms-path="brochure.formSubtitle">
++                  {brochure?.formSubtitle || 'Your copy of the program brochure will start downloading immediately.'}
+                 </p>
                </div>
-             ))}
-@@ -302,6 +306,7 @@ export default function Home() {
-   const sections = home?.sections || {};
-   const contact = home?.contact || {};
-   const footer = home?.footer || {};
-+  const admissions = home?.admissions || {};
-   const heroImage = hero.heroImage;
  
-   return (
-@@ -356,7 +361,7 @@ export default function Home() {
-             title={featured.subtitle || 'Professional Certificate'}
-             accent="designed for the AI era."
-             subtitle="Twelve weeks. Evidence-based. Defended before senior peers. An artefact that travels with you."
--            pathPrefix="sections.flagship"
-+            eyebrowPath="sections.flagshipEyebrow"
-           />
- 
-           <div className="mt-14 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-stretch">
-@@ -415,9 +420,9 @@ export default function Home() {
-         <div className="container-x pt-10 md:pt-20">
-           <SectionHeader
-             chapter="Chapter III"
--            eyebrow="Faculty"
--            title="Practitioner-educators who"
--            accent="do the work."
-+            eyebrow={sections?.faculty?.eyebrow || 'Faculty'}
-+            title={sections?.faculty?.title || 'Practitioner-educators who'}
-+            accent={sections?.faculty?.accent || 'do the work.'}
-             tone="dark"
-             pathPrefix="sections.faculty"
-           />
-@@ -426,7 +431,7 @@ export default function Home() {
-       <FacultyShowcase />
- 
-       {/* 5. ADMISSIONS + CONTACT */}
--      <AdmissionsContact sections={sections} contact={contact} />
-+      <AdmissionsContact sections={sections} contact={contact} admissions={admissions} />
- 
-       {/* 6. ABOUT */}
-       <section data-cms-section="home-about" className="bg-bone py-12 md:py-16 relative">
-@@ -474,10 +479,11 @@ export default function Home() {
-           <SectionHeader
-             chapter="Chapter VI"
-             eyebrow={sections.testimonialsEyebrow || 'In Their Words'}
--            title="The judgement shows up"
--            accent="in their work."
-+            title={sections.testimonialsTitle || 'The judgement shows up in their work.'}
-             align="center"
-             tone="dark"
-+            eyebrowPath="sections.testimonialsEyebrow"
-+            titlePath="sections.testimonialsTitle"
-           />
-           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-             {testimonials.map((t) => (

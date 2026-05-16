@@ -108,12 +108,12 @@ function BrochureDownload({ programs, brochure, visualImage }) {
           ) : (
             <form onSubmit={onSubmit} className="space-y-6">
               <div>
-                <p className="eyebrow mb-2">Download the Brochure</p>
-                <h3 className="font-display text-navy text-[1.7rem] md:text-[2.1rem] leading-tight">
-                  Tell us who you are.
+                <p className="eyebrow mb-2" data-cms-path="brochure.formEyebrow">{brochure?.formEyebrow || 'Download the Brochure'}</p>
+                <h3 className="font-display text-navy text-[1.7rem] md:text-[2.1rem] leading-tight" data-cms-path="brochure.formTitle">
+                  {brochure?.formTitle || 'Tell us who you are.'}
                 </h3>
-                <p className="font-editorial text-navy/70 mt-3">
-                  Your copy of the program brochure will start downloading immediately.
+                <p className="font-editorial text-navy/70 mt-3" data-cms-path="brochure.formSubtitle">
+                  {brochure?.formSubtitle || 'Your copy of the program brochure will start downloading immediately.'}
                 </p>
               </div>
 
