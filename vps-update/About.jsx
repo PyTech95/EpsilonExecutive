@@ -58,7 +58,7 @@ export default function About() {
       {/* ============================================================ */}
       {/* WHY EPSILON EXISTS                                            */}
       {/* ============================================================ */}
-      <section data-cms-section="about-why" className="bg-bone py-20 md:py-32 relative overflow-hidden">
+      <section data-cms-section="about-why" className="bg-bone pt-12 md:pt-16 pb-20 md:pb-28 relative overflow-hidden">
         {/* Subtle background ornament */}
         <div aria-hidden="true" className="absolute -top-32 -right-32 w-[480px] h-[480px] rounded-full bg-gold/[0.04] blur-3xl pointer-events-none" />
         <div aria-hidden="true" className="absolute bottom-0 left-0 w-px h-24 bg-gradient-to-b from-transparent to-gold/40 pointer-events-none" />
@@ -156,7 +156,7 @@ export default function About() {
 
       {/* Editorial divider */}
       <div className="bg-cream">
-        <div className="container-x py-10">
+        <div className="container-x py-6">
           <SectionOrnament tone="light" />
         </div>
       </div>
@@ -164,7 +164,7 @@ export default function About() {
       {/* ============================================================ */}
       {/* PHILOSOPHY                                                    */}
       {/* ============================================================ */}
-      <section data-cms-section="about-philosophy" className="bg-cream pb-20 md:pb-32">
+      <section data-cms-section="about-philosophy" className="bg-cream pb-20 md:pb-28">
         <div className="container-x grid grid-cols-1 lg:grid-cols-[1fr_1.15fr] gap-14 lg:gap-20 items-center">
           {/* Image with framing */}
           <div className="relative order-2 lg:order-1">
@@ -212,7 +212,7 @@ export default function About() {
       {/* ============================================================ */}
       {/* HOW WE TEACH — editorial stepper                             */}
       {/* ============================================================ */}
-      <section data-cms-section="about-teach" className="bg-navy-deep text-cream py-20 md:py-32 relative overflow-hidden">
+      <section data-cms-section="about-teach" className="bg-navy-deep text-cream pt-14 md:pt-20 pb-20 md:pb-28 relative overflow-hidden">
         <div className="absolute inset-0 starfield opacity-30 pointer-events-none" />
         <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[700px] h-[700px] rounded-full glow-gold opacity-60 pointer-events-none" />
         <div aria-hidden="true" className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
@@ -278,7 +278,7 @@ export default function About() {
       {/* ============================================================ */}
       {/* BELIEFS                                                       */}
       {/* ============================================================ */}
-      <section data-cms-section="about-beliefs" className="bg-bone py-20 md:py-32">
+      <section data-cms-section="about-beliefs" className="bg-bone pt-14 md:pt-20 pb-20 md:pb-28">
         <div className="container-x">
           <p className="font-editorial italic text-navy/35 text-[0.95rem] tracking-widest leading-tight mb-3">
             — Chapter IV —
@@ -316,7 +316,7 @@ export default function About() {
       {/* ============================================================ */}
       {/* CTA                                                           */}
       {/* ============================================================ */}
-      <section data-cms-section="about-cta" className="bg-navy-deep text-cream py-20 md:py-32 relative overflow-hidden">
+      <section data-cms-section="about-cta" className="bg-navy-deep text-cream pt-14 md:pt-20 pb-20 md:pb-28 relative overflow-hidden">
         <div className="absolute inset-0 starfield opacity-50 pointer-events-none" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] rounded-full glow-gold pointer-events-none" />
         <div aria-hidden="true" className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-px bg-gold/50" />
