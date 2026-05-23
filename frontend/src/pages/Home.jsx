@@ -7,6 +7,8 @@ import {
 import FacultyShowcase from '../components/FacultyShowcase';
 import NetworkBackground from '../components/NetworkBackground';
 import SectionHeader, { SectionOrnament } from '../components/SectionHeader';
+import USPHighlights from '../components/USPHighlights';
+import VideoShowcase from '../components/VideoShowcase';
 import { useSiteContent } from '../context/SiteContent';
 import { api as adminApi } from '../admin/api';
 import { LOGO_URL as MOCK_LOGO } from '../mock';
@@ -415,6 +417,9 @@ export default function Home() {
       {/* 3. BROCHURE */}
       <BrochureDownload programs={programs} brochure={brochure} />
 
+      {/* 3a. USP HIGHLIGHTS */}
+      <USPHighlights />
+
       {/* 4. FACULTY */}
       <div className="bg-navy-deep">
         <div className="container-x pt-10 md:pt-20">
@@ -429,6 +434,9 @@ export default function Home() {
         </div>
       </div>
       <FacultyShowcase />
+
+      {/* 4a. VIDEO SHOWCASE — between Faculty and Admissions */}
+      <VideoShowcase />
 
       {/* 5. ADMISSIONS + CONTACT */}
       <AdmissionsContact sections={sections} contact={contact} admissions={admissions} />
