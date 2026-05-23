@@ -75,12 +75,12 @@ export default function About() {
           </h2>
 
           {/* Lead paragraph */}
-          <p className="font-editorial text-navy/85 text-[1.2rem] md:text-[1.32rem] leading-relaxed mt-10 max-w-3xl" data-cms-path="about.why.paragraph1">
+          <p className="font-editorial text-navy/85 text-[1.2rem] md:text-[1.32rem] leading-relaxed mt-8 max-w-3xl" data-cms-path="about.why.paragraph1">
             {why.paragraph1 || 'AI education has split into two weak extremes. At one end are superficial courses that teach tools without judgement. At the other are highly theoretical graduate programs that do not prepare professionals to defend decisions inside real organisations.'}
           </p>
 
           {/* Pull quote — the editorial moment */}
-          <figure className="mt-14 md:mt-16 max-w-4xl relative">
+          <figure className="mt-10 md:mt-12 max-w-4xl relative">
             <Quote size={36} className="text-gold/40 mb-4" />
             <blockquote
               className="font-display italic text-navy text-[1.8rem] md:text-[2.6rem] lg:text-[3rem] leading-[1.1] tracking-tight relative pl-6 md:pl-8 border-l-2 border-gold"
@@ -91,7 +91,7 @@ export default function About() {
           </figure>
 
           {/* Two-column follow-up */}
-          <div className="mt-14 md:mt-20 grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 max-w-6xl">
+          <div className="mt-10 md:mt-14 grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 max-w-6xl">
             <p className="font-editorial text-navy/85 text-[1.15rem] leading-relaxed" data-cms-path="about.why.paragraph3">
               {why.paragraph3 || 'Here, professionals learn to read AI systems critically, design disciplined workflows, and explain recommendations to the people who approve budgets, manage risk, and set strategy.'}
             </p>
@@ -101,18 +101,12 @@ export default function About() {
           </div>
 
           {/* Audiences */}
-          <div className="mt-20 md:mt-28">
-            <div className="flex items-end justify-between flex-wrap gap-4 mb-10">
-              <div>
-                <p className="font-caps text-[0.62rem] text-gold tracking-[0.22em] mb-3">Who We Teach</p>
-                <p className="font-editorial text-navy text-[1.4rem] md:text-[1.7rem] leading-snug max-w-2xl" data-cms-path="about.why.audiencesIntro">
-                  {why.audiencesIntro || 'Our learners come from many career paths.'}
-                </p>
-              </div>
-              <div className="flex items-center gap-3 text-navy/45">
-                <span className="block h-px w-16 bg-navy/15" />
-                <span className="font-caps text-[0.6rem] tracking-[0.2em]">{audiences.length.toString().padStart(2, '0')} groups</span>
-              </div>
+          <div className="mt-14 md:mt-16">
+            <div className="mb-8">
+              <p className="font-caps text-[0.62rem] text-gold tracking-[0.22em] mb-3">Who We Teach</p>
+              <p className="font-editorial text-navy text-[1.4rem] md:text-[1.7rem] leading-snug max-w-2xl" data-cms-path="about.why.audiencesIntro">
+                {why.audiencesIntro || 'Our learners come from many career paths.'}
+              </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
@@ -245,23 +239,20 @@ export default function About() {
                     key={i}
                     className="group relative flex flex-col"
                   >
-                    {/* Number + Icon orbit */}
-                    <div className="relative h-[120px] flex items-center justify-start mb-4">
-                      <span className="absolute left-0 top-0 font-display text-gold/15 text-[5rem] leading-none select-none group-hover:text-gold/25 transition-colors duration-500">
-                        {num}
-                      </span>
-                      <span className="relative inline-flex items-center justify-center w-16 h-16 border border-gold/50 bg-navy-deep text-gold group-hover:bg-gold group-hover:text-navy-deep group-hover:border-gold transition-all duration-500 mt-6 ml-8">
-                        <Icon size={26} strokeWidth={1.4} />
+                    {/* Icon */}
+                    <div className="mb-5">
+                      <span className="inline-flex items-center justify-center w-14 h-14 border border-gold/50 bg-navy-deep text-gold group-hover:bg-gold group-hover:text-navy-deep group-hover:border-gold transition-all duration-500">
+                        <Icon size={24} strokeWidth={1.4} />
                       </span>
                     </div>
 
                     {/* Content */}
-                    <div className="border-t border-cream/10 pt-6 group-hover:border-gold/60 transition-colors duration-300">
-                      <p className="font-caps text-[0.6rem] text-gold tracking-[0.22em] mb-3">Step {num}</p>
-                      <h3 className="font-display text-cream text-[1.4rem] md:text-[1.55rem] leading-tight" data-cms-path={`about.teach.blocks.${i}.title`}>
+                    <div className="border-t border-cream/10 pt-5 group-hover:border-gold/60 transition-colors duration-300">
+                      <p className="font-caps text-[0.6rem] text-gold tracking-[0.22em] mb-2">Step {num}</p>
+                      <h3 className="font-display text-cream text-[1.3rem] md:text-[1.45rem] leading-tight" data-cms-path={`about.teach.blocks.${i}.title`}>
                         {b.title}
                       </h3>
-                      <p className="font-editorial text-cream/75 text-[1.05rem] leading-relaxed mt-3" data-cms-path={`about.teach.blocks.${i}.body`}>
+                      <p className="font-editorial text-cream/75 text-[1rem] leading-relaxed mt-3" data-cms-path={`about.teach.blocks.${i}.body`}>
                         {b.body}
                       </p>
                     </div>

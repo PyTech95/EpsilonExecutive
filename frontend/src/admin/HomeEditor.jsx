@@ -39,7 +39,13 @@ export default function HomeEditor() {
     const d = JSON.parse(JSON.stringify(data));
     const keys = path.split('.');
     let cur = d;
-    for (let i = 0; i < keys.length - 1; i++) cur = cur[keys[i]];
+    for (let i = 0; i < keys.length - 1; i++) {
+      const k = keys[i];
+      if (cur[k] === undefined || cur[k] === null || typeof cur[k] !== 'object') {
+        cur[k] = {};
+      }
+      cur = cur[k];
+    }
     cur[keys[keys.length - 1]] = value;
     setData(d);
   };
