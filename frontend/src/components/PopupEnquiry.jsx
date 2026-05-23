@@ -19,12 +19,12 @@ export default function PopupEnquiry() {
   const [form, setForm] = useState({ name: '', email: '', phone: '', course: '' });
   const timerRef = useRef(null);
 
-  // Set first program as default course once programs load
+  // Set default course
   useEffect(() => {
-    if (!form.course && programs.length > 0) {
-      setForm((f) => ({ ...f, course: programs[0].title || programs[0].subtitle || '' }));
+    if (!form.course) {
+      setForm((f) => ({ ...f, course: 'Applied AI & Machine Learning' }));
     }
-  }, [programs, form.course]);
+  }, [form.course]);
 
   // Schedule the popup after DELAY_MS; only once per session
   useEffect(() => {
@@ -219,12 +219,8 @@ export default function PopupEnquiry() {
                     onChange={onChange('course')}
                     data-testid="popup-input-course"
                   >
-                    {programs.length === 0 && <option value="">— Select —</option>}
-                    {programs.map((p) => (
-                      <option key={p.slug || p._id} value={p.title || p.subtitle}>
-                        {p.title || p.subtitle}
-                      </option>
-                    ))}
+                    <option value="Applied AI & Machine Learning">Applied AI & Machine Learning</option>
+                    <option value="Corporate Programs">Corporate Programs</option>
                     <option value="Not sure yet">Not sure yet — help me choose</option>
                   </select>
                 </div>
