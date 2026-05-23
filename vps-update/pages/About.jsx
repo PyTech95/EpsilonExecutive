@@ -227,7 +227,7 @@ export default function About() {
           </div>
 
           {/* Stepper rail */}
-          <div className="mt-16 md:mt-24 relative">
+          <div className="mt-2 md:mt-4 relative">
             <div aria-hidden="true" className="hidden lg:block absolute top-[60px] left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/35 to-transparent" />
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8 relative">
