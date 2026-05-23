@@ -47,18 +47,19 @@ export default function Footer() {
           <div>
             <p className="font-caps text-[0.65rem] text-gold tracking-[0.22em] mb-5" data-cms-path="footer.programsColumn.title">{programsCol.title}</p>
             <ul className="space-y-3 font-sans text-[0.95rem]">
-              {programsCol.links.map((link, i) => (
-                <li key={i}>
-                  <Link to={link.url} className="text-cream/85 hover:text-gold transition-colors" data-cms-path={`footer.programsColumn.links.${i}.label`}>
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-              {/* Dynamic program list */}
+              {/* Dynamic program list — first */}
               {programs.map((p) => (
                 <li key={p.slug || p._id}>
                   <Link to={`/programs/${p.slug}`} className="text-cream/85 hover:text-gold transition-colors">
                     {p.subtitle}
+                  </Link>
+                </li>
+              ))}
+              {/* Manual links from admin — second */}
+              {programsCol.links.map((link, i) => (
+                <li key={i}>
+                  <Link to={link.url} className="text-cream/85 hover:text-gold transition-colors" data-cms-path={`footer.programsColumn.links.${i}.label`}>
+                    {link.label}
                   </Link>
                 </li>
               ))}

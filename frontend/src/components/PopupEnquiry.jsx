@@ -22,7 +22,7 @@ export default function PopupEnquiry() {
   // Set default course
   useEffect(() => {
     if (!form.course) {
-      setForm((f) => ({ ...f, course: 'Applied AI & Machine Learning' }));
+      setForm((f) => ({ ...f, course: 'Professional Certificate in Applied AI & Machine Learning' }));
     }
   }, [form.course]);
 
@@ -219,8 +219,10 @@ export default function PopupEnquiry() {
                     onChange={onChange('course')}
                     data-testid="popup-input-course"
                   >
-                    <option value="Applied AI & Machine Learning">Applied AI & Machine Learning</option>
-                    <option value="Corporate Programs">Corporate Programs</option>
+                    <option value="Professional Certificate in Applied AI & Machine Learning">Professional Certificate in Applied AI & Machine Learning</option>
+                    <option value="Advanced Program in Strategic Leadership">Advanced Program in Strategic Leadership</option>
+                    <option value="Finance for Non-Finance Executives">Finance for Non-Finance Executives</option>
+                    <option value="Program in Digital Transformation">Program in Digital Transformation</option>
                     <option value="Not sure yet">Not sure yet — help me choose</option>
                   </select>
                 </div>
