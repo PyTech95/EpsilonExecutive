@@ -101,7 +101,7 @@ export default function About() {
           </div>
 
           {/* Audiences */}
-          <div className="mt-14 md:mt-16">
+          <div className="mt-2 md:mt-8">
             <div className="mb-8">
               <p className="font-caps text-[0.62rem] text-gold tracking-[0.22em] mb-3">Who We Teach</p>
               <p className="font-editorial text-navy text-[1.4rem] md:text-[1.7rem] leading-snug max-w-2xl" data-cms-path="about.why.audiencesIntro">
