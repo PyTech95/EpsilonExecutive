@@ -362,7 +362,6 @@ export default function Home() {
             eyebrow={sections.flagshipEyebrow || 'Flagship Program'}
             title={featured.subtitle || 'Professional Certificate'}
             accent="designed for the future of work."
-            subtitle="Twelve weeks. Evidence-based. Defended before senior peers. An artefact that travels with you."
             eyebrowPath="sections.flagshipEyebrow"
           />
 
