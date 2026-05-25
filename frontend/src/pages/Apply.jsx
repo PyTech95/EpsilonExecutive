@@ -245,11 +245,11 @@ function FacultyTeaser({ lead, guests }) {
             </Link>
           )}
 
-          {/* Guests — 2x2 grid · cards capped in height so they don't grow bulky on wide screens */}
-          <div className="grid grid-cols-2 gap-3 md:gap-4">
+          {/* Guests — 2x2 grid · square thumbnails with capped width so images stay proportional */}
+          <div className="grid grid-cols-2 gap-3 md:gap-4 max-w-[640px]">
             {guests.slice(0, 4).map((g) => (
               <Link key={g.slug || g._id} to="/faculty" className="group block">
-                <div className="h-40 sm:h-44 md:h-52 xl:h-56 overflow-hidden bg-navy/5 border border-navy/10 group-hover:border-gold/60 transition-colors">
+                <div className="aspect-square overflow-hidden bg-navy/5 border border-navy/10 group-hover:border-gold/60 transition-colors">
                   <img src={g.image} alt={g.name} className="w-full h-full object-cover object-top grayscale-[15%] group-hover:grayscale-0 transition-all duration-700" />
                 </div>
                 <p className="font-display text-navy text-[0.95rem] md:text-[1rem] leading-tight mt-2">{g.name}</p>
