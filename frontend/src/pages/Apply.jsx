@@ -209,42 +209,50 @@ function Highlights({ program }) {
 /* ---------- Faculty teaser ---------- */
 function FacultyTeaser({ lead, guests }) {
   return (
-    <section data-cms-section="apply-faculty" className="bg-cream py-10 md:py-16">
+    <section data-cms-section="apply-faculty" className="bg-cream py-8 md:py-12">
       <div className="container-x">
-        <div className="flex items-end justify-between flex-wrap gap-4">
+        <div className="flex items-center justify-between flex-wrap gap-3 mb-6">
           <div>
             <p className="eyebrow" data-cms-path="apply.facultyTeaser.eyebrow">Meet the Faculty</p>
             <span className="gold-rule" />
-            <h2 className="font-display text-navy text-[1.9rem] md:text-[2.4rem] leading-tight mt-6 max-w-xl" data-cms-path="apply.facultyTeaser.title">
+            <h2 className="font-display text-navy text-[1.7rem] md:text-[2.1rem] leading-tight mt-3 max-w-xl" data-cms-path="apply.facultyTeaser.title">
               Practitioner-educators who <span className="italic font-editorial text-gold">do the work.</span>
             </h2>
           </div>
           <Link to="/faculty" className="link-gold">All faculty →</Link>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-10">
-          {/* Lead */}
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-6 lg:gap-8 items-start">
+          {/* Lead — Kent · taller image fills the column nicely */}
           {lead && (
-            <Link to="/faculty" className="group block bg-white border border-navy/10 hover:border-gold/60 transition-colors lift-card">
-              <div className="aspect-[4/5] overflow-hidden bg-navy-deep">
-                <img src={lead.image} alt={lead.name} className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-700" />
+            <Link
+              to="/faculty"
+              className="group flex flex-col bg-white border border-navy/10 hover:border-gold/60 transition-colors lift-card overflow-hidden"
+            >
+              <div className="relative aspect-[5/6] overflow-hidden bg-navy-deep">
+                <img src={lead.image} alt={lead.name} className="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-700" />
+                <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-gold text-navy-deep font-caps text-[0.55rem] tracking-[0.18em] px-2.5 py-1">
+                  {lead.badge || 'Lead Faculty'}
+                </span>
               </div>
-              <div className="p-6">
-                <p className="font-caps text-[0.6rem] tracking-[0.22em] text-gold">{lead.badge || 'Lead Faculty'}</p>
-                <h3 className="font-display text-navy text-[1.4rem] leading-tight mt-2">{lead.name}</h3>
-                <p className="font-editorial italic text-navy/75 text-[1rem] leading-snug mt-1">{lead.role}</p>
+              <div className="p-5">
+                <h3 className="font-display text-navy text-[1.25rem] md:text-[1.4rem] leading-tight">{lead.name}</h3>
+                <p className="font-editorial italic text-navy/70 text-[0.95rem] leading-snug mt-1.5">{lead.role}</p>
+                <span className="inline-flex items-center gap-1.5 font-caps text-[0.6rem] tracking-[0.22em] text-gold mt-4 group-hover:gap-2.5 transition-all">
+                  View profile <ArrowRight size={12} />
+                </span>
               </div>
             </Link>
           )}
 
-          {/* Guests — 2x2 grid, shorter cards so all 4 fit beside Kent in one screen */}
-          <div className="grid grid-cols-2 gap-5">
+          {/* Guests — 2x2 grid */}
+          <div className="grid grid-cols-2 gap-4 md:gap-5">
             {guests.slice(0, 4).map((g) => (
               <Link key={g.slug || g._id} to="/faculty" className="group block">
                 <div className="aspect-[4/3] overflow-hidden bg-navy/5 border border-navy/10 group-hover:border-gold/60 transition-colors">
                   <img src={g.image} alt={g.name} className="w-full h-full object-cover object-top grayscale-[15%] group-hover:grayscale-0 transition-all duration-700" />
                 </div>
-                <p className="font-display text-navy text-[1rem] leading-tight mt-3">{g.name}</p>
+                <p className="font-display text-navy text-[0.98rem] leading-tight mt-3">{g.name}</p>
                 <p className="font-caps text-[0.55rem] tracking-[0.22em] text-gold mt-1.5">{g.expertise}</p>
               </Link>
             ))}
