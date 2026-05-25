@@ -237,8 +237,8 @@ function FacultyTeaser({ lead, guests }) {
             </Link>
           )}
 
-          {/* Guests */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+          {/* Guests — 2x2 grid so all 4 fit in one screen */}
+          <div className="grid grid-cols-2 gap-5">
             {guests.slice(0, 4).map((g) => (
               <Link key={g.slug || g._id} to="/faculty" className="group block">
                 <div className="aspect-[4/5] overflow-hidden bg-navy/5 border border-navy/10 group-hover:border-gold/60 transition-colors">
