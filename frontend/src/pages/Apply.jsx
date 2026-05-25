@@ -365,21 +365,10 @@ export default function Apply() {
       <DeadlineStrip program={selectedProgram} label={ap.deadlineLabel} />
 
       {/* ---------- 4. THE FORM — moved up for accessibility ---------- */}
-      <section id="apply-form" data-cms-section="apply-form" className="bg-cream py-10 md:py-16 scroll-mt-32">
+      <section id="apply-form" data-cms-section="apply-form" className="bg-cream py-8 md:py-12 scroll-mt-32">
         <div className="container-x">
-          <div className="text-center mb-10 max-w-2xl mx-auto">
-            <p className="eyebrow" data-cms-path="apply.formEyebrow">{ap.formEyebrow || 'Apply'}</p>
-            <span className="gold-rule mx-auto" />
-            <h2 className="font-display text-navy text-[2rem] md:text-[2.6rem] leading-[1.08] mt-7" data-cms-path="apply.formTitle">
-              {ap.formTitle || 'Start your application.'}
-            </h2>
-            <p className="font-editorial text-navy/75 text-[1.1rem] leading-relaxed mt-4" data-cms-path="apply.formSubtitle">
-              {ap.formSubtitle || 'A short form — about ninety seconds. We read every submission personally.'}
-            </p>
-          </div>
-
           {sent ? (
-            <div className="bg-white border border-navy/10 p-12 md:p-16 text-center max-w-2xl mx-auto" data-testid="apply-success-card">
+            <div className="bg-white border border-navy/10 p-10 md:p-14 text-center max-w-2xl mx-auto" data-testid="apply-success-card">
               <CheckCircle2 size={56} className="text-gold mx-auto mb-5" />
               <h3 className="font-display text-navy text-[1.8rem] md:text-[2.4rem]" data-cms-path="apply.successTitle">
                 {ap.successTitle || 'Application received.'}
@@ -387,13 +376,24 @@ export default function Apply() {
               <p className="font-editorial text-navy/75 text-lg mt-4 max-w-md mx-auto" data-cms-path="apply.successSubtitle">
                 {ap.successSubtitle || 'Thank you. A member of our admissions team will reach out within two working days to schedule a conversation.'}
               </p>
-              <Link to="/" className="link-gold mt-10 inline-flex" data-testid="apply-success-home-link">Return home →</Link>
+              <Link to="/" className="link-gold mt-8 inline-flex" data-testid="apply-success-home-link">Return home →</Link>
             </div>
           ) : (
-            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,420px)_1fr] gap-10 lg:gap-14 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,380px)_1fr] gap-8 lg:gap-12 items-start">
               {/* Left: imagery + value props (sticky on desktop) */}
-              <aside className="lg:sticky lg:top-32">
-                <div className="relative aspect-[4/5] overflow-hidden bg-navy-deep">
+              <aside className="lg:sticky lg:top-28">
+                <div>
+                  <p className="eyebrow mb-2" data-cms-path="apply.formEyebrow">{ap.formEyebrow || 'Apply'}</p>
+                  <span className="gold-rule" />
+                  <h2 className="font-display text-navy text-[1.8rem] md:text-[2.2rem] leading-[1.05] mt-4" data-cms-path="apply.formTitle">
+                    {ap.formTitle || 'Start your application.'}
+                  </h2>
+                  <p className="font-editorial text-navy/75 text-[1rem] leading-relaxed mt-3" data-cms-path="apply.formSubtitle">
+                    {ap.formSubtitle || 'A short form — about ninety seconds. We read every submission personally.'}
+                  </p>
+                </div>
+
+                <div className="relative aspect-[4/5] overflow-hidden bg-navy-deep mt-6">
                   <img src={heroImage} alt="Working professional studying with Epsilon" className="w-full h-full object-cover" />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy-deep/85 via-navy-deep/30 to-transparent" />
                   <span className="absolute top-4 left-4 w-8 h-8 border-t border-l border-gold/70" />
@@ -402,21 +402,21 @@ export default function Apply() {
                   <span className="absolute bottom-4 right-4 w-8 h-8 border-b border-r border-gold/70" />
                   <div className="absolute bottom-6 left-6 right-6 text-cream">
                     <p className="font-caps text-[0.6rem] tracking-[0.22em] text-gold">{selectedProgram.nextCohort}</p>
-                    <p className="font-display text-[1.4rem] md:text-[1.65rem] leading-tight mt-2 max-w-xs">
+                    <p className="font-display text-[1.3rem] md:text-[1.55rem] leading-tight mt-2 max-w-xs">
                       A personal conversation. <span className="italic font-editorial text-gold">Not a funnel.</span>
                     </p>
                   </div>
                 </div>
 
-                <ul className="mt-8 space-y-4">
+                <ul className="mt-5 space-y-2.5">
                   {[
                     `${selectedProgram.weeks}-week, live online cohort`,
                     'Roughly 15–20 hours per week',
                     'Practitioner-led, capstone-anchored',
                     'Personal call before admission',
                   ].map((b) => (
-                    <li key={b} className="flex gap-3 font-editorial text-navy/85 text-[1.05rem] leading-snug">
-                      <span className="text-gold text-xl leading-none mt-[2px]">◆</span>
+                    <li key={b} className="flex gap-3 font-editorial text-navy/85 text-[0.98rem] leading-snug">
+                      <span className="text-gold text-lg leading-none mt-[2px]">◆</span>
                       <span>{b}</span>
                     </li>
                   ))}
@@ -424,7 +424,7 @@ export default function Apply() {
               </aside>
 
               {/* Right: the form */}
-              <form onSubmit={onSubmit} data-testid="apply-form" className="space-y-12 bg-white p-7 md:p-10 border border-navy/10">
+              <form onSubmit={onSubmit} data-testid="apply-form" className="space-y-8 bg-white p-6 md:p-9 border border-navy/10">
                 {/* Program */}
                 <div>
                   <p className="font-caps text-[0.7rem] text-gold tracking-[0.22em] mb-4">Program</p>
