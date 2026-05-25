@@ -32,17 +32,26 @@ export default function SectionHeader({
 }) {
   const titleColor = tone === 'dark' ? 'text-cream' : 'text-navy';
   const subColor = tone === 'dark' ? 'text-cream/75' : 'text-navy/75';
-  const chapterColor = tone === 'dark' ? 'text-cream/40' : 'text-navy/35';
+  const chapterColor = tone === 'dark' ? 'text-cream' : 'text-navy/35';
   const isCenter = align === 'center';
   const p = (k, override) => (override !== undefined ? override : (pathPrefix ? `${pathPrefix}.${k}` : undefined));
 
   return (
     <div className={`${isCenter ? 'text-center' : ''} ${className}`}>
-      {chapter && (
-        <p className={`font-editorial italic ${chapterColor} text-[0.95rem] tracking-widest leading-tight mt-[30px] mb-[30px] md:mt-0 md:mb-2`} data-cms-path={p('chapter', chapterPath)}>
-          — {chapter} —
-        </p>
-      )}
+     {chapter && (
+  <p
+      className={`font-editorial italic ${chapterColor}
+    text-left
+    text-[0.72rem] sm:text-[0.82rem] md:text-[0.95rem]
+    tracking-[0.22em] md:tracking-[0.3em]
+    leading-none
+    pt-5 sm:pt-4 md:pt-0
+    mb-3 md:mb-2`}
+    data-cms-path={p('chapter', chapterPath)}
+  >
+    — {chapter} —
+  </p>
+)}
       {eyebrow && <p className="eyebrow mt-0 mb-1 md:mt-0 md:mb-4" data-cms-path={p('eyebrow', eyebrowPath)}>{eyebrow}</p>}
       <div className={isCenter ? 'flex justify-center' : ''}>
         <span className="gold-rule-lg" />
