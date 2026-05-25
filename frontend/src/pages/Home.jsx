@@ -52,7 +52,7 @@ function BrochureDownload({ programs, brochure, visualImage }) {
           eyebrow={brochure?.eyebrow || 'Program Brochure'}
           title="The whole program,"
           accent="on a single PDF."
-          subtitle={brochure?.description || '28-page PDF · Program overview, modules, fees, capstone, faculty and admissions.'}
+          subtitle={brochure?.description || 'Program overview, modules, fees, capstone, faculty and admissions.'}
           eyebrowPath="brochure.eyebrow"
           subtitlePath="brochure.description"
         />
