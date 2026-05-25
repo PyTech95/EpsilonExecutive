@@ -237,15 +237,15 @@ function FacultyTeaser({ lead, guests }) {
             </Link>
           )}
 
-          {/* Guests — 2x2 grid so all 4 fit in one screen */}
+          {/* Guests — 2x2 grid, shorter cards so all 4 fit beside Kent in one screen */}
           <div className="grid grid-cols-2 gap-5">
             {guests.slice(0, 4).map((g) => (
               <Link key={g.slug || g._id} to="/faculty" className="group block">
-                <div className="aspect-[4/5] overflow-hidden bg-navy/5 border border-navy/10 group-hover:border-gold/60 transition-colors">
-                  <img src={g.image} alt={g.name} className="w-full h-full object-cover grayscale-[15%] group-hover:grayscale-0 transition-all duration-700" />
+                <div className="aspect-[4/3] overflow-hidden bg-navy/5 border border-navy/10 group-hover:border-gold/60 transition-colors">
+                  <img src={g.image} alt={g.name} className="w-full h-full object-cover object-top grayscale-[15%] group-hover:grayscale-0 transition-all duration-700" />
                 </div>
-                <p className="font-display text-navy text-[1rem] leading-tight mt-4">{g.name}</p>
-                <p className="font-caps text-[0.55rem] tracking-[0.22em] text-gold mt-2">{g.expertise}</p>
+                <p className="font-display text-navy text-[1rem] leading-tight mt-3">{g.name}</p>
+                <p className="font-caps text-[0.55rem] tracking-[0.22em] text-gold mt-1.5">{g.expertise}</p>
               </Link>
             ))}
           </div>
