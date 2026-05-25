@@ -229,31 +229,31 @@ function FacultyTeaser({ lead, guests }) {
               to="/faculty"
               className="group flex flex-col bg-white border border-navy/10 hover:border-gold/60 transition-colors lift-card overflow-hidden"
             >
-              <div className="relative aspect-[5/6] overflow-hidden bg-navy-deep">
+              <div className="relative aspect-[3/4] overflow-hidden bg-navy-deep">
                 <img src={lead.image} alt={lead.name} className="w-full h-full object-cover object-top group-hover:scale-[1.03] transition-transform duration-700" />
                 <span className="absolute top-3 left-3 inline-flex items-center gap-1.5 bg-gold text-navy-deep font-caps text-[0.55rem] tracking-[0.18em] px-2.5 py-1">
                   {lead.badge || 'Lead Faculty'}
                 </span>
               </div>
-              <div className="p-5">
-                <h3 className="font-display text-navy text-[1.25rem] md:text-[1.4rem] leading-tight">{lead.name}</h3>
-                <p className="font-editorial italic text-navy/70 text-[0.95rem] leading-snug mt-1.5">{lead.role}</p>
-                <span className="inline-flex items-center gap-1.5 font-caps text-[0.6rem] tracking-[0.22em] text-gold mt-4 group-hover:gap-2.5 transition-all">
+              <div className="p-4 md:p-5">
+                <h3 className="font-display text-navy text-[1.2rem] md:text-[1.35rem] leading-tight">{lead.name}</h3>
+                <p className="font-editorial italic text-navy/70 text-[0.92rem] leading-snug mt-1">{lead.role}</p>
+                <span className="inline-flex items-center gap-1.5 font-caps text-[0.58rem] tracking-[0.22em] text-gold mt-3 group-hover:gap-2.5 transition-all">
                   View profile <ArrowRight size={12} />
                 </span>
               </div>
             </Link>
           )}
 
-          {/* Guests — 2x2 grid */}
-          <div className="grid grid-cols-2 gap-4 md:gap-5">
+          {/* Guests — 2x2 grid · cards capped in height so they don't grow bulky on wide screens */}
+          <div className="grid grid-cols-2 gap-3 md:gap-4">
             {guests.slice(0, 4).map((g) => (
               <Link key={g.slug || g._id} to="/faculty" className="group block">
-                <div className="aspect-[4/3] overflow-hidden bg-navy/5 border border-navy/10 group-hover:border-gold/60 transition-colors">
+                <div className="h-40 sm:h-44 md:h-52 xl:h-56 overflow-hidden bg-navy/5 border border-navy/10 group-hover:border-gold/60 transition-colors">
                   <img src={g.image} alt={g.name} className="w-full h-full object-cover object-top grayscale-[15%] group-hover:grayscale-0 transition-all duration-700" />
                 </div>
-                <p className="font-display text-navy text-[0.98rem] leading-tight mt-3">{g.name}</p>
-                <p className="font-caps text-[0.55rem] tracking-[0.22em] text-gold mt-1.5">{g.expertise}</p>
+                <p className="font-display text-navy text-[0.95rem] md:text-[1rem] leading-tight mt-2">{g.name}</p>
+                <p className="font-caps text-[0.55rem] tracking-[0.22em] text-gold mt-1">{g.expertise}</p>
               </Link>
             ))}
           </div>
