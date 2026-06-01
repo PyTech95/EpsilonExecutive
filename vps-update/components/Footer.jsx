@@ -32,8 +32,8 @@ export default function Footer() {
   const signInUrl = footerData.signInUrl || home.footer?.signInUrl || 'https://moodle.org/login/index.php';
   const copyright = footerData.copyright || '© 2026 Epsilon Executive Education · All rights reserved';
   const bottomLinks = footerData.bottomLinks || [
-    { label: 'Privacy', url: '/about' },
-    { label: 'Terms', url: '/about' },
+    { label: 'Privacy', url: '/privacy' },
+    { label: 'Terms', url: '/terms' },
     { label: 'Press', url: '/contact' },
   ];
 
