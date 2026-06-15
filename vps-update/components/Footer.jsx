@@ -19,6 +19,7 @@ export default function Footer() {
     links: [
       { label: 'Home', url: '/' },
       { label: 'Faculty', url: '/faculty' },
+      { label: 'Events', url: '/events' },
       { label: 'About', url: '/about' },
     ],
   };
