@@ -14,6 +14,7 @@ export default function Navbar() {
   const logoUrl = navbar.logoUrl || ctx?.logoUrl || LOGO_URL;
   const menuItems = navbar.menuItems || [
     { label: 'Faculty', link: '/faculty', type: 'link' },
+    { label: 'Insights', link: '/insights', type: 'link' },
     { label: 'About', link: '/about', type: 'link' },
   ];
   const applyButtonText = navbar.applyButtonText || 'Apply';
