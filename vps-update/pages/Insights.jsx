@@ -45,14 +45,16 @@ export default function Insights() {
                   <span>·</span>
                   <span>{featured.readTime}</span>
                 </div>
-                <span className="link-gold mt-7 inline-flex w-fit">Read the Essay <ArrowUpRight size={13} /></span>
+                <span className="inline-flex items-center gap-1.5 bg-gold text-navy-deep font-caps text-[0.7rem] tracking-[0.22em] px-5 py-2.5 mt-7 w-fit group-hover:bg-navy-deep group-hover:text-gold transition-colors duration-300">
+                  Read Now <ArrowUpRight size={13} />
+                </span>
               </div>
             </Link>
           )}
 
           <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-10">
             {rest.map((a) => (
-              <Link key={a.slug} to={`/insights/${a.slug}`} className="group">
+              <Link key={a.slug} to={`/insights/${a.slug}`} className="group block">
                 <div className="aspect-[16/10] overflow-hidden">
                   <img src={a.image} alt={a.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
@@ -61,7 +63,12 @@ export default function Insights() {
                   {a.title}
                 </h3>
                 <p className="font-editorial text-navy/70 text-lg leading-relaxed mt-3">{a.excerpt}</p>
-                <p className="font-caps text-[0.6rem] text-navy/60 mt-4">{a.author} · {a.readTime}</p>
+                <div className="flex items-center justify-between flex-wrap gap-3 mt-5">
+                  <p className="font-caps text-[0.6rem] text-navy/60">{a.author} · {a.readTime}</p>
+                  <span className="inline-flex items-center gap-1.5 bg-gold text-navy-deep font-caps text-[0.65rem] tracking-[0.2em] px-4 py-2 group-hover:bg-navy-deep group-hover:text-gold transition-colors duration-300">
+                    Read Now <ArrowUpRight size={13} />
+                  </span>
+                </div>
               </Link>
             ))}
           </div>
