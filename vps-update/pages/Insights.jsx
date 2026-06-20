@@ -63,12 +63,10 @@ export default function Insights() {
                   {a.title}
                 </h3>
                 <p className="font-editorial text-navy/70 text-lg leading-relaxed mt-3">{a.excerpt}</p>
-                <div className="flex items-center justify-between flex-wrap gap-3 mt-5">
-                  <p className="font-caps text-[0.6rem] text-navy/60">{a.author} · {a.readTime}</p>
-                  <span className="inline-flex items-center gap-1.5 bg-gold text-navy-deep font-caps text-[0.65rem] tracking-[0.2em] px-4 py-2 group-hover:bg-navy-deep group-hover:text-gold transition-colors duration-300">
-                    Read Now <ArrowUpRight size={13} />
-                  </span>
-                </div>
+                <span className="inline-flex items-center gap-1.5 bg-gold text-navy-deep font-caps text-[0.65rem] tracking-[0.2em] px-4 py-2 mt-5 w-fit group-hover:bg-navy-deep group-hover:text-gold transition-colors duration-300">
+                  Read Now <ArrowUpRight size={13} />
+                </span>
+                <p className="font-caps text-[0.6rem] text-navy/60 mt-6">{a.author} · {a.readTime}</p>
               </Link>
             ))}
           </div>
