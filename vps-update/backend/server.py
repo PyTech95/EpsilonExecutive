@@ -1,5 +1,6 @@
 """Epsilon Executive Education backend — auth, content CMS, submissions."""
 from fastapi import FastAPI, APIRouter, HTTPException, Depends, Header, UploadFile, File
+from fastapi.responses import Response, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
@@ -191,6 +192,66 @@ async def login(body: LoginIn):
 @api.get("/auth/me")
 async def me(email: str = Depends(require_admin)):
     return {"email": email}
+
+
+# ==================================================================
+# SEO — sitemap.xml + robots.txt
+# ==================================================================
+STATIC_PAGES = [
+    {"path": "/", "priority": 1.0, "freq": "weekly"},
+    {"path": "/about", "priority": 0.8, "freq": "monthly"},
+    {"path": "/faculty", "priority": 0.8, "freq": "monthly"},
+    {"path": "/programs", "priority": 0.9, "freq": "weekly"},
+    {"path": "/corporate", "priority": 0.7, "freq": "monthly"},
+    {"path": "/admissions", "priority": 0.8, "freq": "monthly"},
+    {"path": "/apply", "priority": 0.9, "freq": "monthly"},
+    {"path": "/contact", "priority": 0.6, "freq": "monthly"},
+    {"path": "/schedule", "priority": 0.6, "freq": "monthly"},
+    {"path": "/insights", "priority": 0.7, "freq": "weekly"},
+    {"path": "/events", "priority": 0.6, "freq": "weekly"},
+    {"path": "/terms", "priority": 0.3, "freq": "yearly"},
+    {"path": "/privacy", "priority": 0.3, "freq": "yearly"},
+]
+
+
+@api.get("/sitemap.xml", response_class=Response)
+async def sitemap():
+    home = await db.site_content.find_one({"_id": "home"}) or {}
+    origin = (home.get("tracking") or {}).get("siteOrigin", "").rstrip("/") or "https://epsilonexec.com"
+    today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
+    urls = []
+    for p in STATIC_PAGES:
+        urls.append({"loc": f"{origin}{p['path']}", "lastmod": today, "changefreq": p["freq"], "priority": p["priority"]})
+    async for prog in db.programs.find({}, {"slug": 1}):
+        if prog.get("slug"):
+            urls.append({"loc": f"{origin}/programs/{prog['slug']}", "lastmod": today, "changefreq": "monthly", "priority": 0.8})
+    async for ins in db.insights.find({}, {"slug": 1}):
+        if ins.get("slug"):
+            urls.append({"loc": f"{origin}/insights/{ins['slug']}", "lastmod": today, "changefreq": "monthly", "priority": 0.6})
+
+    body = ['<?xml version="1.0" encoding="UTF-8"?>', '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
+    for u in urls:
+        body.append(
+            f'<url><loc>{u["loc"]}</loc><lastmod>{u["lastmod"]}</lastmod>'
+            f'<changefreq>{u["changefreq"]}</changefreq><priority>{u["priority"]}</priority></url>'
+        )
+    body.append("</urlset>")
+    return Response(content="\n".join(body), media_type="application/xml")
+
+
+@api.get("/robots.txt", response_class=PlainTextResponse)
+async def robots_txt():
+    home = await db.site_content.find_one({"_id": "home"}) or {}
+    origin = (home.get("tracking") or {}).get("siteOrigin", "").rstrip("/") or "https://epsilonexec.com"
+    txt = (
+        "User-agent: *\n"
+        "Allow: /\n"
+        "Disallow: /admin\n"
+        "Disallow: /admin/\n"
+        "Disallow: /api/\n\n"
+        f"Sitemap: {origin}/api/sitemap.xml\n"
+    )
+    return PlainTextResponse(content=txt)
 
 
 @api.post("/auth/change-password")
