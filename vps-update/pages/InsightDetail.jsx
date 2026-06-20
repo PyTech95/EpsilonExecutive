@@ -74,7 +74,7 @@ export default function InsightDetail() {
           <div className="absolute inset-0" style={{ background: 'linear-gradient(to bottom, rgba(8,19,31,0.6), rgba(8,19,31,0.95))' }} />
         </div>
         <div className="relative container-x max-w-4xl">
-          <Link to="/insights" className="link-gold mb-8 inline-flex">← All Essays</Link>
+          <Link to="/insights" className="link-gold mb-8 inline-flex">← Insights</Link>
           <p className="eyebrow mb-5">{article.category}</p>
           <h1 className="font-display text-[2.2rem] md:text-[3.6rem] leading-[1.05]">{article.title}</h1>
           <div className="mt-8 flex items-center gap-3 text-sm text-cream/70">
