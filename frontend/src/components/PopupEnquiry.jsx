@@ -221,6 +221,7 @@ export default function PopupEnquiry() {
                   >
                     <option value="Professional Certificate in Applied AI & Machine Learning">Professional Certificate in Applied AI & Machine Learning</option>
                     <option value="Corporate Program">Corporate Program</option>
+                    <option value="Teacher Training">Teacher Training</option>
                   </select>
                 </div>
 
