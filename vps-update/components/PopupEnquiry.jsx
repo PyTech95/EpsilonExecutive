@@ -220,10 +220,7 @@ export default function PopupEnquiry() {
                     data-testid="popup-input-course"
                   >
                     <option value="Professional Certificate in Applied AI & Machine Learning">Professional Certificate in Applied AI & Machine Learning</option>
-                    <option value="Advanced Program in Strategic Leadership">Advanced Program in Strategic Leadership</option>
-                    <option value="Finance for Non-Finance Executives">Finance for Non-Finance Executives</option>
-                    <option value="Program in Digital Transformation">Program in Digital Transformation</option>
-                    <option value="Not sure yet">Not sure yet — help me choose</option>
+                    <option value="Corporate Program">Corporate Program</option>
                   </select>
                 </div>
 
